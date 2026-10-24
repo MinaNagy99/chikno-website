@@ -1,0 +1,248 @@
+<!--page:order | title:طلبك – تشيكنو | no-ann | no-wa-->
+<style>
+.ohero{padding-bottom:30px}
+.ohero h1{font-size:clamp(64px,11vw,180px);display:flex;align-items:flex-end;gap:.2em}
+.ohero h1 sup{font-family:var(--fl);font-size:.25em;color:var(--ember);align-self:flex-start;margin-top:.25em;min-width:1ch}
+.steps{display:flex;align-items:center;gap:0;margin-top:30px;max-width:720px}
+.st{display:flex;align-items:center;gap:12px;font-weight:600;color:var(--mute);white-space:nowrap;transition:color .4s}
+.st b{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-family:var(--fl);font-size:1.2rem;transition:background .5s,border-color .5s,color .5s;position:relative;flex:none}
+.st b svg{position:absolute;width:20px;height:20px;opacity:0;transform:scale(0);transition:opacity .3s,transform .5s var(--ease)}
+.st.done b{background:var(--ember);border-color:var(--ember);color:transparent}
+.st.done b svg{opacity:1;transform:none;color:#fff}
+.st.cur{color:var(--ink)}
+.st.cur b{border-color:var(--ink)}
+.st-line{flex:1;height:2px;background:var(--line);margin-inline:14px;min-width:24px;position:relative;overflow:hidden}
+.st-line i{position:absolute;inset:0;background:var(--ember);transform:scaleX(0);transform-origin:var(--o,right);transition:transform .8s var(--ease)}
+:root[dir="ltr"] .st-line i{--o:left}
+.st-line.on i{transform:scaleX(1)}
+@media (max-width:560px){.st span{display:none}}
+.olay{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,56px);align-items:start;padding-bottom:140px}
+.olay>div{min-width:0}
+.blk{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(20px,3vw,34px);margin-bottom:22px}
+.blk-h{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}
+.blk-h h2{font-family:var(--fd);font-size:clamp(30px,3vw,44px);line-height:1}
+:root[lang="en"] .blk-h h2{text-transform:uppercase}
+.blk-h .link{color:var(--mute);font-size:.92rem}
+.cl{display:grid;grid-template-columns:76px 1fr auto;gap:8px 18px;align-items:center;padding:16px 0;border-top:1px solid var(--line);overflow:hidden}
+.cl:first-child{border-top:0;padding-top:4px}
+.cl .art{width:76px;aspect-ratio:1;border-radius:16px;grid-row:1/3;cursor:pointer}
+.cl .art>svg{width:56%}
+.cl h3{font-weight:600;font-size:1.08rem;line-height:1.35;cursor:pointer}
+.cl h3:hover{color:var(--ember)}
+.cl .meta{color:var(--mute);font-size:.86rem}
+.cl .lt{font-family:var(--fl);font-weight:800;font-size:1.4rem;color:var(--gold);text-align:end;white-space:nowrap}
+.cl .lt small{font-family:var(--fb);font-size:.75rem;color:var(--mute);font-weight:500;margin-inline-start:3px}
+.cl .ctr{display:flex;align-items:center;gap:10px;grid-column:2/4;justify-content:space-between}
+.rm{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--mute);transition:background .3s,color .3s}
+.rm:hover{background:color-mix(in srgb,#E5484D 15%,transparent);color:#E5484D}
+.sugg{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.sugg::-webkit-scrollbar{display:none}
+.sg{flex:none;display:flex;align-items:center;gap:10px;padding:6px 6px 6px 14px;border:1.5px solid var(--line);border-radius:999px;cursor:pointer;transition:border-color .3s}
+:root[dir="rtl"] .sg{padding:6px 14px 6px 6px}
+.sg:hover{border-color:var(--ember)}
+.sg .art{width:40px;aspect-ratio:1;border-radius:50%;order:-1}
+.sg .art>svg{width:56%}
+.sg b{font-weight:600;font-size:.92rem;white-space:nowrap}
+.sg .price{font-size:1rem}
+.form{display:flex;flex-direction:column;gap:16px}
+.reveal-h{display:grid;grid-template-rows:1fr;transition:grid-template-rows .55s var(--ease),opacity .4s}
+.reveal-h>div{overflow:hidden;display:flex;flex-direction:column;gap:16px}
+.reveal-h.off{grid-template-rows:0fr;opacity:0}
+.sum{position:sticky;top:110px}
+.sum .blk{background:var(--ink);color:var(--bg);border:0}
+.sum .blk-h h2{color:var(--bg)}
+.srow{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid color-mix(in srgb,var(--bg) 15%,transparent);font-size:.98rem}
+.srow span:last-child{font-weight:600}
+.srow.tot{border:0;padding-top:18px;align-items:flex-end}
+.srow.tot b{font-family:var(--fl);font-weight:900;font-size:clamp(48px,5vw,72px);line-height:.9;color:var(--ember)}
+.srow.tot b small{font-family:var(--fb);font-size:1rem;color:var(--bg);opacity:.6;margin-inline-start:6px;font-weight:500}
+.snote{font-size:.85rem;opacity:.65;margin-top:6px}
+.sbtns{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.sbtns .btn{width:100%;height:60px}
+.sbtns .btn-line{border-color:color-mix(in srgb,var(--bg) 25%,transparent);color:var(--bg)}
+.sbtns .btn-line:hover{border-color:var(--bg)}
+.ferr{color:#FF8A80;font-size:.88rem;font-weight:600;display:none}
+.ferr.on{display:block}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.info div{display:flex;gap:12px;align-items:flex-start;padding:16px;border:1px solid var(--line);border-radius:18px;font-size:.92rem;color:var(--mute)}
+.info .ico{color:var(--ember);margin-top:2px}
+.info b{display:block;color:var(--ink);font-size:.98rem}
+@media (max-width:1000px){.olay{grid-template-columns:1fr}.sum{position:static}.info{grid-template-columns:1fr}}
+.oempty{text-align:center;padding:40px 0 120px}
+.oempty .box3d{width:160px;height:160px;margin:0 auto 26px;color:var(--ember);animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-16px) rotate(-6deg)}}
+.oempty h2{font-size:clamp(46px,6vw,90px)}
+.oempty p{color:var(--mute);margin-top:10px}
+.oempty .grid4{margin-top:60px;text-align:start}
+.done-panel{text-align:center;padding:30px 10px}
+.done-panel svg.ok{width:96px;height:96px;margin:0 auto 18px;color:var(--ok)}
+.done-panel svg.ok circle{stroke-dasharray:190;stroke-dashoffset:190;animation:dr 1s var(--ease) forwards}
+.done-panel svg.ok path{stroke-dasharray:40;stroke-dashoffset:40;animation:dr .6s .6s var(--ease) forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.done-panel h3{font-family:var(--fd);font-size:2.4rem;line-height:1.1}
+.done-panel p{opacity:.7;margin:10px 0 20px}
+</style>
+<!--BODY-->
+<main id="main">
+ <section class="phero ohero">
+  <div class="glow"></div>
+  <div class="wrap">
+   <nav class="crumbs" data-intro aria-label="Breadcrumb"><a href="index.html" data-i18n="home_crumb">الرئيسية</a><svg class="ico flip"><use href="#i-right"/></svg><span data-i18n="cart">طلبك</span></nav>
+   <h1 class="display"><span data-split="intro" data-i18n="h1">طلبك</span><sup id="oCount"></sup></h1>
+   <div class="steps" id="steps" data-intro>
+     <div class="st" id="st1"><b>1<svg class="ico"><use href="#i-check"/></svg></b><span data-i18n="s1">اختار الأكل</span></div><div class="st-line" id="sl1"><i></i></div>
+     <div class="st" id="st2"><b>2<svg class="ico"><use href="#i-check"/></svg></b><span data-i18n="s2">بياناتك</span></div><div class="st-line" id="sl2"><i></i></div>
+     <div class="st" id="st3"><b>3<svg class="ico"><use href="#i-check"/></svg></b><span data-i18n="s3">ابعت الطلب</span></div>
+   </div>
+  </div>
+ </section>
+
+ <div class="wrap">
+  <div id="oFull" class="olay">
+   <div>
+    <div class="blk" data-fade>
+      <div class="blk-h"><h2 data-i18n="your_items">الأكل</h2><a class="link" href="menu.html"><svg class="ico" style="width:18px;height:18px"><use href="#i-plus"/></svg><span data-i18n="add_more">زوّد من المنيو</span></a></div>
+      <div id="oLines"></div>
+    </div>
+    <div class="blk" data-fade>
+      <div class="blk-h"><h2 data-i18n="dont_forget">متنساش</h2></div>
+      <div class="sugg" id="oSugg"></div>
+    </div>
+    <div class="blk" data-fade>
+      <div class="blk-h"><h2 data-i18n="details">بياناتك</h2><div class="seg" id="oType" role="group"><button data-v="delivery" aria-pressed="true"><svg class="ico"><use href="#i-bike"/></svg><span data-i18n="delivery">توصيل</span></button><button data-v="pickup" aria-pressed="false"><svg class="ico"><use href="#i-bag"/></svg><span data-i18n="pickup">استلام</span></button></div></div>
+      <form class="form" id="oForm" novalidate>
+        <div class="frow">
+          <label class="field" id="fName"><span data-i18n="f_name">الاسم</span><input name="name" autocomplete="name" required><em class="em" data-i18n="e_name">اكتب اسمك</em></label>
+          <label class="field" id="fPhone"><span data-i18n="f_phone">الموبايل</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="01xxxxxxxxx" required><em class="em" data-i18n="e_phone">رقم موبايل مصري من ١١ رقم</em></label>
+        </div>
+        <div class="reveal-h" id="addrWrap"><div>
+          <label class="field" id="fArea"><span data-i18n="f_area">المنطقة</span><select name="area" id="oArea"></select><em class="em" data-i18n="e_area">اختار المنطقة</em></label>
+          <label class="field" id="fAddr"><span data-i18n="f_addr">العنوان بالتفصيل</span><input name="addr" autocomplete="street-address" data-i18n-ph="ph_addr"><em class="em" data-i18n="e_addr">اكتب العنوان</em></label>
+        </div></div>
+        <label class="field"><span><span data-i18n="f_note">ملاحظات</span><small data-i18n="optional">اختياري</small></span><textarea name="note" rows="2" data-i18n-ph="ph_note"></textarea></label>
+      </form>
+    </div>
+    <div class="info" data-stagger>
+      <div><svg class="ico"><use href="#i-clock"/></svg><span><b data-i18n="hours">كل يوم من ١٠ الصبح لـ ٢ بالليل</b><span class="status sm" data-status style="margin-top:6px"><i></i><span></span></span></span></div>
+      <div><svg class="ico"><use href="#i-bike"/></svg><span><b data-i18n="i2t">التوصيل والدفع</b><span data-i18n="i2p">المناطق والرسوم وطريقة الدفع بتتأكد معاك في التليفون.</span></span></div>
+      <div><svg class="ico"><use href="#i-pin"/></svg><span><b data-i18n="i3t">الاستلام</b><span data-i18n="address">279 شارع فيصل الرئيسي – محطة المطبعة، الجيزة</span></span></div>
+    </div>
+   </div>
+   <aside class="sum">
+    <div class="blk" id="sumBlk">
+      <div id="sumMain">
+        <div class="blk-h"><h2 data-i18n="summary">الحساب</h2></div>
+        <div class="srow"><span data-i18n="items_t">الأصناف</span><span id="sItems"></span></div>
+        <div class="srow"><span data-i18n="subtotal">الأكل</span><span id="sSub"></span></div>
+        <div class="srow"><span data-i18n="fee">التوصيل</span><span id="sFee"></span></div>
+        <div class="srow tot"><span data-i18n="total">الإجمالي</span><b id="sTot">0</b></div>
+        <p class="snote" id="sNote"></p>
+        <div class="sbtns">
+          <p class="ferr" id="fErr" data-i18n="e_form">كمّل بياناتك الأول.</p>
+          <button class="btn btn-wa magnetic" id="sendWa"><svg class="ico" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg><span data-i18n="send_wa">ابعت الطلب على واتساب</span></button>
+          <a class="btn btn-fire magnetic" href="tel:01222440044"><svg class="ico"><use href="#i-phone"/></svg><span data-i18n="send_call">اطلب بالتليفون</span></a>
+          <a class="btn btn-line magnetic" href="https://www.talabat.com/egypt/chikno-haram--el-taawun" target="_blank" rel="noopener"><span data-i18n="send_tal">أو اطلب من طلبات</span></a>
+        </div>
+      </div>
+    </div>
+   </aside>
+  </div>
+
+  <div id="oEmpty" class="oempty" hidden>
+    <svg class="box3d"><use href="#f-box"/></svg>
+    <h2 class="display" data-i18n="empty_t">طلبك فاضي</h2>
+    <p data-i18n="empty_p">الشواية مستنياك. اختار من المنيو أو ابدأ بالأكثر طلبًا.</p>
+    <div class="more-row"><a class="btn btn-fire magnetic" href="menu.html" data-i18n="cta_menu">شوف المنيو</a><a class="btn btn-line magnetic" href="offers.html" data-i18n="see_boxes">شوف البوكسات</a></div>
+    <div class="grid4" id="oBest"></div>
+  </div>
+ </div>
+</main>
+<!--SCRIPT-->
+<script>
+(function(){
+const C=Chikno,$=C.$,$$=C.$$;
+const cust=C.store.get('chk-cust',{})||{};
+let type=cust.type||'delivery',sent=false;
+const AREAS={ar:['فيصل','الهرم','الطالبية','التعاون','المطبعة','العمرانية','حدائق الأهرام','منطقة تانية'],en:['Faisal','Haram','El Talbia','El Taawun','El Matbaa','Omraniya','Hadayek El Ahram','Other area']};
+const SUGG=['a3','a1','a2','a12','a8','d2','d1'];
+const fmt=n=>`${n}<small>${C.t('egp')}</small>`;
+const f=$('#oForm');
+function lineHTML(l){const it=C.item(l.id);const u=C.cart.unit(l);
+  const meta=[...l.x.map(e=>C.EXTRAS[e]?'+ '+C.EXTRAS[e][C.lang()]:''),l.note?'“'+C.esc(l.note)+'”':''].filter(Boolean).join(' · ');
+  return `<div class="cl" data-k="${C.esc(l.k)}">${C.art(it,{w:200}).replace('class="art"','class="art" data-dish="'+it.id+'"')}<div><h3 data-dish="${it.id}">${C.esc(C.nm(it))}</h3><div class="meta">${u?u+' '+C.t('egp'):C.t('ask_price')}${meta?' · '+meta:''}</div></div><span class="lt">${u?fmt(u*l.q):''}</span>
+  <div class="ctr"><div class="stepper sm"><button data-q="-1" aria-label="${C.t('less')}"><svg class="ico"><use href="#i-minus"/></svg></button><output>${l.q}</output><button data-q="1" aria-label="${C.t('more')}"><svg class="ico"><use href="#i-plus"/></svg></button></div><button class="rm" data-rm aria-label="${C.t('remove')}"><svg class="ico"><use href="#i-trash"/></svg></button></div></div>`;}
+function renderLines(){const ls=C.cart.lines();$('#oLines').innerHTML=ls.map(lineHTML).join('');}
+function valid(show){let ok=true;const fd=new FormData(f);
+  const chk=(id,cond)=>{const el=$(id);el.classList.toggle('err',show&&!cond);if(!cond)ok=false;};
+  chk('#fName',(fd.get('name')||'').trim().length>=2);
+  chk('#fPhone',/^01[0125]\d{8}$/.test((fd.get('phone')||'').replace(/[\s-]/g,'').replace(/^\+?20/,'0')));
+  if(type==='delivery'){chk('#fArea',!!fd.get('area'));chk('#fAddr',(fd.get('addr')||'').trim().length>=4);}else{$('#fArea').classList.remove('err');$('#fAddr').classList.remove('err');}
+  return ok;}
+function steps(){const has=C.cart.count()>0,ok=valid(false);
+  $('#st1').classList.toggle('done',has);$('#sl1').classList.toggle('on',has);
+  $('#st2').classList.toggle('done',has&&ok);$('#st2').classList.toggle('cur',has&&!ok);$('#sl2').classList.toggle('on',has&&ok);
+  $('#st3').classList.toggle('cur',has&&ok);$('#st3').classList.toggle('done',sent);$('#st1').classList.toggle('cur',!has);}
+let shownTot=0;
+function summary(){if(!$('#sTot'))return;const n=C.cart.count(),tot=C.cart.total();
+  $('#oCount').textContent=n||'';$('#sItems').textContent=n;$('#sSub').innerHTML=fmt(tot);
+  $('#sFee').textContent=type==='delivery'?C.t('fee_tbc'):C.t('fee_none');
+  const el=$('#sTot');if(C.A){const o={v:shownTot};gsap.to(o,{v:tot,duration:.8,ease:'expo.out',onUpdate:()=>{el.innerHTML=fmt(Math.round(o.v));}});}else el.innerHTML=fmt(tot);shownTot=tot;
+  $('#sNote').textContent=[C.cart.hasAsk()?C.t('note_pizza'):'',C.t('price_note')].filter(Boolean).join(' ');}
+function sync(){const empty=!C.cart.count();$('#oFull').hidden=empty;$('#oEmpty').hidden=!empty;
+  if(empty&&!$('#oBest').children.length){$('#oBest').innerHTML=['b2','x3','g1','w1'].map(id=>C.card(id)).join('');C.bind($('#oBest'));if(C.A)gsap.from('#oEmpty>*',{y:40,opacity:0,stagger:.08,duration:.9,ease:'expo.out'});}
+  summary();steps();}
+function saveCust(){const fd=new FormData(f);C.store.set('chk-cust',{type,name:fd.get('name'),phone:fd.get('phone'),area:fd.get('area'),addr:fd.get('addr')});}
+function setType(v){type=v;$('#addrWrap').classList.toggle('off',v!=='delivery');saveCust();summary();steps();}
+$('#oLines').addEventListener('click',e=>{const row=e.target.closest('.cl');if(!row)return;const k=row.dataset.k;const l=C.cart.lines().find(x=>x.k===k);if(!l)return;
+  const q=e.target.closest('[data-q]');
+  if(q){const nq=l.q+(+q.dataset.q);if(nq<1)return remove(row,k);C.cart.setQ(k,nq);$('output',row).textContent=nq;const u=C.cart.unit(l);$('.lt',row).innerHTML=u?fmt(u*nq):'';if(C.A)gsap.fromTo($('output',row),{scale:1.5},{scale:1,duration:.5,ease:'back.out(3)'});return;}
+  if(e.target.closest('[data-rm]'))remove(row,k);});
+function remove(row,k){const go=()=>{C.cart.remove(k);row.remove();sync();};
+  if(!C.A)return go();gsap.timeline({onComplete:go}).to(row,{x:C.rtl()?-80:80,opacity:0,duration:.35,ease:'power2.in'}).to(row,{height:0,paddingTop:0,paddingBottom:0,duration:.35,ease:'expo.inOut'});}
+addEventListener('chk:cart',()=>{const keys=$$('#oLines .cl').map(r=>r.dataset.k).join();const now=C.cart.lines().map(l=>l.k).join();if(keys!==now){renderLines();if(C.A){const last=$('#oLines .cl:last-child');last&&gsap.from(last,{height:0,opacity:0,duration:.6,ease:'expo.out'});}}sync();});
+f.addEventListener('input',()=>{saveCust();steps();$('#fErr').classList.remove('on');$$('.field.err',f).forEach(x=>valid(true));});
+f.addEventListener('submit',e=>e.preventDefault());
+function message(){const L=C.lang(),fd=new FormData(f);const nl='\n';let m=C.t('msg_head')+nl+'—'+nl;
+  C.cart.lines().forEach(l=>{const it=C.item(l.id),u=C.cart.unit(l);m+=`${l.q}× ${C.nm(it)} — ${u?u*l.q+' '+C.t('egp'):C.t('ask_price')}`+nl;l.x.forEach(x=>m+='   + '+C.EXTRAS[x][L]+nl);if(l.note)m+='   📝 '+l.note+nl;});
+  m+='—'+nl+`${C.t('total')}: ${C.cart.total()} ${C.t('egp')}`+(type==='delivery'?' '+C.t('msg_nofee'):'')+nl;
+  m+=`${C.t('msg_type')}: ${C.t(type)}`+nl+`${C.t('f_name')}: ${fd.get('name')}`+nl+`${C.t('f_phone')}: ${fd.get('phone')}`+nl;
+  if(type==='delivery')m+=`${C.t('f_area')}: ${fd.get('area')}`+nl+`${C.t('f_addr')}: ${fd.get('addr')}`+nl;
+  if((fd.get('note')||'').trim())m+=`${C.t('f_note')}: ${fd.get('note')}`+nl;return m;}
+$('#sendWa').addEventListener('click',()=>{if(!valid(true)){$('#fErr').classList.add('on');const bad=$('.field.err',f);if(bad){C.scrollTo(bad,-140);setTimeout(()=>{const i=$('input,select',bad);i&&i.focus({preventScroll:true});},600);}if(C.A)gsap.fromTo('#sendWa',{x:-8},{x:0,duration:.5,ease:'elastic.out(1,.3)'});return;}
+  window.open('https://wa.me/'+C.WA+'?text='+encodeURIComponent(message()),'_blank','noopener');sent=true;steps();showDone();});
+function showDone(){const m=$('#sumMain');const html=`<div class="done-panel"><svg class="ok" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><circle cx="32" cy="32" r="29"/><path d="M20 33l8 8 16-17" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>${C.t('done_t')}</h3><p>${C.t('done_p')}</p><div class="sbtns"><button class="btn btn-fire" id="dClear">${C.t('done_clear')}</button><button class="btn btn-line" id="dBack">${C.t('done_back')}</button></div></div>`;
+  m.innerHTML=html;if(C.A)gsap.from('#sumMain .done-panel>*',{y:20,opacity:0,stagger:.08,duration:.7,ease:'expo.out'});
+  $('#dClear').onclick=()=>{C.cart.clear();sent=false;location.reload();};$('#dBack').onclick=()=>location.reload();}
+C.seg($('#oType'),setType);
+C.init({
+ dict:{
+  ar:{title:'طلبك',h1:'طلبك',s1:'اختار الأكل',s2:'بياناتك',s3:'ابعت الطلب',your_items:'الأكل',add_more:'زوّد من المنيو',dont_forget:'متنساش',details:'بياناتك',delivery:'توصيل',pickup:'استلام من المطعم',
+   f_name:'الاسم',f_phone:'الموبايل',f_area:'المنطقة',f_addr:'العنوان',f_note:'ملاحظات',optional:'اختياري',ph_addr:'الشارع، رقم العمارة، الدور، علامة مميزة',ph_note:'أي حاجة عايزنا نعرفها…',
+   e_name:'اكتب اسمك',e_phone:'رقم موبايل مصري من ١١ رقم',e_area:'اختار المنطقة',e_addr:'اكتب العنوان',e_form:'كمّل بياناتك الأول.',choose:'اختار…',
+   i2t:'التوصيل والدفع',i2p:'المناطق والرسوم وطريقة الدفع بتتأكد معاك في التليفون.',i3t:'الاستلام',summary:'الحساب',items_t:'الأصناف',subtotal:'الأكل',fee:'التوصيل',total:'الإجمالي',fee_tbc:'بيتحدد في التليفون',fee_none:'مفيش',
+   note_pizza:'سعر البيتزا بيتأكد في التليفون.',send_wa:'ابعت الطلب على واتساب',send_call:'اطلب بالتليفون',send_tal:'أو اطلب من طلبات',remove:'شيل',
+   empty_t:'طلبك فاضي',empty_p:'الشواية مستنياك. اختار من المنيو أو ابدأ بالأكثر طلبًا.',see_boxes:'شوف البوكسات',
+   msg_head:'طلب جديد من موقع تشيكنو 🔥',msg_nofee:'(من غير التوصيل)',msg_type:'النوع',
+   done_t:'الطلب اتجهز على واتساب',done_p:'دوس إرسال في واتساب، وتشيكنو هيأكد معاك الطلب.',done_clear:'خلصت – فضّي الطلب',done_back:'رجوع للطلب'},
+  en:{title:'Your order',h1:'Your order',s1:'Pick food',s2:'Your details',s3:'Send',your_items:'Food',add_more:'Add from menu',dont_forget:'Don’t forget',details:'Your details',delivery:'Delivery',pickup:'Pickup',
+   f_name:'Name',f_phone:'Mobile',f_area:'Area',f_addr:'Address',f_note:'Notes',optional:'optional',ph_addr:'Street, building, floor, landmark',ph_note:'Anything we should know…',
+   e_name:'Enter your name',e_phone:'An 11-digit Egyptian mobile number',e_area:'Choose your area',e_addr:'Enter your address',e_form:'Complete your details first.',choose:'Choose…',
+   i2t:'Delivery & payment',i2p:'Areas, fee and payment method are confirmed with you by phone.',i3t:'Pickup',summary:'Summary',items_t:'Items',subtotal:'Food',fee:'Delivery',total:'Total',fee_tbc:'Confirmed by phone',fee_none:'None',
+   note_pizza:'Pizza prices are confirmed by phone.',send_wa:'Send order on WhatsApp',send_call:'Order by phone',send_tal:'Or order on Talabat',remove:'Remove',
+   empty_t:'Your order is empty',empty_p:'The grill is waiting. Pick from the menu or start with the best sellers.',see_boxes:'See the boxes',
+   msg_head:'New order from the Chikno website 🔥',msg_nofee:'(excluding delivery)',msg_type:'Type',
+   done_t:'Your order is ready in WhatsApp',done_p:'Press send in WhatsApp and Chikno will confirm it with you.',done_clear:'Done – clear order',done_back:'Back to order'}
+ },
+ render(){
+  const sel=$('#oArea');const cur=sel.value||cust.area||'';sel.innerHTML=`<option value="">${C.t('choose')}</option>`+AREAS[C.lang()].map(a=>`<option${a===cur?' selected':''}>${a}</option>`).join('');
+  renderLines();
+  $('#oSugg').innerHTML=SUGG.map(id=>{const it=C.item(id);return `<div class="sg" data-dish="${id}">${C.art(it,{w:120})}<b>${C.esc(C.nm(it))}</b>${C.money(it.price)}${C.addBtn(id,true)}</div>`;}).join('');
+  $('#oBest').innerHTML='';sync();
+  $$('#oType button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===type));const sg=$('#oType');sg._place&&sg._place();$('#addrWrap').classList.toggle('off',type!=='delivery');
+ },
+ scroll(){gsap.from('#oLines .cl',{x:C.rtl()?60:-60,opacity:0,stagger:.06,duration:.8,ease:'expo.out'});},
+ intro(tl){tl.from('.st b',{scale:0,stagger:.12,duration:.6,ease:'back.out(2)'},'-=.6');}
+});
+['name','phone','addr'].forEach(k=>{if(cust[k])f.elements[k].value=cust[k];});steps();
+})();
+</script>

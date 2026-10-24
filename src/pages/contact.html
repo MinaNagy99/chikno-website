@@ -1,0 +1,162 @@
+<!--page:contact | title:تواصل – تشيكنو-->
+<style>
+.cards{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:clamp(30px,5vw,60px)}
+.cc{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:clamp(22px,2.6vw,34px);border:1.5px solid var(--line);border-radius:28px;min-height:230px;overflow:hidden;isolation:isolate;transition:color .5s,border-color .5s}
+.cc::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--c,var(--ember));clip-path:circle(0% at var(--x,50%) var(--y,50%));transition:clip-path .8s var(--ease)}
+.cc:hover::before{clip-path:circle(150% at var(--x,50%) var(--y,50%))}
+.cc:hover{color:#fff;border-color:transparent}
+.cc .ci{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--ember);transition:background .5s,color .5s}
+.cc:hover .ci{background:rgba(255,255,255,.18);color:#fff}
+.cc .ci svg.fill{fill:currentColor;stroke:none}
+.cc small{color:var(--mute);transition:color .5s;font-size:.9rem}
+.cc:hover small{color:rgba(255,255,255,.8)}
+.cc b{display:block;font-family:var(--fl);font-weight:900;font-size:clamp(30px,3.4vw,52px);line-height:1;direction:ltr;text-align:start;margin-top:4px}
+:root[dir="rtl"] .cc b{text-align:end}
+.cc.hot{grid-row:span 2;background:var(--ember);color:#fff;border-color:transparent;--c:var(--gold)}
+.cc.hot b{font-size:clamp(44px,5.5vw,92px)}
+.cc.hot small{color:rgba(255,255,255,.85)}
+.cc.hot .ci{background:rgba(255,255,255,.18);color:#fff}
+.cc.hot:hover{color:#1A1411}
+.cc.cc-wa{--c:#25D366}
+.cc.mail b{font-size:clamp(16px,1.4vw,21px);overflow-wrap:anywhere;font-family:var(--fb);font-weight:700;word-break:break-all}
+.cc-link{position:absolute;inset:0;z-index:1}
+.cc .cp{position:absolute;top:18px;inset-inline-end:18px;height:36px;padding-inline:12px;border-radius:999px;border:1.5px solid currentColor;font-size:.8rem;font-weight:700;opacity:.7;z-index:2}
+.cc .cp:hover{opacity:1}
+.others{display:flex;flex-direction:column;gap:4px;direction:ltr;text-align:start}
+:root[dir="rtl"] .others{text-align:end}
+.others a{font-family:var(--fl);font-weight:800;font-size:1.4rem}
+.others a:hover{text-decoration:underline}
+@media (max-width:900px){.cards{grid-template-columns:1fr 1fr}.cc.hot{grid-column:1/-1;grid-row:auto}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+.where{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+.mapbox{position:relative;border-radius:32px;overflow:hidden;min-height:480px;border:1px solid var(--line);background:var(--bg2)}
+.mapbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+:root[data-theme="dark"] .mapbox iframe{filter:invert(.9) hue-rotate(180deg) saturate(.6) brightness(.95)}
+.mapbox .addr{position:absolute;inset-inline-start:18px;bottom:18px;z-index:2;background:var(--bg);border-radius:20px;padding:18px 20px;max-width:min(360px,calc(100% - 36px));box-shadow:0 20px 50px rgba(0,0,0,.3);display:flex;flex-direction:column;gap:10px}
+.mapbox .addr b{font-size:1.05rem}
+.mapbox .addr span{color:var(--mute);font-size:.9rem}
+.clock{border:1px solid var(--line);border-radius:32px;padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;align-items:center;gap:20px;background:var(--card)}
+.clock svg.dial{width:min(320px,100%);height:auto;overflow:visible}
+.dial .trk{fill:none;stroke:var(--line);stroke-width:16}
+.dial .arc{fill:none;stroke:var(--ember);stroke-width:16;stroke-linecap:round}
+.dial .tk{stroke:var(--mute);stroke-width:2}
+.dial text{fill:var(--mute);font-size:13px;font-family:var(--fl);font-weight:800;text-anchor:middle;dominant-baseline:middle}
+.dial .hand{stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.dial .hub{fill:var(--ink)}
+.dial .ctr1{fill:var(--ink);font-family:var(--fd);font-size:30px;font-weight:400}
+.dial .ctr2{fill:var(--mute);font-family:var(--fb);font-size:13px;font-weight:500}
+.clock .status{align-self:center}
+.clock p{color:var(--mute);text-align:center}
+@media (max-width:900px){.where{grid-template-columns:1fr}.mapbox{min-height:360px}}
+.msg{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(24px,5vw,80px);align-items:start}
+.msg h2{font-size:clamp(48px,6.5vw,104px)}
+.msg>div>p{color:var(--mute);margin-top:14px;max-width:38ch}
+.mform{display:flex;flex-direction:column;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:32px;padding:clamp(22px,3.5vw,44px)}
+.mform .btns{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.msg{grid-template-columns:1fr}}
+</style>
+<!--BODY-->
+<main id="main">
+ <section class="phero">
+  <div class="glow"></div>
+  <div class="wrap">
+   <nav class="crumbs" data-intro aria-label="Breadcrumb"><a href="index.html" data-i18n="home_crumb">الرئيسية</a><svg class="ico flip"><use href="#i-right"/></svg><span data-i18n="nav_contact">تواصل</span></nav>
+   <h1 class="display"><span data-split="intro" data-i18n="h1a">كلّمنا</span> <span class="ac" data-split="intro" data-i18n="h1b">على طول</span></h1>
+   <div class="cards" id="cards">
+     <div class="cc hot" data-intro><a class="cc-link" href="tel:01222440044" aria-label="01222440044"></a><span class="ci"><svg class="ico"><use href="#i-phone"/></svg></span><div><small data-i18n="hotline">الخط الساخن</small><b>01222440044</b></div><button class="cp" data-copy="01222440044" data-i18n="copy">انسخ</button></div>
+     <a class="cc cc-wa" href="https://wa.me/201222440044" target="_blank" rel="noopener" data-intro><span class="ci"><svg class="ico fill"><use href="#i-wa"/></svg></span><div><small data-i18n="whatsapp">واتساب</small><b>WhatsApp</b></div></a>
+     <a class="cc mail" href="mailto:chiknorestaurant1@gmail.com" data-intro><span class="ci"><svg class="ico"><use href="#i-mail"/></svg></span><div><small data-i18n="email">الإيميل</small><b>chiknorestaurant1@gmail.com</b></div></a>
+     <div class="cc" data-intro style="grid-column:span 2"><span class="ci"><svg class="ico"><use href="#i-bike"/></svg></span><div><small data-i18n="other_n">أرقام الدليفري التانية</small><div class="others"><a href="tel:01019911122">01019911122</a><a href="tel:01097711112">01097711112</a><a href="tel:01117655537">01117655537</a></div></div></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" style="padding-top:clamp(40px,6vw,80px)">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="w_tag">العنوان والمواعيد</span></div><h2 class="display" data-split data-i18n="w_t">فين وإمتى</h2></div></div>
+   <div class="where">
+     <div class="mapbox" data-reveal>
+       <iframe src="https://www.google.com/maps?q=30.0007687,31.1662965&z=17&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map"></iframe>
+       <div class="addr"><b data-i18n="address">279 شارع فيصل الرئيسي – محطة المطبعة، الجيزة</b><span data-i18n="landmark">على شارع فيصل عند موقف المطبعة</span><a class="btn btn-fire btn-sm magnetic" href="https://www.google.com/maps/search/?api=1&query=30.0007687,31.1662965" target="_blank" rel="noopener" style="align-self:flex-start"><svg class="ico"><use href="#i-pin"/></svg><span data-i18n="directions">الاتجاهات</span></a></div>
+     </div>
+     <div class="clock" data-fade>
+       <svg class="dial" id="dial" viewBox="0 0 260 260" role="img"></svg>
+       <span class="status" data-status><i></i><span></span></span>
+       <p><b id="cTime" style="font-family:var(--fl);font-size:1.4rem;color:var(--ink)"></b><br><span data-i18n="hours">كل يوم من ١٠ الصبح لـ ٢ بالليل</span></p>
+     </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" style="padding-top:0">
+  <div class="wrap msg">
+   <div><div class="tag"><b>✦</b><span data-i18n="m_tag">رسالة</span></div><h2 class="display" data-split data-i18n="m_t">ابعتلنا</h2><p data-fade data-i18n="m_p"></p></div>
+   <form class="mform" id="mForm" novalidate data-fade>
+     <div class="frow"><label class="field" id="mfN"><span data-i18n="f_name">الاسم</span><input name="name" autocomplete="name"><em class="em" data-i18n="e_name">اكتب اسمك</em></label><label class="field"><span><span data-i18n="f_phone">الموبايل</span><small data-i18n="optional">اختياري</small></span><input name="phone" type="tel" dir="ltr" placeholder="01xxxxxxxxx"></label></div>
+     <label class="field" id="mfM"><span data-i18n="f_msg">رسالتك</span><textarea name="msg" rows="5" data-i18n-ph="ph_msg"></textarea><em class="em" data-i18n="e_msg">اكتب رسالتك</em></label>
+     <div class="btns"><button class="btn btn-wa magnetic" type="submit" data-via="wa"><svg class="ico" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg><span data-i18n="via_wa">ابعت على واتساب</span></button><button class="btn btn-line magnetic" type="submit" data-via="mail"><svg class="ico"><use href="#i-mail"/></svg><span data-i18n="via_mail">ابعت إيميل</span></button></div>
+   </form>
+  </div>
+ </section>
+
+ <section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="q_tag">أسئلة</span></div><h2 class="display" data-split data-i18n="q_t">أسئلة بتتكرر</h2></div><a class="btn btn-fire magnetic" href="menu.html"><span class="roll"><span data-i18n="cta_order">اطلب دلوقتي</span><span data-i18n="cta_order">اطلب دلوقتي</span></span></a></div>
+   <div data-single id="faqList"></div>
+  </div>
+ </section>
+</main>
+<!--SCRIPT-->
+<script>
+(function(){
+const C=Chikno,$=C.$,$$=C.$$;
+$$('.cc').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px');}));
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;e.preventDefault();e.stopPropagation();try{await navigator.clipboard.writeText(b.dataset.copy);C.toast('✓ '+C.t('copied'));}catch(err){}},true);
+function cairoMin(){try{const p=new Intl.DateTimeFormat('en-GB',{hour:'numeric',minute:'numeric',hourCycle:'h23',timeZone:'Africa/Cairo'}).formatToParts(new Date());return +p.find(x=>x.type==='hour').value*60+ +p.find(x=>x.type==='minute').value;}catch(e){const d=new Date();return d.getHours()*60+d.getMinutes();}}
+const P=(h,r)=>{const a=(h/24)*Math.PI*2-Math.PI/2;return [130+r*Math.cos(a),130+r*Math.sin(a)];};
+function dial(){const s=$('#dial');const R=100;const [x1,y1]=P(10,R),[x2,y2]=P(26,R);
+  let ticks='';for(let h=0;h<24;h++){const [a,b]=P(h,R+14),[c,d]=P(h,R+(h%6?19:24));ticks+=`<line class="tk" x1="${a}" y1="${b}" x2="${c}" y2="${d}"/>`;}
+  let labels='';[0,6,12,18].forEach(h=>{const [x,y]=P(h,R+40);labels+=`<text x="${x}" y="${y}">${String(h).padStart(2,'0')}</text>`;});
+  const m=cairoMin(),[hx,hy]=P(m/60,R-26);const ct=$('#cTime');if(ct)ct.textContent=C.t('now')+' '+String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+  s.setAttribute('aria-label',C.t('hours'));
+  s.innerHTML=`<circle class="trk" cx="130" cy="130" r="${R}"/><path class="arc" id="arc" d="M${x1} ${y1} A${R} ${R} 0 1 1 ${x2} ${y2}"/>${ticks}${labels}<line class="hand" id="hand" x1="130" y1="130" x2="${hx}" y2="${hy}"/><circle class="hub" cx="130" cy="130" r="6"/>`;}
+const FAQ=['1','2','3','4','5','6'];
+$('#mForm').addEventListener('submit',e=>{e.preventDefault();const via=(e.submitter&&e.submitter.dataset.via)||'wa';const fd=new FormData(e.target);let ok=true;
+  const ch=(id,c)=>{$(id).classList.toggle('err',!c);if(!c)ok=false;};ch('#mfN',(fd.get('name')||'').trim().length>=2);ch('#mfM',(fd.get('msg')||'').trim().length>=3);if(!ok)return;
+  const body=`${fd.get('msg')}\n\n— ${fd.get('name')}${fd.get('phone')?' · '+fd.get('phone'):''}`;
+  if(via==='mail')location.href='mailto:chiknorestaurant1@gmail.com?subject='+encodeURIComponent(C.t('mail_subj'))+'&body='+encodeURIComponent(body);
+  else window.open('https://wa.me/'+C.WA+'?text='+encodeURIComponent(body),'_blank','noopener');});
+setInterval(dial,60000);
+C.init({
+ dict:{
+  ar:{title:'تواصل',h1a:'كلّمنا',h1b:'على طول',copy:'انسخ',copied:'الرقم اتنسخ',email:'الإيميل',other_n:'أرقام الدليفري التانية',
+   w_tag:'العنوان والمواعيد',now:'الساعة في القاهرة',w_t:'فين وإمتى',landmark:'على شارع فيصل عند موقف المطبعة',open_s:'مفتوحين',closed_s:'مقفولين',closes:'لحد ٢ بالليل',opens:'بنفتح ١٠ الصبح',
+   m_tag:'رسالة',m_t:'ابعتلنا',m_p:'سؤال، اقتراح، أو شكوى؟ رسالتك بتوصل لتشيكنو على واتساب أو الإيميل.',f_name:'الاسم',f_phone:'الموبايل',optional:'اختياري',f_msg:'رسالتك',ph_msg:'اكتب هنا…',e_name:'اكتب اسمك',e_msg:'اكتب رسالتك',via_wa:'ابعت على واتساب',via_mail:'ابعت إيميل',mail_subj:'رسالة من موقع تشيكنو',
+   q_tag:'أسئلة',q_t:'أسئلة بتتكرر',
+   q1:'مواعيد الشغل إيه؟',a1:'مفتوحين كل يوم من ١٠ الصبح لحد ٢ بالليل، أكل في المطعم وتيك أواي ودليفري.',
+   q2:'أطلب إزاي؟',a2:'من الموقع: اختار الأكل وابعت الطلب على واتساب. أو كلم الخط الساخن 01222440044، أو اطلب من طلبات.',
+   q3:'بتوصلوا لحد فين؟',a3:'بنوصل فيصل والهرم والمناطق اللي حواليهم. المناطق ورسوم التوصيل بتتأكد معاك في التليفون.',
+   q4:'ينفع أعمل بوكس مخصوص؟',a4:'أيوه، تشيكنو بيعمل بوكسات حسب الطلب. قولنا عددكم وعايزين إيه على واتساب.',
+   q5:'عندكم طلبات للعزومات؟',a5:'أيوه – كيلوهات مشويات وشاورما، فراخ كاملة، وكرسبي بالعشرين قطعة. شوف صفحة العزومات وابعتلنا التفاصيل.',
+   q6:'الأسعار اللي في الموقع نهائية؟',a6:'الأسعار تقريبية من منيو المطعم وممكن تتغير. السعر النهائي بيتأكد وقت الطلب، وأسعار البيتزا بالتليفون.'},
+  en:{title:'Contact',h1a:'Talk to',h1b:'us anytime',copy:'Copy',copied:'Number copied',email:'Email',other_n:'Other delivery numbers',
+   w_tag:'Address & hours',now:'Cairo time',w_t:'Where & when',landmark:'On Faisal St at the El-Matbaa stop',open_s:'Open',closed_s:'Closed',closes:'until 2 AM',opens:'opens 10 AM',
+   m_tag:'Message',m_t:'Write to us',m_p:'A question, suggestion or complaint? Your message reaches Chikno on WhatsApp or by email.',f_name:'Name',f_phone:'Mobile',optional:'optional',f_msg:'Your message',ph_msg:'Type here…',e_name:'Enter your name',e_msg:'Write your message',via_wa:'Send on WhatsApp',via_mail:'Send an email',mail_subj:'Message from the Chikno website',
+   q_tag:'FAQ',q_t:'Common questions',
+   q1:'What are your hours?',a1:'Every day from 10 AM to 2 AM – dine in, takeaway and delivery.',
+   q2:'How do I order?',a2:'On this site: pick your food and send the order on WhatsApp. Or call the hotline 01222440044, or order on Talabat.',
+   q3:'Where do you deliver?',a3:'Faisal, Haram and nearby areas. Delivery areas and fees are confirmed with you by phone.',
+   q4:'Can I get a custom box?',a4:'Yes, Chikno makes boxes on request. Tell us on WhatsApp how many you are and what you want.',
+   q5:'Do you cater gatherings?',a5:'Yes – kilos of grills and shawarma, whole chickens and 20-piece crispy. See the Catering page and send us the details.',
+   q6:'Are the prices on the site final?',a6:'Prices come from the restaurant’s menu and may change. The final price is confirmed when you order; pizza prices are by phone.'}
+ },
+ render(){dial();
+  const open=$('.acc.open',$('#faqList'));const oi=open?open.dataset.i:'1';
+  $('#faqList').innerHTML=FAQ.map(i=>`<div class="acc${i===oi?' open':''}" data-i="${i}"><button class="acc-btn" aria-expanded="${i===oi}"><small>0${i}</small><span class="q">${C.t('q'+i)}</span><span class="pm"><svg class="ico"><use href="#i-plus"/></svg></span></button><div class="acc-panel"><div><p>${C.t('a'+i)}</p></div></div></div>`).join('');},
+ hash(h){if(h==='#faq'){C.scrollTo($('#faq'));return true;}return false;},
+ scroll(){const arc=$('#arc');if(arc){let L=600;try{L=arc.getTotalLength();}catch(e){}arc.style.strokeDasharray=L;gsap.fromTo(arc,{strokeDashoffset:L},{strokeDashoffset:0,duration:2,ease:'expo.inOut',scrollTrigger:{trigger:'.clock',start:'top 80%'}});}
+  gsap.from('#hand',{rotate:-360,svgOrigin:'130 130',duration:2,ease:'expo.out',scrollTrigger:{trigger:'.clock',start:'top 80%'}});
+  gsap.from('#faqList .acc',{y:40,opacity:0,stagger:.07,duration:.9,ease:'expo.out',scrollTrigger:{trigger:'#faqList',start:'top 85%'}});}
+});
+})();
+</script>

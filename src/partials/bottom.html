@@ -1,0 +1,60 @@
+<footer class="ftr">
+ <div class="wrap">
+  <div class="ftr-cta">
+    <h2 class="display"><span class="ftr-big" data-i18n="f_hungry">جعان؟</span><span class="ftr-big"><span class="ftr-roll" id="ftrRoll">اطلب دلوقتي</span></span></h2>
+    <a class="btn btn-fire magnetic btn-xl" href="order.html"><span class="roll"><span data-i18n="cta_order">اطلب دلوقتي</span><span data-i18n="cta_order">اطلب دلوقتي</span></span></a>
+  </div>
+  <div class="ftr-grid">
+    <div><a class="logo logo-ftr" href="index.html" aria-label="Chikno – تشيكنو"><span class="lg lg-full"><i class="lg-w"></i><i class="lg-t"></i></span></a><p class="ftr-slogan" data-i18n="f_slogan">ملوك الفرخة الشواية في فيصل والهرم.</p>
+      <div class="apps"><a href="https://www.talabat.com/egypt/chikno-haram--el-taawun" target="_blank" rel="noopener">Talabat</a><a href="https://www.elmenus.com/ar/%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9/%D8%AA%D8%B4%D9%8A%D9%83%D9%86%D9%88-448ln" target="_blank" rel="noopener">Elmenus</a></div></div>
+    <div><h4 data-i18n="f_pages">الصفحات</h4><ul>
+      <li><a href="menu.html" data-i18n="nav_menu">المنيو</a></li><li><a href="offers.html" data-i18n="nav_offers">العروض</a></li><li><a href="catering.html" data-i18n="nav_catering">العزومات</a></li><li><a href="about.html" data-i18n="nav_about">عن تشيكنو</a></li></ul></div>
+    <div><h4 data-i18n="f_more">أكتر</h4><ul>
+      <li><a href="reviews.html" data-i18n="nav_reviews">آراء الناس</a></li><li><a href="gallery.html" data-i18n="nav_gallery">الصور</a></li><li><a href="contact.html" data-i18n="nav_contact">تواصل</a></li><li><a href="order.html" data-i18n="cart">طلبك</a></li></ul></div>
+    <div><h4 data-i18n="hours_t">المواعيد</h4><ul>
+      <li><span class="status sm" data-status><i></i><span>مفتوح دلوقتي</span></span></li>
+      <li data-i18n="hours">كل يوم من ١٠ الصبح لـ ٢ بالليل</li><li><a href="tel:01222440044">01222440044</a></li><li data-i18n="address">279 شارع فيصل الرئيسي – محطة المطبعة، الجيزة</li></ul></div>
+    <div><h4 data-i18n="follow">تابعنا</h4><ul><li><a href="https://www.facebook.com/ChiknoEgypt/" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.instagram.com/chiknoegypt/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.tiktok.com/@chiknoegypt" target="_blank" rel="noopener">TikTok</a></li></ul></div>
+  </div>
+ </div>
+ <div class="wrap ftr-giant" aria-hidden="true"><span class="lg lg-full"><i class="lg-w"></i><i class="lg-t"></i></span></div>
+ <div class="wrap ftr-bot"><span>© 2026 Chikno – تشيكنو</span><span class="demo" data-i18n="demo">تصميم مقترح للعرض – مش الموقع الرسمي لتشيكنو · الصور توضيحية (CC BY-SA 3.0)</span></div>
+</footer>
+
+<nav class="mbar" aria-label="Quick">
+  <a href="menu.html" data-nav="menu"><svg class="ico"><use href="#i-menu"/></svg><span data-i18n="nav_menu">المنيو</span></a>
+  <a href="offers.html" data-nav="offers"><svg class="ico"><use href="#i-tag"/></svg><span data-i18n="nav_offers">العروض</span></a>
+  <a href="order.html" data-nav="order" id="mCart"><svg class="ico"><use href="#i-cart"/></svg><span data-i18n="cart_s">الطلب</span><span class="cart-count" data-n="0"></span></a>
+  <a href="tel:01222440044" class="hot"><svg class="ico"><use href="#i-phone"/></svg><span data-i18n="cta_call">اتصل</span></a>
+</nav>
+<a class="wa" id="wa" href="https://wa.me/201222440044" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
+<div class="cbar" id="cbar" aria-live="polite">
+  <a href="order.html" class="cbar-in"><span class="cbar-n"><b class="cart-count" data-n="0"></b><span data-i18n="cbar_items">في طلبك</span></span><span class="cbar-total" id="cbarTotal"></span><span class="cbar-go"><span data-i18n="view_order">شوف الطلب</span><svg class="ico flip"><use href="#i-arrow"/></svg></span></a>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="wipe" id="wipe"><span class="display" id="wipeTxt"></span></div>
+
+<div class="drawer" id="dish" aria-hidden="true">
+  <div class="dr-back" data-close></div>
+  <aside class="dr-panel" role="dialog" aria-modal="true" aria-labelledby="drName">
+    <button class="dr-x tbtn" data-close data-i18n-aria="close" aria-label="قفل"><svg class="ico"><use href="#i-x"/></svg></button>
+    <div class="dr-media"></div>
+    <div class="dr-body">
+      <div class="dr-top"><a class="dr-cat" href="menu.html"></a><div class="dr-badges"></div></div>
+      <h2 id="drName" class="display"></h2>
+      <p class="dr-alt"></p>
+      <p class="dr-desc"></p>
+      <div class="dr-price"></div>
+      <div class="dr-extras"></div>
+      <label class="field dr-note"><span data-i18n="dish_note">ملاحظة للمطبخ</span><textarea rows="2" id="drNote" data-i18n-ph="dish_note_ph"></textarea></label>
+      <div class="dr-row">
+        <div class="stepper"><button data-dq="-1" data-i18n-aria="less" aria-label="-"><svg class="ico"><use href="#i-minus"/></svg></button><output id="drQty">1</output><button data-dq="1" data-i18n-aria="more" aria-label="+"><svg class="ico"><use href="#i-plus"/></svg></button></div>
+        <button class="btn btn-fire dr-add" id="drAdd"><svg class="ico"><use href="#i-cart"/></svg><span id="drAddTxt"></span></button>
+      </div>
+      <button class="dr-share" id="drShare"><svg class="ico"><use href="#i-share"/></svg><span data-i18n="dish_share">شارك الطبق</span></button>
+      <div class="dr-pair"><h4 data-i18n="dish_pair">بيتاكل معاه</h4><div class="pairs" id="drPairs"></div></div>
+    </div>
+  </aside>
+</div>

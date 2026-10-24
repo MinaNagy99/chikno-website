@@ -1,0 +1,325 @@
+<!--page:home | title:تشيكنو – ملوك الفرخة الشواية في فيصل-->
+<style>
+.hero{position:relative;min-height:calc(100svh - 120px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding-bottom:clamp(28px,5vh,56px)}
+#sparks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hglow{position:absolute;width:80vmax;height:80vmax;inset-inline-start:-20vmax;bottom:-55vmax;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--ember) 55%,transparent) 0,color-mix(in srgb,var(--ember) 18%,transparent) 35%,transparent 65%);filter:blur(10px);pointer-events:none}
+:root[data-theme="light"] .hglow{opacity:.55}
+.hero .wrap{position:relative;width:100%}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:clamp(16px,3vh,40px)}
+.hero h1{font-size:clamp(56px,min(11.5vw,15.5vh),200px)}
+:root[lang="en"] .hero h1{font-size:clamp(52px,min(10.5vw,15vh),190px)}
+.hero h1 .ln{display:block}
+.hero h1 .ln:nth-child(2){color:var(--ember)}
+.hero-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px;margin-top:clamp(18px,3vh,36px)}
+.hero-sub{max-width:44ch;color:var(--mute);font-size:1.1rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.badge{position:relative;width:clamp(140px,15vw,200px);aspect-ratio:1;flex:none}
+.badge-ring{position:absolute;inset:0;animation:spin 22s linear infinite}
+.badge-ring text{fill:var(--ink);font-size:14.5px;font-weight:600;letter-spacing:.06em}
+.badge-core{position:absolute;inset:24%;border-radius:50%;background:var(--ember);display:grid;place-items:center;color:#fff;overflow:hidden}
+.badge-core svg{width:46%;height:46%}
+.badge-core img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scroll-hint{display:flex;align-items:center;gap:10px;color:var(--mute);font-size:.9rem}
+.scroll-hint i{width:1.5px;height:42px;background:linear-gradient(var(--ember),transparent);animation:drip 1.8s var(--ease) infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:860px){.hero{padding-bottom:110px}}
+@media (max-width:760px){.hero-bottom{grid-template-columns:1fr}.badge{display:none}.hero-top .scroll-hint{display:none}}
+.cats{padding-block:28px;border-block:1px solid var(--line);overflow:hidden}
+
+.offers{overflow:hidden;background:var(--bg2)}
+.offers .sec-head{padding-top:clamp(72px,9vw,120px);margin-bottom:40px}
+.h-wrap{padding-bottom:clamp(72px,9vw,120px)}
+.h-track{display:flex;gap:24px;width:max-content;padding-inline:var(--pad);direction:ltr}
+:root[dir="rtl"] .h-track{flex-direction:row-reverse}
+.h-track>*{direction:inherit}
+:root[dir="rtl"] .h-track>*{direction:rtl}
+.h-track .dish{width:min(440px,80vw);flex:none}
+.h-track .dish .art{aspect-ratio:16/11}
+.h-track .dish h3{font-size:2.2rem}
+.oend{width:min(440px,80vw);flex:none;border-radius:var(--r);background:var(--ember);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px;padding:30px}
+.oend h3{font-size:3rem}
+.oend .btn{background:#1A1411;color:#fff}
+.oend svg.big{width:80px;height:80px}
+.no-anim .h-wrap{overflow-x:auto}
+@media (max-width:860px){.h-wrap{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}.h-track .dish,.oend{scroll-snap-align:center}:root[dir="rtl"] .h-wrap{direction:rtl}:root[dir="rtl"] .h-track{flex-direction:row;direction:rtl}}
+
+.stack{display:flex;flex-direction:column;gap:24px}
+.scard{position:sticky;top:calc(110px + var(--i)*22px);min-height:58vh;border-radius:28px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,60px);align-items:center;transform-origin:center top;border:1px solid var(--line)}
+.scard:nth-child(1){background:var(--card)}
+.scard:nth-child(2){background:var(--ember);color:#fff;border-color:transparent}
+.scard:nth-child(3){background:var(--gold);color:#1A1411;border-color:transparent}
+.scard:nth-child(4){background:var(--ink);color:var(--bg);border-color:transparent}
+.scard .n{font-family:var(--fl);font-weight:900;font-size:clamp(80px,12vw,180px);line-height:.8;opacity:.9}
+.scard h3{font-family:var(--fd);font-size:clamp(40px,6vw,92px);line-height:1}
+:root[lang="en"] .scard h3{text-transform:uppercase}
+.scard p{font-size:1.15rem;max-width:36ch;margin-top:14px;opacity:.85}
+.big-img{position:relative;width:clamp(150px,19vw,280px);aspect-ratio:1;border-radius:50%;overflow:hidden;flex:none;box-shadow:0 30px 60px rgba(0,0,0,.35);background:var(--deep)}
+.big-img img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (max-width:760px){.scard{grid-template-columns:1fr;min-height:auto}.big-img{display:none}}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:80px}
+.num{padding:34px 20px 0;border-inline-end:1px solid var(--line)}
+.num:last-child{border-inline-end:0}
+.num strong{display:block;font-family:var(--fl);font-weight:900;font-size:clamp(56px,7vw,110px);line-height:1}
+.num span{color:var(--mute)}
+@media (max-width:760px){.nums{grid-template-columns:1fr 1fr}.num:nth-child(2){border-inline-end:0}}
+
+.rates{display:flex;gap:16px;flex-wrap:wrap}
+.rate{display:flex;align-items:center;gap:14px;padding:14px 22px;border:1.5px solid var(--line);border-radius:999px;transition:border-color .3s}
+.rate:hover{border-color:var(--gold)}
+.rate strong{font-family:var(--fl);font-size:2.2rem;font-weight:900;line-height:1;color:var(--gold)}
+.rate span{font-size:.9rem;color:var(--mute);line-height:1.3}
+.rate b{color:var(--ink);display:block;font-size:1rem}
+.rev-rows{display:flex;flex-direction:column;gap:18px;margin-top:50px}
+.rcard{width:420px;flex:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:16px;white-space:normal}
+:root[dir="rtl"] .rcard{direction:rtl}
+.rcard q{font-size:1.2rem;font-weight:500}
+:root[lang="ar"] .rcard q{quotes:"«" "»"}
+.stars{display:flex;gap:3px;color:var(--gold)}
+.stars svg{width:16px;height:16px;fill:currentColor;stroke:none}
+.rcard small{color:var(--mute)}
+@media (max-width:560px){.rcard{width:300px}}
+
+.cater-box{position:relative;border-radius:32px;background:var(--ember);color:#fff;padding:clamp(36px,6vw,90px);display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;overflow:hidden}
+.cater-box h2{font-size:clamp(46px,6.5vw,104px)}
+.cater-box p{font-size:1.15rem;opacity:.9;max-width:42ch;margin-block:18px 28px}
+.cater-box .btn{background:#1A1411;color:#fff}
+.cater-box .btn::before{background:#fff}
+.cater-box .btn:hover{color:#1A1411}
+.cater-icons{position:relative;height:100%;min-height:320px}
+.cimg{position:absolute;aspect-ratio:1;border-radius:50%;overflow:hidden;border:5px solid #fff;box-shadow:0 24px 50px rgba(0,0,0,.3);background:var(--deep)}
+.cimg img.ph{width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){.cater-box{grid-template-columns:1fr}.cater-icons{min-height:220px}}
+
+.gal .marquee{margin-inline:calc(var(--pad) * -1)}
+.gtile{width:clamp(240px,26vw,380px);flex:none;aspect-ratio:3/4;border-radius:var(--r);position:relative;overflow:hidden;cursor:pointer}
+.gtile .art{aspect-ratio:auto;height:100%;border-radius:0}
+.gtile:hover .art img.ph{transform:scale(1.08)}
+.gtile figcaption{position:absolute;inset-inline:14px;bottom:14px;z-index:2;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);padding:10px 14px;border-radius:12px;font-weight:600;font-size:.95rem;display:flex;justify-content:space-between;gap:10px}
+:root[dir="rtl"] .gtile figcaption{direction:rtl}
+.gtile figcaption .price{font-size:1.1rem}
+.gtile:nth-child(even){margin-top:50px}
+
+.visit-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:24px}
+.vinfo{display:flex;flex-direction:column;gap:22px;justify-content:center}
+.vrow{display:flex;gap:16px;align-items:flex-start;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.vrow .ico{width:26px;height:26px;color:var(--ember);margin-top:3px}
+.vrow b{display:block;font-size:1.15rem}
+.vrow span{color:var(--mute)}
+.vbtns{display:flex;gap:12px;flex-wrap:wrap}
+.map{position:relative;border-radius:28px;overflow:hidden;background:var(--bg2);min-height:420px;border:1px solid var(--line)}
+.map svg.streets{position:absolute;inset:0;width:100%;height:100%}
+.map .streets path{fill:none;stroke:var(--line);stroke-width:2}
+.map .streets .main{stroke:color-mix(in srgb,var(--ember) 70%,transparent);stroke-width:14;stroke-linecap:round}
+.map .streets text{fill:var(--mute);font-size:15px;font-family:var(--fb);font-weight:600}
+.pin{position:absolute;left:52%;top:46%;translate:-50% -100%;display:flex;flex-direction:column;align-items:center}
+.pin-dot{width:62px;height:62px;border-radius:50% 50% 50% 0;rotate:-45deg;background:var(--ember);display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.pin-dot svg{rotate:45deg;width:28px;height:28px;color:#fff}
+.pin-ring{position:absolute;bottom:-10px;width:30px;height:12px;border-radius:50%;background:var(--ember);opacity:.4;animation:ring 2s infinite}
+@keyframes ring{to{transform:scale(4);opacity:0}}
+.pin-label{position:absolute;bottom:calc(100% + 12px);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:12px;font-weight:700;white-space:nowrap}
+@media (max-width:860px){.visit-grid{grid-template-columns:1fr}.map{min-height:320px}}
+</style>
+<!--BODY-->
+<main id="main">
+ <section class="hero" id="hero">
+  <canvas id="sparks" aria-hidden="true"></canvas>
+  <div class="hglow" id="hglow"></div>
+  <div class="wrap">
+   <div class="hero-top">
+     <span class="status" data-status data-intro><i></i><span>مفتوح دلوقتي</span></span>
+     <span class="scroll-hint" data-intro><i></i><span data-i18n="scroll">انزل</span></span>
+   </div>
+   <h1 class="display" id="heroH">
+     <span class="ln" data-split="intro" data-i18n="h1a">ملوك الفرخة</span>
+     <span class="ln" data-split="intro" data-i18n="h1b">الشواية</span>
+     <span class="ln" data-split="intro" data-i18n="h1c">في فيصل والهرم</span>
+   </h1>
+   <div class="hero-bottom">
+    <div>
+     <p class="hero-sub" data-intro data-i18n="hero_sub">شاورما سوري، فراخ على الفحم وبروستد مقرمش – من محطة المطبعة لحد باب البيت.</p>
+     <div class="hero-ctas" data-intro>
+      <a class="btn btn-fire magnetic" href="menu.html"><svg class="ico"><use href="#i-cart"/></svg><span class="roll"><span data-i18n="cta_order">اطلب دلوقتي</span><span data-i18n="cta_order">اطلب دلوقتي</span></span></a>
+      <a class="btn btn-line magnetic" href="menu.html"><span class="roll"><span data-i18n="cta_menu">شوف المنيو</span><span data-i18n="cta_menu">شوف المنيو</span></span></a>
+      <a class="btn btn-line magnetic" href="tel:01222440044"><svg class="ico"><use href="#i-phone"/></svg><span class="roll"><span data-i18n="cta_call">اتصل</span><span>01222440044</span></span></a>
+     </div>
+    </div>
+    <div class="badge" id="badge" aria-hidden="true">
+      <svg class="badge-ring" viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs><text><textPath href="#circ" data-i18n="badge_ring">مفتوح من ١٠ الصبح لـ ٢ بالليل ✦ تشيكنو ✦ مفتوح من ١٠ الصبح لـ ٢ بالليل ✦</textPath></text></svg>
+      <div class="badge-core" data-img="5474676" data-w="400"><svg><use href="#f-flame"/></svg></div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="cats" aria-label="Categories"><div class="marquee" id="mqCats"><div class="mq-track"></div></div></section>
+
+ <section class="sec" id="best">
+  <div class="wrap">
+   <div class="sec-head">
+     <div><div class="tag"><b>✦</b><span data-i18n="best_tag">على طلبات</span></div><h2 class="display" data-split data-i18n="best_t">الأكثر طلبًا</h2></div>
+     <p data-fade data-i18n="best_p">اللي الناس بترجعله كل مرة. دوس على أي طبق وضيفه لطلبك.</p>
+   </div>
+   <div class="grid4" id="bestGrid"></div>
+   <div class="more-row"><a class="btn btn-line magnetic" href="menu.html"><span class="roll"><span id="fullMenu1"></span><span id="fullMenu2"></span></span></a></div>
+   <p class="note" data-i18n="price_note">الأسعار تقريبية وممكن تتغير.</p>
+  </div>
+ </section>
+
+ <section class="offers" id="offers">
+  <div class="wrap sec-head">
+    <div><div class="tag"><b>✦</b><span data-i18n="off_tag">بوكسات وعروض</span></div><h2 class="display" data-split data-i18n="off_t">بوكسات تكفّي العيلة</h2></div>
+    <p data-i18n="off_p">اسحب وشوف. كل بوكس جاهز ومتظبط على عدد.</p>
+  </div>
+  <div class="h-wrap" id="hWrap"><div class="h-track" id="hTrack"></div></div>
+ </section>
+
+ <section class="sec" id="why">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="why_tag">ليه إحنا</span></div><h2 class="display" data-split data-i18n="why_t">ليه تشيكنو؟</h2></div>
+     <a class="btn btn-line magnetic" href="about.html"><span class="roll"><span data-i18n="our_story">حكايتنا</span><span data-i18n="our_story">حكايتنا</span></span></a></div>
+   <div class="stack">
+     <div class="scard" style="--i:0"><span class="n">01</span><div><h3 data-i18n="w1">فحم حقيقي</h3><p data-i18n="w1p"></p></div><div class="big-img" data-img="19615783"></div></div>
+     <div class="scard" style="--i:1"><span class="n">02</span><div><h3 data-i18n="w2">وصفات سوري</h3><p data-i18n="w2p"></p></div><div class="big-img" data-img="5779423"></div></div>
+     <div class="scard" style="--i:2"><span class="n">03</span><div><h3 data-i18n="w3">بوكسات بتكفّي</h3><p data-i18n="w3p"></p></div><div class="big-img" data-img="18177335"></div></div>
+     <div class="scard" style="--i:3"><span class="n">04</span><div><h3 data-i18n="w4">لحد ٢ بالليل</h3><p data-i18n="w4p"></p></div><div class="big-img" data-img="16423838"></div></div>
+   </div>
+   <div class="nums">
+     <div class="num"><strong data-count="501" data-suffix="K">501K</strong><span data-i18n="n1">متابع على فيسبوك</span></div>
+     <div class="num"><strong data-count="13.6" data-suffix="K" data-dec="1">13.6K</strong><span data-i18n="n2">تقييم على طلبات</span></div>
+     <div class="num"><strong data-count="190" id="nItems">190</strong><span data-i18n="n3">صنف في المنيو</span></div>
+     <div class="num"><strong data-count="16">16</strong><span data-i18n="n4">ساعة شغل كل يوم</span></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" id="reviews" style="padding-top:0">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="rev_tag">التقييمات</span></div><h2 class="display" data-split data-i18n="rev_t">الناس بتقول إيه</h2></div>
+     <div class="rates" data-fade>
+       <a class="rate" href="https://www.talabat.com/egypt/chikno-haram--el-taawun" target="_blank" rel="noopener"><strong>4.2</strong><span><b>Talabat</b><span data-i18n="r1">من 13,612 تقييم</span></span></a>
+       <a class="rate" href="https://www.google.com/maps/search/?api=1&query=Chikno%20279%20Faisal%20St%20Giza" target="_blank" rel="noopener"><strong>4.0</strong><span><b>Google</b><span data-i18n="r2">من 1,987 تقييم</span></span></a>
+     </div></div>
+  </div>
+  <div class="rev-rows">
+    <div class="marquee" id="mqRev1"><div class="mq-track"></div></div>
+    <div class="marquee" id="mqRev2"><div class="mq-track"></div></div>
+  </div>
+  <div class="wrap more-row"><a class="btn btn-line magnetic" href="reviews.html"><span class="roll"><span data-i18n="all_rev">كل الآراء</span><span data-i18n="all_rev">كل الآراء</span></span></a></div>
+ </section>
+
+ <section style="padding-bottom:clamp(72px,11vw,150px)">
+  <div class="wrap"><div class="cater-box" data-reveal>
+    <div><h2 class="display" data-split data-i18n="cat_t">عزومة؟ حفلة؟ غدا شغل؟</h2>
+    <p data-i18n="cat_p"></p>
+    <a class="btn magnetic" href="catering.html"><span class="roll"><span data-i18n="cat_cta">خطّط لطلب كبير</span><span data-i18n="cat_cta">خطّط لطلب كبير</span></span></a></div>
+    <div class="cater-icons" id="caterIcons" aria-hidden="true">
+      <div class="cimg" data-img="7866189" style="width:52%;top:0;inset-inline-start:6%"></div>
+      <div class="cimg" data-img="7866189" style="width:38%;top:38%;inset-inline-end:0"></div>
+      <div class="cimg" data-img="5474676" style="width:34%;bottom:0;inset-inline-start:20%"></div>
+    </div>
+  </div></div>
+ </section>
+
+ <section class="sec gal" id="gallery" style="padding-top:0">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="gal_tag">الصور</span></div><h2 class="display" data-split data-i18n="gal_t">من الشواية لعينك</h2></div>
+     <a class="btn btn-line magnetic" href="gallery.html"><span class="roll"><span data-i18n="gal_all">كل الصور</span><span data-i18n="gal_all">كل الصور</span></span></a></div>
+   <div class="marquee" id="mqGal"><div class="mq-track"></div></div>
+   <div class="socials" style="margin-top:40px">
+     <a class="soc" href="https://www.facebook.com/ChiknoEgypt/" target="_blank" rel="noopener">Facebook <small>501K</small></a>
+     <a class="soc" href="https://www.instagram.com/chiknoegypt/" target="_blank" rel="noopener">Instagram <small>15K</small></a>
+     <a class="soc" href="https://www.tiktok.com/@chiknoegypt" target="_blank" rel="noopener">TikTok <small>@chiknoegypt</small></a>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" id="visit" style="padding-top:0">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="vis_tag">العنوان</span></div><h2 class="display" data-split data-i18n="vis_t">تعالى زورنا</h2></div></div>
+   <div class="visit-grid">
+    <div class="vinfo">
+      <div class="vrow"><svg class="ico"><use href="#i-pin"/></svg><div><b data-i18n="address"></b><span data-i18n="landmark"></span></div></div>
+      <div class="vrow"><svg class="ico"><use href="#i-clock"/></svg><div><b data-i18n="hours"></b><span data-i18n="services"></span></div></div>
+      <div class="vrow"><svg class="ico"><use href="#i-phone"/></svg><div><b><a href="tel:01222440044">01222440044</a></b><span data-i18n="hotline"></span></div></div>
+      <div class="vbtns">
+        <a class="btn btn-fire magnetic" href="https://www.google.com/maps/search/?api=1&query=30.0007687,31.1662965" target="_blank" rel="noopener"><svg class="ico"><use href="#i-pin"/></svg><span class="roll"><span data-i18n="directions">الاتجاهات</span><span data-i18n="directions">الاتجاهات</span></span></a>
+        <a class="btn btn-line magnetic" href="contact.html"><span class="roll"><span data-i18n="contact_us">تواصل معانا</span><span data-i18n="contact_us">تواصل معانا</span></span></a>
+      </div>
+    </div>
+    <div class="map" data-reveal>
+      <svg class="streets" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <path d="M0 60H600M0 140H600M0 300H600M0 370H600M80 0V420M190 0V420M420 0V420M520 0V420M0 0L250 420M350 0L600 330"/>
+        <path class="main" d="M-20 250C150 230 300 200 620 140"/>
+        <text x="360" y="168" transform="rotate(-11 360 168)" data-i18n="faisal_st">شارع فيصل</text>
+      </svg>
+      <div class="pin"><span class="pin-label" data-i18n="pin">تشيكنو هنا</span><div class="pin-dot"><svg><use href="#f-flame"/></svg></div><span class="pin-ring"></span></div>
+    </div>
+   </div>
+  </div>
+ </section>
+</main>
+<!--SCRIPT-->
+<script>
+(function(){
+const C=Chikno,$=C.$,$$=C.$$;
+const REV=[
+ {ar:'أكتر حاجة عجبتني إن الفراخ مستوية كويس ومليانة عصارة. هرجع تاني أكيد.',en:'What I really liked about Chikno is that the chicken is very well cooked and juicy. Will revisit again.',src:'Google',tr:'ar'},
+ {ar:'الشاورما حلوة، والصوصات والسلطات كانت ممتازة.',en:'Good shawarma, and the sauces and salads were excellent.',src:'Google',tr:'ar'},
+ {ar:'بصراحة الخدمة ممتازة للغاية، وأسعار معقولة ونظافة واهتمام.',en:'Honestly, excellent service, reasonable prices, clean and caring.',src:'Menu22',tr:'en'},
+ {ar:'أكل حلو وقيمة كويسة قصاد السعر. التويستر عجبنا جدًا.',en:'Great food and value for money. We enjoyed the twister sandwich very much.',src:'Google',tr:'ar'},
+ {ar:'أصناف كتير ولذيذة، والبيتزا حلوة جدًا.',en:'Has a variety of many delicious dishes and the pizza is so yummy.',src:'Google',tr:'ar'},
+ {ar:'الرز حلو، والفراخ والكباب كويسين جدًا.',en:'The rice is good. Chicken and kebab were very good.',src:'Google',tr:'ar'}
+];
+const CHIPS=[['broasted','5474676'],['charcoal','616353'],['shawarma','5779423'],['boxes','29269199'],['grills','7866189'],['sandwiches','7962694'],['pizza','13214430'],['sides','7954630']];
+const GAL=['c1','s1','x3','m2','b1','z1','w9','a8','g1','r1'];
+const n=C.items.length;
+C.init({
+ dict:{
+  ar:{title:'تشيكنو – ملوك الفرخة الشواية في فيصل',h1a:'ملوك الفرخة',h1b:'الشواية',h1c:'في فيصل والهرم',hero_sub:'شاورما سوري، فراخ على الفحم وبروستد مقرمش – من محطة المطبعة لحد باب البيت.',
+   badge_ring:'مفتوح من ١٠ الصبح لـ ٢ بالليل ✦ تشيكنو ✦ مفتوح من ١٠ الصبح لـ ٢ بالليل ✦',best_tag:'على طلبات',best_t:'الأكثر طلبًا',best_p:'اللي الناس بترجعله كل مرة. دوس على أي طبق وضيفه لطلبك.',
+   full_menu:`المنيو كامل – ${n} صنف`,off_tag:'بوكسات وعروض',off_t:'بوكسات تكفّي العيلة',off_p:'اسحب وشوف. كل بوكس جاهز ومتظبط على عدد.',o_end:'لسه فيه بوكسات تانية',all_offers:'كل العروض',
+   why_tag:'ليه إحنا',why_t:'ليه تشيكنو؟',our_story:'حكايتنا',w1:'فحم حقيقي',w1p:'الفراخ والكفتة والشيش بتستوي على الفحم، وبتوصلك سخنة.',w2:'وصفات سوري',w2p:'شاورما بالثومية والطحينة، محمرة وعيش صاج زي ما اتعودت.',w3:'بوكسات بتكفّي',w3p:'من بوكس الهيرو بـ 75 لحد بوكس البركة لخمسة. فيه حجم لكل قعدة.',w4:'لحد ٢ بالليل',w4p:'مفتوحين كل يوم من ١٠ الصبح لـ ٢ بالليل، أكل وتيك أواي ودليفري.',
+   n1:'متابع على فيسبوك',n2:'تقييم على طلبات',n3:'صنف في المنيو',n4:'ساعة شغل كل يوم',rev_tag:'التقييمات',rev_t:'الناس بتقول إيه',r1:'من 13,612 تقييم',r2:'من 1,987 تقييم',all_rev:'كل الآراء',translated:'مترجم',
+   cat_t:'عزومة؟ حفلة؟ غدا شغل؟',cat_p:'كيلو مشويات، ٢٠ قطعة كرسبي، فراخ كاملة وبوكسات بالجملة. قولنا العدد والميعاد وإحنا نجهّز.',cat_cta:'خطّط لطلب كبير',
+   gal_tag:'الصور',gal_t:'من الشواية لعينك',gal_all:'كل الصور',vis_tag:'العنوان',vis_t:'تعالى زورنا',landmark:'على شارع فيصل عند موقف المطبعة',services:'أكل في المطعم · تيك أواي · دليفري',faisal_st:'شارع فيصل',pin:'تشيكنو هنا'},
+  en:{title:'Chikno – Kings of grilled chicken on Faisal St',h1a:'Kings of',h1b:'grilled chicken',h1c:'on Faisal St',hero_sub:'Syrian shawarma, charcoal chicken and crispy broasted – from El-Matbaa station to your door.',
+   badge_ring:'Open 10 AM – 2 AM ✦ Chikno ✦ Open 10 AM – 2 AM ✦ Chikno ✦',best_tag:'On Talabat',best_t:'Best sellers',best_p:'What people order again and again. Tap any dish to add it to your order.',
+   full_menu:`Full menu – ${n} dishes`,off_tag:'Boxes & deals',off_t:'Boxes for the whole family',off_p:'Scroll through. Every box is ready and sized for a group.',o_end:'More boxes inside',all_offers:'All offers',
+   why_tag:'Why us',why_t:'Why Chikno?',our_story:'Our story',w1:'Real charcoal',w1p:'Chicken, kofta and shish are cooked over charcoal and arrive hot.',w2:'Syrian recipes',w2p:'Shawarma with garlic dip and tahini, muhammara and saj bread, the way you like it.',w3:'Boxes that fill you',w3p:'From the 75 EGP Hero Box to El Baraka for five. A size for every table.',w4:'Open till 2 AM',w4p:'Every day from 10 AM to 2 AM – dine in, takeaway or delivery.',
+   n1:'Facebook followers',n2:'Talabat ratings',n3:'Dishes on the menu',n4:'Hours open daily',rev_tag:'Ratings',rev_t:'What people say',r1:'from 13,612 ratings',r2:'from 1,987 ratings',all_rev:'All reviews',translated:'translated',
+   cat_t:'Party? Gathering? Office lunch?',cat_p:'Kilos of grills, 20-piece crispy, whole chickens and boxes in bulk. Tell us the headcount and time – we’ll get it ready.',cat_cta:'Plan a big order',
+   gal_tag:'Gallery',gal_t:'Straight off the grill',gal_all:'All photos',vis_tag:'Address',vis_t:'Come visit',landmark:'On Faisal St at the El-Matbaa stop',services:'Dine in · Takeaway · Delivery',faisal_st:'Faisal St',pin:'Chikno is here'}
+ },
+ render(){
+  const L=C.lang();
+  $('#fullMenu1').textContent=$('#fullMenu2').textContent=C.t('full_menu');
+  $('#nItems').dataset.count=n;$('#nItems').textContent=n;
+  $('#bestGrid').innerHTML=['b2','x2','x3','x8'].map(id=>C.card(id)).join('');
+  $('#hTrack').innerHTML=['x4','x6','x5','x7','x1'].map(id=>C.card(id)).join('')+`<div class="oend"><svg class="big"><use href="#f-box"/></svg><h3 class="display">${C.t('o_end')}</h3><a class="btn magnetic" href="offers.html"><span class="roll"><span>${C.t('all_offers')}</span><span>${C.t('all_offers')}</span></span></a></div>`;
+  C.marquee($('#mqCats'),CHIPS.map(([c,img])=>{const cat=C.cat(c);return `<a class="chip" href="menu.html#cat-${c}"><span class="disc"><svg><use href="#${cat.icon}"/></svg><img src="${C.ph(img,160)}" alt="" loading="lazy" onerror="this.remove()"></span>${C.nm(cat)}</a>`;}).join(''),{dur:40});
+  const rc=r=>`<figure class="rcard">${C.stars()}<q>${r[L]}</q><small>${r.src}${r.tr===L?' · '+C.t('translated'):''}</small></figure>`;
+  C.marquee($('#mqRev1'),REV.slice(0,3).map(rc).join(''),{dur:55});
+  C.marquee($('#mqRev2'),REV.slice(3).map(rc).join(''),{dur:55,reverse:true});
+  C.marquee($('#mqGal'),GAL.map(id=>{const it=C.item(id);return `<figure class="gtile" data-dish="${id}" data-cursor>${C.art(it,{w:600})}<figcaption><span>${C.esc(C.nm(it))}</span>${C.money(it.price)}</figcaption></figure>`;}).join(''),{reps:2,dur:50});
+  C.bind();
+ },
+ scroll(){
+  gsap.to('#hglow',{yPercent:-25,scale:1.2,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('#heroH',{yPercent:-18,opacity:.25,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('#badge',{rotate:180,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.from('#bestGrid .dish',{y:80,opacity:0,stagger:.1,duration:1.1,ease:'expo.out',scrollTrigger:{trigger:'#bestGrid',start:'top 85%'}});
+  gsap.from('.chip',{scale:.7,opacity:0,stagger:.03,duration:.8,ease:'back.out(1.6)',scrollTrigger:{trigger:'.cats',start:'top 95%'}});
+  if(innerWidth>860){const tr=$('#hTrack');const dist=()=>Math.max(0,tr.scrollWidth-innerWidth);const rtl=C.rtl();
+    gsap.fromTo(tr,{x:()=>rtl?-dist():0},{x:()=>rtl?0:-dist(),ease:'none',scrollTrigger:{trigger:'#offers',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true,anticipatePin:1}});}
+  const cards=$$('.scard');
+  cards.forEach((c,i)=>{if(i===cards.length-1)return;gsap.to(c,{scale:.9+i*.02,filter:'brightness(.7)',ease:'none',scrollTrigger:{trigger:cards[i+1],start:'top bottom',end:'top '+(110+(i+1)*22)+'px',scrub:true}});});
+  cards.forEach(c=>{gsap.from($$('h3,p,.n',c),{y:40,opacity:0,stagger:.08,duration:.9,ease:'expo.out',scrollTrigger:{trigger:c,start:'top 75%'}});gsap.from($('.big-img',c),{scale:.4,rotate:-30,duration:1.2,ease:'back.out(1.4)',scrollTrigger:{trigger:c,start:'top 70%'}});});
+  $$('#caterIcons .cimg').forEach((s,i)=>gsap.fromTo(s,{y:60*(i%2?1:-1),rotate:-20+i*10},{y:-60*(i%2?1:-1),rotate:20-i*10,ease:'none',scrollTrigger:{trigger:'.cater-box',start:'top bottom',end:'bottom top',scrub:true}}));
+  gsap.from('.pin',{y:-120,opacity:0,duration:1.2,ease:'bounce.out',scrollTrigger:{trigger:'.map',start:'top 70%'}});
+  gsap.from('.vrow',{x:C.rtl()?40:-40,opacity:0,stagger:.1,duration:.9,ease:'expo.out',scrollTrigger:{trigger:'.vinfo',start:'top 80%'}});
+ },
+ intro(tl){tl.from('#badge',{scale:.3,opacity:0,rotate:-120,duration:1.3,ease:'back.out(1.5)'},'-=1');}
+});
+C.sparks($('#sparks'));
+})();
+</script>

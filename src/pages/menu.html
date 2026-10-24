@@ -1,0 +1,134 @@
+<!--page:menu | title:المنيو – تشيكنو | cbar-->
+<style>
+.mhero .wrap{position:relative}
+.mhero h1{display:flex;align-items:flex-end;gap:.25em;flex-wrap:wrap}
+.mhero h1 sup{font-family:var(--fl);font-size:.22em;color:var(--ember);line-height:1;align-self:flex-start;margin-top:.3em}
+.msearch{position:relative;flex:1;max-width:620px;min-width:min(100%,320px)}
+.msearch input{width:100%;height:72px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);padding-inline:64px 60px;font-size:1.15rem;transition:border-color .3s,box-shadow .3s}
+.msearch input:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 6px color-mix(in srgb,var(--ember) 15%,transparent)}
+.msearch>.ico{position:absolute;inset-inline-start:24px;top:50%;translate:0 -50%;width:24px;height:24px;color:var(--mute);pointer-events:none}
+.msearch .clr{position:absolute;inset-inline-end:12px;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;display:none;place-items:center;background:var(--line)}
+.msearch.has .clr{display:grid}
+.mfilters{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.mtabs{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-block:1px solid var(--line);transition:top .5s var(--ease)}
+body:has(.hdr:not(.hide)) .mtabs{top:78px}
+@media (max-width:560px){body:has(.hdr:not(.hide)) .mtabs{top:68px}}
+.mtabs-in{position:relative;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:10px;padding-inline:var(--pad);max-width:1440px;margin-inline:auto}
+.mtabs-in::-webkit-scrollbar{display:none}
+.mtab{position:relative;z-index:1;flex:none;height:44px;padding-inline:16px;border-radius:999px;font-weight:600;font-size:.94rem;white-space:nowrap;transition:color .35s;display:flex;align-items:center;gap:8px}
+.mtab .n{font-size:.75rem;opacity:.55;font-weight:500}
+.mtab.on{color:#fff}
+.mtab-ind{position:absolute;z-index:0;top:10px;height:44px;border-radius:999px;background:var(--ember);transition:left .55s var(--ease),width .55s var(--ease),opacity .3s}
+.mbody{padding-block:20px 120px}
+.mcat{display:grid;grid-template-columns:minmax(240px,.8fr) 2fr;gap:clamp(24px,5vw,80px);padding-block:clamp(48px,7vw,90px);border-bottom:1px solid var(--line);scroll-margin-top:150px}
+.mcat:last-of-type{border-bottom:0}
+.mside{position:sticky;top:160px;align-self:start;display:flex;flex-direction:column;gap:16px}
+.mside .num{font-family:var(--fl);font-weight:900;font-size:clamp(60px,7vw,110px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px var(--ember)}
+.mside h2{font-size:clamp(40px,4.6vw,72px)}
+.mside p{color:var(--mute)}
+.mside .disc{width:clamp(120px,14vw,190px);aspect-ratio:1;border-radius:50%;overflow:hidden;position:relative;background:var(--deep);box-shadow:0 24px 50px rgba(0,0,0,.3)}
+.mside .disc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.mcat:hover .mside .disc img{transform:scale(1.1) rotate(4deg)}
+.mrows{min-width:0}
+.mrows .lrow:first-child{border-top:1px solid var(--line)}
+.xsell{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-block:10px;padding:clamp(24px,4vw,44px);border-radius:28px;background:var(--ember);color:#fff;position:relative;overflow:hidden}
+.xsell.alt{background:var(--gold);color:#1A1411}
+.xsell h3{font-family:var(--fd);font-size:clamp(32px,4vw,56px);line-height:1}
+:root[lang="en"] .xsell h3{text-transform:uppercase}
+.xsell p{opacity:.85;margin-top:6px}
+.xsell .btn{background:#1A1411;color:#fff}
+.xsell svg.bg{position:absolute;inset-inline-end:-30px;bottom:-40px;width:200px;height:200px;opacity:.15;color:#1A1411}
+.mempty{display:none}
+.mempty.on{display:block}
+@media (max-width:900px){.mcat{grid-template-columns:1fr;gap:24px}.mside{position:static;flex-direction:row;align-items:center;flex-wrap:wrap}.mside .disc{width:90px;order:-1}.mside .num{font-size:56px}.mside p{width:100%}}
+mark{background:color-mix(in srgb,var(--gold) 45%,transparent);color:inherit;border-radius:4px;padding-inline:2px}
+</style>
+<!--BODY-->
+<main id="main">
+ <section class="phero mhero">
+  <div class="glow"></div>
+  <div class="wrap">
+   <nav class="crumbs" data-intro aria-label="Breadcrumb"><a href="index.html" data-i18n="home_crumb">الرئيسية</a><svg class="ico flip"><use href="#i-right"/></svg><span data-i18n="nav_menu">المنيو</span></nav>
+   <h1 class="display"><span data-split="intro" data-i18n="h1">المنيو</span><sup id="mCount">190</sup></h1>
+   <div class="phero-row">
+     <p class="phero-sub" data-intro data-i18n="sub">من الفرخة الشواية لحد الثومية – كل حاجة بأسعارها. دوس على أي طبق تشوف تفاصيله.</p>
+     <label class="msearch" id="mSearchBox" data-intro><svg class="ico"><use href="#i-search"/></svg><span class="sr" data-i18n="search_l">دوّر في المنيو</span><input type="search" id="mSearch" data-i18n-ph="search_ph" autocomplete="off"><button class="clr" id="mClear" data-i18n-aria="clear" aria-label="مسح"><svg class="ico"><use href="#i-x"/></svg></button></label>
+   </div>
+   <div class="mfilters pills" id="mFilters" data-intro role="group"></div>
+  </div>
+ </section>
+ <nav class="mtabs" aria-label="Categories"><div class="mtabs-in" id="mTabs"><i class="mtab-ind" id="mInd"></i></div></nav>
+ <div class="wrap mbody" id="mBody"></div>
+ <div class="wrap mempty empty" id="mEmpty"><svg><use href="#f-flame"/></svg><h3 data-i18n="empty_t">ملقيناش الطبق ده</h3><p data-i18n="empty_p">جرب اسم تاني، أو اتصل بينا ونسألك عايز إيه.</p><div class="more-row"><button class="btn btn-line" id="mReset" data-i18n="reset">امسح البحث</button><a class="btn btn-fire" href="tel:01222440044" data-i18n="cta_call">اتصل</a></div></div>
+</main>
+<!--SCRIPT-->
+<script>
+(function(){
+const C=Chikno,$=C.$,$$=C.$$;
+let q='',filter='all',activeCat=null,io=null;
+const FILTERS=['all','popular','spicy','family','under50'];
+const norm=s=>(s||'').toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/[ً-ْ]/g,'');
+const match=it=>{
+  if(filter==='popular'&&!/[pb]/.test(it.flags))return false;
+  if(filter==='spicy'&&!it.flags.includes('s'))return false;
+  if(filter==='family'&&!it.flags.includes('f'))return false;
+  if(filter==='under50'&&!(it.price&&it.price<50))return false;
+  if(!q)return true;const h=norm(it.ar+' '+it.en+' '+it.dar+' '+it.den);return norm(q).split(/\s+/).every(w=>h.includes(w));};
+const catImg=c=>{const f=C.inCat(c).find(i=>i.img);return f?f.img:'';};
+const hl=s=>{if(!q)return C.esc(s);const words=q.trim().split(/\s+/).filter(Boolean).map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));if(!words.length)return C.esc(s);return C.esc(s).replace(new RegExp('('+words.join('|')+')','gi'),'<mark>$1</mark>');};
+function rowHTML(it){return C.row(it.id).replace(`<h3>${C.esc(C.nm(it))} `,`<h3>${hl(C.nm(it))} `);}
+function render(){
+  const L=C.lang();let html='',shown=0,idx=0;
+  const tabs=[];
+  C.cats.forEach(c=>{const its=C.inCat(c.id).filter(match);if(!its.length)return;idx++;shown+=its.length;
+    tabs.push(`<button class="mtab" data-cat="${c.id}">${C.nm(c)}<span class="n">${its.length}</span></button>`);
+    html+=`<section class="mcat" id="cat-${c.id}" data-cat="${c.id}"><aside class="mside"><span class="num">${String(idx).padStart(2,'0')}</span><div class="disc">${catImg(c.id)?`<img src="${C.ph(catImg(c.id),400)}" alt="" loading="lazy" onerror="this.remove()">`:''}</div><h2 class="display">${C.nm(c)}</h2><p>${its.length} ${C.t('items_word')}${c.id==='pizza'?' · '+C.t('pizza_note'):''}</p></aside><div class="mrows">${its.map(rowHTML).join('')}</div></section>`;
+    if(!q&&filter==='all'&&c.id==='shawarma')html+=`<div class="xsell"><div><h3>${C.t('x1_t')}</h3><p>${C.t('x1_p')}</p></div><a class="btn magnetic" href="offers.html">${C.t('x1_cta')}</a><svg class="bg"><use href="#f-box"/></svg></div>`;
+    if(!q&&filter==='all'&&c.id==='grills')html+=`<div class="xsell alt"><div><h3>${C.t('x2_t')}</h3><p>${C.t('x2_p')}</p></div><a class="btn magnetic" href="catering.html">${C.t('x2_cta')}</a><svg class="bg"><use href="#f-skewer"/></svg></div>`;
+  });
+  $('#mBody').innerHTML=html;
+  $('#mTabs').innerHTML='<i class="mtab-ind" id="mInd"></i>'+tabs.join('');
+  $('#mCount').textContent=shown;
+  $('#mEmpty').classList.toggle('on',!shown);
+  $('#mFilters').innerHTML=FILTERS.map(f=>`<button class="pill" data-f="${f}" aria-pressed="${f===filter}">${C.t('f_'+f)}</button>`).join('');
+  C.bind($('#mBody'));observe();
+  if(!activeCat||!$('#cat-'+activeCat))setActive((tabs.length&&$('.mtab',$('#mTabs')).dataset.cat)||null,false);else setActive(activeCat,false);
+}
+function setActive(id,scrollTab){activeCat=id;const ind=$('#mInd');$$('.mtab').forEach(b=>b.classList.toggle('on',b.dataset.cat===id));const b=$(`.mtab[data-cat="${id}"]`);
+  if(!b){ind.style.opacity=0;return;}ind.style.opacity=1;ind.style.left=b.offsetLeft+'px';ind.style.width=b.offsetWidth+'px';
+  if(scrollTab!==false){const bar=$('#mTabs');const target=b.offsetLeft-bar.clientWidth/2+b.offsetWidth/2;bar.scrollTo({left:target,behavior:'smooth'});}}
+function observe(){if(io)io.disconnect();if(!('IntersectionObserver' in window))return;
+  io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)setActive(e.target.dataset.cat);});},{rootMargin:'-45% 0px -50% 0px'});
+  $$('.mcat').forEach(s=>io.observe(s));}
+function animateRows(){if(!C.A)return;gsap.fromTo('#mBody .lrow',{y:24,opacity:0},{y:0,opacity:1,stagger:{each:.015,from:'start'},duration:.6,ease:'expo.out',overwrite:true});gsap.fromTo('#mBody .mside',{y:30,opacity:0},{y:0,opacity:1,stagger:.05,duration:.8,ease:'expo.out'});}
+let tmr;
+function refilter(){render();animateRows();C.refresh();}
+$('#mSearch').addEventListener('input',e=>{q=e.target.value.trim();$('#mSearchBox').classList.toggle('has',!!q);clearTimeout(tmr);tmr=setTimeout(()=>{refilter();if(q){const b=$('#mBody');C.scrollTo(b,-170);}},220);});
+$('#mClear').addEventListener('click',e=>{e.preventDefault();$('#mSearch').value='';q='';$('#mSearchBox').classList.remove('has');refilter();$('#mSearch').focus();});
+$('#mReset').addEventListener('click',()=>{$('#mSearch').value='';q='';filter='all';$('#mSearchBox').classList.remove('has');refilter();});
+$('#mFilters').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;filter=b.dataset.f;refilter();});
+$('#mTabs').addEventListener('click',e=>{const b=e.target.closest('.mtab');if(!b)return;const s=$('#cat-'+b.dataset.cat);if(s){setActive(b.dataset.cat);C.scrollTo(s,-150);}});
+addEventListener('resize',()=>setActive(activeCat,false));
+C.init({
+ dict:{
+  ar:{title:'المنيو',h1:'المنيو',sub:'من الفرخة الشواية لحد الثومية – كل حاجة بأسعارها. دوس على أي طبق تشوف تفاصيله.',search_l:'دوّر في المنيو',search_ph:'دوّر: شاورما، كيلو، زنجر…',clear:'مسح',
+   f_all:'الكل',f_popular:'الأكثر طلبًا',f_spicy:'حار',f_family:'للعيلة',f_under50:'أقل من 50 ج.م',pizza_note:'السعر بالتليفون',
+   x1_t:'جايين ٤ أو أكتر؟',x1_p:'البوكسات بتوفر وبتكفّي الكل.',x1_cta:'شوف البوكسات',x2_t:'عزومة كبيرة؟',x2_p:'كيلوهات مشويات وبوكسات بالجملة.',x2_cta:'خطّط لطلب كبير',
+   empty_t:'ملقيناش الطبق ده',empty_p:'جرب اسم تاني، أو اتصل بينا ونسألك عايز إيه.',reset:'امسح البحث'},
+  en:{title:'Menu',h1:'Menu',sub:'From grilled chicken to garlic dip – everything with its price. Tap any dish for details.',search_l:'Search the menu',search_ph:'Search: shawarma, kilo, zinger…',clear:'Clear',
+   f_all:'All',f_popular:'Popular',f_spicy:'Spicy',f_family:'Family size',f_under50:'Under 50 EGP',pizza_note:'price by phone',
+   x1_t:'Four or more of you?',x1_p:'Boxes cost less and feed everyone.',x1_cta:'See the boxes',x2_t:'Big gathering?',x2_p:'Kilos of grills and boxes in bulk.',x2_cta:'Plan a big order',
+   empty_t:'No dish matches that',empty_p:'Try another name, or call us and we’ll help you choose.',reset:'Clear search'}
+ },
+ render,
+ hash(h){if(h.startsWith('#cat-')){const s=$(h);if(s){setActive(h.slice(5));C.scrollTo(s,-150);}return true;}return false;},
+ scroll(){
+  $$('.mcat').forEach(s=>{gsap.from($('.mside',s),{y:50,opacity:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:s,start:'top 85%'}});
+    gsap.from($$('.lrow',s),{y:30,opacity:0,stagger:.03,duration:.7,ease:'expo.out',scrollTrigger:{trigger:s,start:'top 80%'}});
+    gsap.fromTo($('.mside .disc',s),{rotate:-25,scale:.7},{rotate:0,scale:1,ease:'none',scrollTrigger:{trigger:s,start:'top 95%',end:'top 40%',scrub:true}});});
+  $$('.xsell').forEach(x=>gsap.from(x,{scale:.92,opacity:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:x,start:'top 88%'}}));
+ },
+ intro(tl){tl.from('#mCount',{scale:0,rotate:-90,duration:.9,ease:'back.out(2)'},'-=.8');}
+});
+})();
+</script>

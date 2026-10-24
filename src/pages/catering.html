@@ -1,0 +1,186 @@
+<!--page:catering | title:العزومات – تشيكنو | cbar-->
+<style>
+.chero{min-height:calc(100svh - 120px);display:flex;flex-direction:column;justify-content:flex-end}
+.chero h1{position:relative;z-index:2}
+.collage{position:absolute;inset:0;pointer-events:none}
+.collage .ci{position:absolute;aspect-ratio:1;border-radius:50%;overflow:hidden;background:var(--deep);box-shadow:0 30px 70px rgba(0,0,0,.4);border:6px solid var(--bg)}
+.collage .ci img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ci1{width:clamp(160px,22vw,340px);top:8%;inset-inline-start:6%}
+.ci2{width:clamp(120px,15vw,240px);top:28%;inset-inline-start:34%}
+.ci3{width:clamp(100px,11vw,180px);top:4%;inset-inline-start:52%}
+@media (max-width:760px){.ci1{top:4%;width:150px}.ci2{top:16%;inset-inline-start:52%;width:110px}.ci3{display:none}}
+.chero .phero-row{position:relative;z-index:2}
+.occ{padding-block:30px;border-block:1px solid var(--line);overflow:hidden}
+.occ .mq-group{gap:40px;padding-inline-end:40px;align-items:center}
+.occ span.o{font-family:var(--fd);font-size:clamp(40px,6vw,90px);line-height:1.1;white-space:nowrap}
+:root[lang="en"] .occ span.o{text-transform:uppercase}
+.occ span.o:nth-child(4n+3){color:transparent;-webkit-text-stroke:1.5px var(--ember)}
+.occ i.s{color:var(--ember);font-style:normal;font-size:2rem}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;margin-top:40px}
+.how svg.line{position:absolute;top:44px;inset-inline:8%;width:84%;height:40px;pointer-events:none;overflow:visible}
+.how svg.line path{fill:none;stroke:var(--ember);stroke-width:2.5;stroke-dasharray:6 8}
+.how svg.line path.solid{stroke-dasharray:none}
+:root[dir="rtl"] .how svg.line{transform:scaleX(-1)}
+.hw{position:relative;text-align:center;padding:0 10px}
+.hw .n{width:88px;height:88px;border-radius:50%;background:var(--bg);border:2px solid var(--ember);display:grid;place-items:center;margin:0 auto 22px;font-family:var(--fl);font-weight:900;font-size:2.2rem;color:var(--ember);position:relative;z-index:1}
+.hw h3{font-family:var(--fd);font-size:clamp(28px,3vw,44px);line-height:1.1}
+:root[lang="en"] .hw h3{text-transform:uppercase}
+.hw p{color:var(--mute);margin-top:8px;max-width:30ch;margin-inline:auto}
+@media (max-width:760px){.how{grid-template-columns:1fr;gap:40px}.how svg.line{display:none}}
+.quote{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(24px,5vw,80px);align-items:start}
+.quote>*{min-width:0}
+.quote-side{position:sticky;top:120px}
+@media (max-width:900px){.quote{grid-template-columns:1fr}.quote-side{position:static}}
+.quote-side h2{font-size:clamp(48px,6.5vw,104px)}
+.quote-side p{color:var(--mute);margin-top:14px;max-width:40ch}
+.qbox{background:var(--card);border:1px solid var(--line);border-radius:32px;padding:clamp(22px,3.5vw,44px);display:flex;flex-direction:column;gap:20px}
+.ppl{display:flex;flex-direction:column;gap:10px}
+.ppl-top{display:flex;justify-content:space-between;align-items:flex-end}
+.ppl-n{font-family:var(--fl);font-weight:900;font-size:clamp(64px,8vw,110px);line-height:.85;color:var(--ember)}
+.ppl-n small{font-family:var(--fb);font-size:1rem;color:var(--mute);font-weight:500;margin-inline-start:8px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:8px;background:linear-gradient(to var(--dir,left),var(--ember) var(--p,10%),var(--line) var(--p,10%));outline:none}
+:root[dir="ltr"] input[type=range]{--dir:right}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:#fff;border:4px solid var(--ember);cursor:grab;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.2);cursor:grabbing}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid var(--ember)}
+.pk{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.pk{grid-template-columns:1fr}}
+.pk .check{padding:10px 14px}
+.pk .check .art{width:44px;aspect-ratio:1;border-radius:12px;flex:none}
+.pk .check .art>svg{width:56%}
+.pk .check .grow{font-size:.9rem;line-height:1.3}
+.band{border-radius:36px;background:var(--ink);color:var(--bg);padding:clamp(36px,6vw,90px);display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;position:relative;overflow:hidden}
+.band h2{font-size:clamp(44px,6vw,96px);max-width:12ch}
+.band .btn-line{color:var(--bg);border-color:color-mix(in srgb,var(--bg) 30%,transparent)}
+.band .btns{display:flex;gap:12px;flex-wrap:wrap}
+.band svg.bg{position:absolute;width:420px;height:420px;inset-inline-end:-80px;bottom:-140px;color:var(--ember);opacity:.15;animation:spin 40s linear infinite}
+</style>
+<!--BODY-->
+<main id="main">
+ <section class="phero chero">
+  <div class="glow"></div>
+  <div class="collage" aria-hidden="true">
+    <div class="ci ci1" data-img="7866189" data-w="600"></div>
+    <div class="ci ci2" data-img="18177335" data-w="480"></div>
+    <div class="ci ci3" data-img="11118936" data-w="400"></div>
+  </div>
+  <div class="wrap">
+   <nav class="crumbs" data-intro aria-label="Breadcrumb"><a href="index.html" data-i18n="home_crumb">الرئيسية</a><svg class="ico flip"><use href="#i-right"/></svg><span data-i18n="nav_catering">العزومات</span></nav>
+   <h1 class="display"><span data-split="intro" data-i18n="h1a">عزومتك</span><br><span class="ac" data-split="intro" data-i18n="h1b">علينا</span></h1>
+   <div class="phero-row">
+     <p class="phero-sub" data-intro data-i18n="sub"></p>
+     <a class="btn btn-fire btn-xl magnetic" href="#quote" data-intro><svg class="ico"><use href="#i-users"/></svg><span class="roll"><span data-i18n="cta">اطلب عرض سعر</span><span data-i18n="cta">اطلب عرض سعر</span></span></a>
+   </div>
+  </div>
+ </section>
+
+ <section class="occ" aria-hidden="true"><div class="marquee" id="mqOcc"><div class="mq-track"></div></div></section>
+
+ <section class="sec">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="pk_tag">أفكار للطلب</span></div><h2 class="display" data-split data-i18n="pk_t">على قد العزومة</h2></div><p data-fade data-i18n="pk_p"></p></div>
+   <div class="grid3" id="pkGrid"></div>
+   <p class="note" data-i18n="price_note">الأسعار تقريبية وممكن تتغير.</p>
+  </div>
+ </section>
+
+ <section class="sec" style="padding-top:0" data-draw-root>
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="hw_tag">بسيطة</span></div><h2 class="display" data-split data-i18n="hw_t">إزاي بنجهّز</h2></div></div>
+   <div class="how">
+     <svg class="line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C 160 -10, 340 50, 500 20 S 840 -10, 1000 20"/><path class="solid" data-draw d="M0 20 C 160 -10, 340 50, 500 20 S 840 -10, 1000 20"/></svg>
+     <div class="hw"><div class="n">1</div><h3 data-i18n="h1t">قولنا التفاصيل</h3><p data-i18n="h1p"></p></div>
+     <div class="hw"><div class="n">2</div><h3 data-i18n="h2t">بنأكد معاك</h3><p data-i18n="h2p"></p></div>
+     <div class="hw"><div class="n">3</div><h3 data-i18n="h3t">يوصلك سخن</h3><p data-i18n="h3p"></p></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" id="quote" style="padding-top:0">
+  <div class="wrap quote">
+   <div class="quote-side"><div class="tag"><b>✦</b><span data-i18n="q_tag">عرض سعر</span></div><h2 class="display" data-split data-i18n="q_t">احكيلنا عن عزومتك</h2><p data-fade data-i18n="q_p"></p></div>
+   <form class="qbox" id="qForm" novalidate data-fade>
+     <div class="ppl"><div class="ppl-top"><span data-i18n="q_people" style="font-weight:600">عدد الأشخاص</span><span class="ppl-n" id="pplN">10<small data-i18n="q_ppl_u">فرد</small></span></div><input type="range" min="4" max="100" step="1" value="10" id="ppl" aria-label="People"></div>
+     <div class="frow">
+       <label class="field"><span data-i18n="q_date">التاريخ</span><input type="date" name="date" id="qDate"></label>
+       <label class="field"><span data-i18n="q_time">الساعة</span><input type="time" name="time" value="14:00"></label>
+     </div>
+     <div class="seg" id="qType" role="group" style="align-self:flex-start"><button data-v="delivery" aria-pressed="true"><svg class="ico"><use href="#i-bike"/></svg><span data-i18n="delivery">توصيل</span></button><button data-v="pickup" aria-pressed="false"><svg class="ico"><use href="#i-bag"/></svg><span data-i18n="pickup">استلام</span></button></div>
+     <div class="field"><span data-i18n="q_items">مهتم بإيه؟</span><div class="pk" id="qItems"></div></div>
+     <div class="frow">
+       <label class="field" id="qfName"><span data-i18n="f_name">الاسم</span><input name="name" autocomplete="name"><em class="em" data-i18n="e_name">اكتب اسمك</em></label>
+       <label class="field" id="qfPhone"><span data-i18n="f_phone">الموبايل</span><input name="phone" type="tel" dir="ltr" placeholder="01xxxxxxxxx" autocomplete="tel"><em class="em" data-i18n="e_phone">رقم موبايل مصري من ١١ رقم</em></label>
+     </div>
+     <label class="field"><span><span data-i18n="f_note">ملاحظات</span><small data-i18n="optional">اختياري</small></span><textarea name="note" rows="3" data-i18n-ph="q_note_ph"></textarea></label>
+     <div class="more-row" style="margin-top:6px;justify-content:flex-start">
+       <button class="btn btn-wa btn-xl magnetic" type="submit"><svg class="ico" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg><span data-i18n="q_send">ابعت الطلب على واتساب</span></button>
+       <a class="btn btn-line btn-xl magnetic" href="tel:01222440044"><svg class="ico"><use href="#i-phone"/></svg><span data-i18n="cta_call">اتصل</span></a>
+     </div>
+   </form>
+  </div>
+ </section>
+
+ <section class="sec" style="padding-top:0">
+  <div class="wrap"><div class="band" data-reveal><svg class="bg"><use href="#f-crown"/></svg><h2 class="display" data-split data-i18n="b_t">لسه بتفكر؟ شوف المنيو كامل</h2><div class="btns"><a class="btn btn-fire btn-xl magnetic" href="menu.html" data-i18n="cta_menu">شوف المنيو</a><a class="btn btn-line btn-xl magnetic" href="offers.html" data-i18n="see_boxes">البوكسات</a></div></div></div>
+ </section>
+</main>
+<!--SCRIPT-->
+<script>
+(function(){
+const C=Chikno,$=C.$,$$=C.$$;
+const PK=['x5','m4','r3','b1','s20','c8'];
+const QI=['x5','x2','x3','m4','m6','r3','b1','g1','s20','c8'];
+let qtype='delivery';
+const f=$('#qForm'),r=$('#ppl');
+const d=new Date();d.setDate(d.getDate()+2);try{$('#qDate').value=d.toISOString().slice(0,10);$('#qDate').min=new Date().toISOString().slice(0,10);}catch(e){}
+function ppl(){const v=+r.value;r.style.setProperty('--p',((v-4)/96*100)+'%');const n=$('#pplN');n.firstChild.nodeValue=v;}
+r.addEventListener('input',()=>{ppl();if(C.A)gsap.fromTo('#pplN',{scale:1.08},{scale:1,duration:.3});});
+C.seg($('#qType'),v=>qtype=v);
+f.addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(f);let ok=true;
+  const ch=(id,c)=>{$(id).classList.toggle('err',!c);if(!c)ok=false;};
+  ch('#qfName',(fd.get('name')||'').trim().length>=2);ch('#qfPhone',/^01[0125]\d{8}$/.test((fd.get('phone')||'').replace(/[\s-]/g,'')));
+  if(!ok){const b=$('.field.err',f);C.scrollTo(b,-140);return;}
+  const items=$$('#qItems input:checked').map(i=>C.nm(C.item(i.value)));const nl='\n';
+  let m=C.t('q_msg')+nl+'—'+nl+`${C.t('q_people')}: ${r.value}`+nl+`${C.t('q_date')}: ${fd.get('date')||'-'} ${fd.get('time')||''}`+nl+`${C.t('msg_type')}: ${C.t(qtype)}`+nl;
+  if(items.length)m+=`${C.t('q_items')} ${items.join(C.rtl()?'، ':', ')}`+nl;
+  m+=`${C.t('f_name')}: ${fd.get('name')}`+nl+`${C.t('f_phone')}: ${fd.get('phone')}`+nl;if((fd.get('note')||'').trim())m+=`${C.t('f_note')}: ${fd.get('note')}`+nl;
+  window.open('https://wa.me/'+C.WA+'?text='+encodeURIComponent(m),'_blank','noopener');C.toast('✓ '+C.t('q_opened'));});
+f.addEventListener('input',e=>{const fl=e.target.closest('.field');fl&&fl.classList.remove('err');});
+C.init({
+ dict:{
+  ar:{title:'العزومات',h1a:'عزومتك',h1b:'علينا',sub:'كيلوهات مشويات، فراخ كاملة، كرسبي بالعشرين قطعة وبوكسات بالجملة. قولنا العدد والميعاد، وإحنا نجهّز.',cta:'اطلب عرض سعر',
+   occ:['عزومة العيلة','غدا الشغل','عيد ميلاد','لمة صحاب','سهرة الماتش','عزومة رمضان'],
+   pk_tag:'أفكار للطلب',pk_t:'على قد العزومة',pk_p:'أكبر الأصناف في المنيو. تقدر تخلط وتزوّد زي ما تحب.',
+   hw_tag:'بسيطة',hw_t:'إزاي بنجهّز',h1t:'قولنا التفاصيل',h1p:'العدد والميعاد والأصناف اللي في بالك – من الفورم أو بالتليفون.',h2t:'بنأكد معاك',h2p:'تشيكنو بيكلمك يأكد الكميات والسعر والتوصيل.',h3t:'يوصلك سخن',h3p:'الأكل بيتجهز على الفحم ويوصل في الميعاد، أو تستلمه من فيصل.',
+   q_tag:'عرض سعر',q_t:'احكيلنا عن عزومتك',q_p:'املا الفورم وهيتفتح واتساب برسالة جاهزة لتشيكنو. مفيش أي التزام قبل ما يتأكد معاك.',q_people:'عدد الأشخاص',q_ppl_u:'فرد',q_date:'التاريخ',q_time:'الساعة',q_items:'مهتم بإيه؟',q_send:'ابعت الطلب على واتساب',
+   q_note_ph:'مثلًا: نص الناس مش بتاكل حار، محتاجين أطباق…',q_msg:'طلب عزومة من موقع تشيكنو 🎉',q_opened:'اتفتح واتساب برسالتك',
+   f_name:'الاسم',f_phone:'الموبايل',f_note:'ملاحظات',optional:'اختياري',e_name:'اكتب اسمك',e_phone:'رقم موبايل مصري من ١١ رقم',delivery:'توصيل',pickup:'استلام',msg_type:'النوع',
+   b_t:'لسه بتفكر؟ شوف المنيو كامل',see_boxes:'البوكسات'},
+  en:{title:'Catering',h1a:'Your party,',h1b:'our grill',sub:'Kilos of grills, whole chickens, 20-piece crispy and boxes in bulk. Tell us the headcount and time – we’ll get it ready.',cta:'Request a quote',
+   occ:['Family gatherings','Office lunch','Birthdays','Friends night','Match night','Ramadan iftar'],
+   pk_tag:'Ideas to order',pk_t:'Sized for a crowd',pk_p:'The biggest items on the menu. Mix and add as you like.',
+   hw_tag:'Simple',hw_t:'How it works',h1t:'Tell us',h1p:'Headcount, time and what you have in mind – by form or phone.',h2t:'We confirm',h2p:'Chikno calls you to confirm quantities, price and delivery.',h3t:'It arrives hot',h3p:'Cooked over charcoal and delivered on time, or picked up on Faisal St.',
+   q_tag:'Quote',q_t:'Tell us about your event',q_p:'Fill in the form and WhatsApp opens with a ready message to Chikno. Nothing is final until they confirm with you.',q_people:'People',q_ppl_u:'guests',q_date:'Date',q_time:'Time',q_items:'Interested in:',q_send:'Send on WhatsApp',
+   q_note_ph:'e.g. half the guests don’t eat spicy, we need plates…',q_msg:'Catering request from the Chikno website 🎉',q_opened:'WhatsApp opened with your message',
+   f_name:'Name',f_phone:'Mobile',f_note:'Notes',optional:'optional',e_name:'Enter your name',e_phone:'An 11-digit Egyptian mobile number',delivery:'Delivery',pickup:'Pickup',msg_type:'Type',
+   b_t:'Still deciding? See the full menu',see_boxes:'Boxes'}
+ },
+ render(){
+  C.marquee($('#mqOcc'),C.t('occ').map(o=>`<span class="o">${o}</span><i class="s">✦</i>`).join(''),{dur:35});
+  $('#pkGrid').innerHTML=PK.map(id=>C.card(id)).join('');
+  const was=$$('#qItems input:checked').map(i=>i.value);
+  $('#qItems').innerHTML=QI.map(id=>{const it=C.item(id);return `<label class="check">${C.art(it,{w:120})}<input type="checkbox" value="${id}" ${was.includes(id)?'checked':''}><span class="grow">${C.esc(C.nm(it))}</span><span class="p">${it.price}</span></label>`;}).join('');
+  ppl();C.bind();$$('.seg').forEach(s=>s._place&&s._place());
+ },
+ scroll(){
+  gsap.to('.ci1',{yPercent:-60,xPercent:C.rtl()?20:-20,ease:'none',scrollTrigger:{trigger:'.chero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.ci2',{yPercent:-120,rotate:20,ease:'none',scrollTrigger:{trigger:'.chero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.ci3',{yPercent:-180,ease:'none',scrollTrigger:{trigger:'.chero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.from('#pkGrid .dish',{y:80,opacity:0,stagger:.08,duration:1,ease:'expo.out',scrollTrigger:{trigger:'#pkGrid',start:'top 85%'}});
+  gsap.from('.hw .n',{scale:0,stagger:.25,duration:.8,ease:'back.out(2)',scrollTrigger:{trigger:'.how',start:'top 75%'}});
+  gsap.from('.hw h3,.hw p',{y:30,opacity:0,stagger:.1,duration:.9,ease:'expo.out',scrollTrigger:{trigger:'.how',start:'top 75%'}});
+ },
+ intro(tl){tl.from('.collage .ci',{scale:0,rotate:-40,stagger:.12,duration:1.2,ease:'back.out(1.6)'},0);}
+});
+})();
+</script>

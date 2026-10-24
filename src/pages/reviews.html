@@ -1,0 +1,151 @@
+<!--page:reviews | title:آراء الناس – تشيكنو | cbar-->
+<style>
+.plats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:clamp(30px,5vw,60px)}
+.plat{border:1.5px solid var(--line);border-radius:28px;padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:14px;transition:border-color .4s,transform .6s var(--ease)}
+.plat:hover{border-color:var(--gold);transform:translateY(-6px)}
+.plat-top{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.plat-top .ico{color:var(--mute);transition:transform .5s var(--ease)}
+.plat:hover .plat-top .ico{transform:rotate(-45deg);color:var(--gold)}
+:root[dir="rtl"] .plat-top .ico{transform:scaleX(-1)}
+:root[dir="rtl"] .plat:hover .plat-top .ico{transform:scaleX(-1) rotate(-45deg)}
+.plat strong{font-family:var(--fl);font-weight:900;font-size:clamp(70px,8vw,130px);line-height:.85;color:var(--gold)}
+.plat strong small{font-size:.3em;color:var(--mute);font-weight:700}
+.sbar{position:relative;display:inline-flex;gap:4px;direction:ltr}
+.sbar svg{width:26px;height:26px;fill:currentColor;stroke:none}
+.sbar .base{color:var(--line);display:flex;gap:4px}
+.sbar .fill{position:absolute;inset:0;display:flex;gap:4px;color:var(--gold);overflow:hidden;width:var(--w,0%);transition:width 1.6s var(--ease)}
+.plat .vc{color:var(--mute)}
+.total-line{margin-top:28px;color:var(--mute);font-size:1.05rem}
+.total-line b{color:var(--ink);font-family:var(--fl);font-size:1.6rem}
+@media (max-width:900px){.plats{grid-template-columns:1fr}}
+.wall{columns:3 320px;column-gap:20px}
+.rv{break-inside:avoid;margin-bottom:20px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;gap:16px;transition:transform .6s var(--ease),border-color .4s}
+.rv:hover{transform:translateY(-6px) rotate(-.6deg);border-color:var(--ember)}
+.rv q{font-size:clamp(1.2rem,1.6vw,1.5rem);font-weight:500;line-height:1.45}
+:root[lang="ar"] .rv q{quotes:"«" "»"}
+.rv:nth-child(3n+1) q{font-family:var(--fd);font-size:clamp(1.8rem,2.6vw,2.6rem);line-height:1.15;font-weight:400}
+:root[lang="en"] .rv:nth-child(3n+1) q{text-transform:uppercase;font-weight:800}
+.rv footer{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--mute);font-size:.88rem}
+.rv .src{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink)}
+.rv .src i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--ember);color:#fff;font-style:normal;font-weight:800;font-size:.8rem}
+.stars{display:flex;gap:3px;color:var(--gold)}
+.stars svg{width:16px;height:16px;fill:currentColor;stroke:none}
+.loved{display:flex;flex-direction:column;gap:8px}
+.lv{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;gap:16px;padding:10px;border-radius:20px;cursor:pointer;transition:background .3s}
+.lv:hover{background:var(--card)}
+.lv .art{width:56px;aspect-ratio:1;border-radius:14px}
+.lv .art>svg{width:56%}
+.lv .bar-wrap{display:flex;flex-direction:column;gap:6px;min-width:0}
+.lv b{font-weight:600}
+.lv .bar{height:12px;border-radius:12px;background:var(--line);overflow:hidden}
+.lv .bar i{display:block;height:100%;border-radius:12px;background:linear-gradient(to var(--d,left),var(--gold),var(--ember));width:var(--w)}
+:root[dir="ltr"] .lv .bar i{--d:right}
+.lv .cnt{font-family:var(--fl);font-weight:900;font-size:1.6rem;min-width:2ch;text-align:center}
+.lv .cnt small{display:block;font-family:var(--fb);font-size:.7rem;color:var(--mute);font-weight:500}
+.fb{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,5vw,80px);align-items:center}
+.fb h2{font-size:clamp(48px,6.5vw,104px)}
+.fb>div>p{color:var(--mute);margin-top:14px;max-width:40ch}
+.fbox{background:var(--card);border:1px solid var(--line);border-radius:32px;padding:clamp(22px,3.5vw,44px);display:flex;flex-direction:column;gap:20px}
+.pick{display:flex;gap:8px;direction:ltr;justify-content:center}
+:root[dir="rtl"] .pick{flex-direction:row-reverse}
+.pick button{width:58px;height:58px;color:var(--line);transition:color .25s,transform .35s var(--ease)}
+.pick button svg{width:100%;height:100%;fill:currentColor;stroke:none}
+.pick button.on{color:var(--gold)}
+.pick button:hover{transform:scale(1.15) rotate(-8deg)}
+.pick-lbl{text-align:center;font-family:var(--fd);font-size:1.8rem;min-height:1.3em;color:var(--ember)}
+.fbox .btns{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.fb{grid-template-columns:1fr}.pick button{width:48px;height:48px}}
+.burst{position:fixed;pointer-events:none;z-index:200;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+</style>
+<!--BODY-->
+<main id="main">
+ <section class="phero">
+  <div class="glow"></div>
+  <div class="wrap">
+   <nav class="crumbs" data-intro aria-label="Breadcrumb"><a href="index.html" data-i18n="home_crumb">الرئيسية</a><svg class="ico flip"><use href="#i-right"/></svg><span data-i18n="nav_reviews">آراء الناس</span></nav>
+   <h1 class="display"><span data-split="intro" data-i18n="h1a">الناس</span> <span class="ac" data-split="intro" data-i18n="h1b">بتقول إيه</span></h1>
+   <div class="plats" id="plats"></div>
+   <p class="total-line" data-fade id="totLine"></p>
+  </div>
+ </section>
+
+ <section class="sec">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="w_tag">من التقييمات</span></div><h2 class="display" data-split data-i18n="w_t">بالحرف</h2></div><p data-fade data-i18n="w_p"></p></div>
+   <div class="wall" id="wall"></div>
+  </div>
+ </section>
+
+ <section class="sec" style="padding-top:0">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="l_tag">الأكتر ذكرًا</span></div><h2 class="display" data-split data-i18n="l_t">أكتر حاجة بيحبوها</h2></div><p data-fade data-i18n="l_p"></p></div>
+   <div class="loved" id="loved"></div>
+  </div>
+ </section>
+
+ <section class="sec" style="padding-top:0">
+  <div class="wrap fb">
+   <div><div class="tag"><b>✦</b><span data-i18n="f_tag">رأيك</span></div><h2 class="display" data-split data-i18n="f_t">جربت تشيكنو؟</h2><p data-fade data-i18n="f_p"></p></div>
+   <form class="fbox" id="fbForm" data-fade novalidate>
+     <div class="pick" id="pick" role="radiogroup" aria-label="Rating"></div>
+     <div class="pick-lbl" id="pickLbl" aria-live="polite"></div>
+     <label class="field"><span data-i18n="f_c">رأيك بالتفصيل</span><textarea rows="4" name="c" data-i18n-ph="f_ph"></textarea></label>
+     <div class="btns"><button class="btn btn-wa magnetic" type="submit"><svg class="ico" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg><span data-i18n="f_send">ابعت لتشيكنو</span></button><a class="btn btn-line magnetic" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Chikno%20279%20Faisal%20St%20Giza"><span data-i18n="f_google">قيّم على Google</span></a></div>
+   </form>
+  </div>
+ </section>
+</main>
+<!--SCRIPT-->
+<script>
+(function(){
+const C=Chikno,$=C.$,$$=C.$$;
+const PLATS=[{n:'Talabat',r:4.2,v:'13,612',u:'https://www.talabat.com/egypt/chikno-haram--el-taawun'},{n:'Google',r:4.0,v:'1,987',u:'https://www.google.com/maps/search/?api=1&query=Chikno%20279%20Faisal%20St%20Giza'},{n:'EGMenus',r:4.2,v:'1,000+',u:'https://www.egmenus.com/restaurant/chikno'}];
+const REV=[
+ {ar:'أكتر حاجة عجبتني إن الفراخ مستوية كويس ومليانة عصارة. هرجع تاني أكيد.',en:'What I really liked about Chikno is that the chicken is very well cooked and juicy. Will revisit again.',src:'Google',tr:'ar'},
+ {ar:'بصراحة الخدمة ممتازة للغاية، وأسعار معقولة ونظافة واهتمام حتى للأوردر الدليفري. كل شيء ممتاز، فرع فيصل المطبعة.',en:'Honestly, the service is excellent, reasonable prices, clean, and care even for delivery orders. Everything is excellent at the Faisal El-Matbaa branch.',src:'Menu22',tr:'en'},
+ {ar:'الشاورما حلوة، والصوصات والسلطات كانت ممتازة.',en:'Good shawarma, and the sauces and salads were excellent.',src:'Google',tr:'ar'},
+ {ar:'أكل حلو وقيمة كويسة قصاد السعر. طلبنا تويستر وبروستد وشاورما في عيش فينو، والتويستر عجبنا جدًا.',en:'Great food and value for money. We ordered a twister sandwich, broasted chicken and shawerma in feeno bread. We enjoyed the twister very much.',src:'Google',tr:'ar'},
+ {ar:'أصناف كتير ولذيذة، والبيتزا حلوة جدًا.',en:'Has a variety of many delicious dishes and the pizza is so yummy.',src:'Google',tr:'ar'},
+ {ar:'الرز حلو، والفراخ والكباب كويسين جدًا. المكان نضيف والناس لطيفة والمكان في الحتة.',en:'The rice is good. Chicken and kebab were very good. The place is clean, the staff are nice and the location is good.',src:'Google',tr:'ar'}
+];
+const LOVED=[['b2',11],['l1',5],['g1',4],['a2',4],['g5',2],['w1',2],['w3',2]];
+let rating=0;
+function setRating(n,burst){rating=n;$$('#pick button').forEach((b,i)=>{b.classList.toggle('on',i<n);b.setAttribute('aria-checked',i===n-1);});$('#pickLbl').textContent=n?C.t('rl')[n-1]:'';
+  if(burst&&C.A){const b=$$('#pick button')[n-1].getBoundingClientRect();for(let i=0;i<12;i++){const d=document.createElement('i');d.className='burst';d.style.left=b.left+b.width/2+'px';d.style.top=b.top+b.height/2+'px';document.body.appendChild(d);const a=i/12*Math.PI*2;gsap.to(d,{x:Math.cos(a)*70,y:Math.sin(a)*70,opacity:0,scale:.3,duration:.8,ease:'expo.out',onComplete:()=>d.remove()});}
+    gsap.fromTo($$('#pick button.on'),{scale:1.4},{scale:1,stagger:.05,duration:.6,ease:'back.out(3)'});}}
+$('#pick').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setRating(+b.dataset.n,true);});
+$('#pick').addEventListener('mouseover',e=>{const b=e.target.closest('button');if(!b)return;$$('#pick button').forEach((x,i)=>x.classList.toggle('on',i<+b.dataset.n));});
+$('#pick').addEventListener('mouseleave',()=>setRating(rating,false));
+$('#fbForm').addEventListener('submit',e=>{e.preventDefault();if(!rating){if(C.A)gsap.fromTo('#pick',{x:-10},{x:0,duration:.6,ease:'elastic.out(1,.3)'});$('#pickLbl').textContent=C.t('pick_first');return;}
+  const c=new FormData(e.target).get('c')||'';const m=`${C.t('f_msg')}\n${'⭐'.repeat(rating)} (${rating}/5)\n${c}`;window.open('https://wa.me/'+C.WA+'?text='+encodeURIComponent(m),'_blank','noopener');C.toast('✓ '+C.t('thanks'));});
+C.init({
+ dict:{
+  ar:{title:'آراء الناس',h1a:'الناس',h1b:'بتقول إيه',votes:'تقييم',tot:n=>`أكتر من <b>${n}</b> تقييم على المنصات التلاتة.`,
+   w_tag:'من التقييمات',w_t:'بالحرف',w_p:'مقتطفات من تقييمات حقيقية على Google ومواقع المنيوهات. المكتوب بالإنجليزي مترجم.',translated:'مترجم',
+   l_tag:'الأكتر ذكرًا',l_t:'أكتر حاجة بيحبوها',l_p:'الأطباق اللي اتذكرت أكتر في تقييمات الناس على EGMenus.',mentions:'ذكر',
+   f_tag:'رأيك',f_t:'جربت تشيكنو؟',f_p:'قولنا رأيك بصراحة – بيوصل لتشيكنو على واتساب. ولو عجبك، قيّمنا على Google.',f_c:'رأيك بالتفصيل',f_ph:'إيه اللي عجبك؟ وإيه اللي نحسنه؟',f_send:'ابعت لتشيكنو',f_google:'قيّم على Google',
+   rl:['محتاج يتحسن','مقبول','كويس','حلو جدًا','ملوك فعلًا 👑'],pick_first:'اختار عدد النجوم الأول',f_msg:'تقييم من موقع تشيكنو',thanks:'شكرًا على رأيك'},
+  en:{title:'Reviews',h1a:'What people',h1b:'are saying',votes:'ratings',tot:n=>`More than <b>${n}</b> ratings across the three platforms.`,
+   w_tag:'From the reviews',w_t:'In their words',w_p:'Excerpts from real reviews on Google and menu sites. Arabic ones are translated.',translated:'translated',
+   l_tag:'Most mentioned',l_t:'What they love most',l_p:'The dishes mentioned most in people’s reviews on EGMenus.',mentions:'mentions',
+   f_tag:'Your turn',f_t:'Tried Chikno?',f_p:'Tell us honestly – it goes to Chikno on WhatsApp. And if you liked it, rate us on Google.',f_c:'Your feedback',f_ph:'What did you like? What should we improve?',f_send:'Send to Chikno',f_google:'Rate on Google',
+   rl:['Needs work','Okay','Good','Really good','True kings 👑'],pick_first:'Pick a star rating first',f_msg:'Feedback from the Chikno website',thanks:'Thanks for your feedback'}
+ },
+ render(){const L=C.lang();
+  $('#plats').innerHTML=PLATS.map(p=>{const st='<svg><use href="#i-star"/></svg>'.repeat(5);return `<a class="plat" href="${p.u}" target="_blank" rel="noopener" data-intro><div class="plat-top"><span>${p.n}</span><svg class="ico"><use href="#i-arrow"/></svg></div><strong data-to="${p.r}">${p.r.toFixed(1)}<small>/5</small></strong><span class="sbar"><span class="base">${st}</span><span class="fill" style="--w:${C.A?0:p.r/5*100}%" data-w="${p.r/5*100}">${st}</span></span><span class="vc">${p.v} ${C.t('votes')}</span></a>`;}).join('');
+  $('#totLine').innerHTML=C.t('tot')('16,500');
+  $('#wall').innerHTML=REV.map(r=>`<figure class="rv">${C.stars()}<q>${r[L]}</q><footer><span class="src"><i>${r.src[0]}</i>${r.src}</span><span>${r.tr===L?C.t('translated'):''}</span></footer></figure>`).join('');
+  const max=LOVED[0][1];
+  $('#loved').innerHTML=LOVED.map(([id,n])=>{const it=C.item(id);return `<div class="lv" data-dish="${id}" tabindex="0">${C.art(it,{w:160})}<div class="bar-wrap"><b>${C.esc(C.nm(it))}</b><div class="bar"><i style="--w:${n/max*100}%"></i></div></div><span class="cnt">${n}<small>${C.t('mentions')}</small></span></div>`;}).join('');
+  $('#pick').innerHTML=[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" role="radio" aria-checked="false" aria-label="${n}"><svg><use href="#i-star"/></svg></button>`).join('');setRating(rating,false);
+ },
+ scroll(){
+  gsap.from('#wall .rv',{y:80,opacity:0,rotate:(i)=>(i%2?2:-2),stagger:.08,duration:1.1,ease:'expo.out',scrollTrigger:{trigger:'#wall',start:'top 85%'}});
+  gsap.from('#loved .bar i',{width:0,stagger:.08,duration:1.4,ease:'expo.out',scrollTrigger:{trigger:'#loved',start:'top 80%'}});
+  gsap.from('#loved .lv',{x:C.rtl()?60:-60,opacity:0,stagger:.06,duration:.9,ease:'expo.out',scrollTrigger:{trigger:'#loved',start:'top 85%'}});
+ },
+ intro(tl){tl.add(()=>{$$('.sbar .fill').forEach(f=>f.style.setProperty('--w',f.dataset.w+'%'));});
+  $$('.plat strong').forEach(s=>{const o={v:0},to=+s.dataset.to;tl.to(o,{v:to,duration:1.6,ease:'expo.out',onUpdate:()=>{s.innerHTML=o.v.toFixed(1)+'<small>/5</small>';}},'<');});}
+});
+})();
+</script>

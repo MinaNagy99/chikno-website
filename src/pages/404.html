@@ -1,0 +1,33 @@
+<!--page:404 | title:الصفحة مش موجودة – تشيكنو-->
+<style>
+.nf{position:relative;min-height:calc(100svh - 120px);display:flex;align-items:center;overflow:hidden;padding-block:60px 120px}
+.nf canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.nf .wrap{position:relative;width:100%;text-align:center}
+.nf-num{display:flex;justify-content:center;align-items:center;gap:.04em;font-family:var(--fl);font-weight:900;font-size:clamp(140px,30vw,440px);line-height:.8;direction:ltr}
+.nf-num .o{width:.78em;height:.78em;border-radius:50%;background:radial-gradient(circle at 50% 62%,var(--gold),var(--ember) 45%,var(--deep) 85%);display:grid;place-items:center;color:var(--sil);animation:spin 18s linear infinite}
+.nf-num .o svg{width:52%;height:52%;animation:spin 18s linear infinite reverse}
+.nf h1{font-size:clamp(40px,6vw,96px);margin-top:20px}
+.nf p{color:var(--mute);margin:16px auto 0;max-width:44ch}
+.nf .more-row{margin-top:36px}
+</style>
+<!--BODY-->
+<main id="main">
+ <section class="nf">
+  <canvas id="sparks" aria-hidden="true"></canvas>
+  <div class="wrap">
+   <div class="nf-num" data-intro aria-hidden="true"><span>4</span><span class="o"><svg><use href="#f-drum"/></svg></span><span>4</span></div>
+   <h1 class="display" data-split="intro" data-i18n="h1">الصفحة دي اتاكلت</h1>
+   <p data-intro data-i18n="p">الرابط مش موجود أو اتغير. بس الشواية لسه شغالة – ارجع للرئيسية أو شوف المنيو.</p>
+   <div class="more-row" data-intro><a class="btn btn-fire btn-xl magnetic" href="index.html" data-i18n="home">الرئيسية</a><a class="btn btn-line btn-xl magnetic" href="menu.html" data-i18n="cta_menu">شوف المنيو</a><a class="btn btn-line btn-xl magnetic" href="tel:01222440044"><svg class="ico"><use href="#i-phone"/></svg><span data-i18n="cta_call">اتصل</span></a></div>
+  </div>
+ </section>
+</main>
+<!--SCRIPT-->
+<script>
+(function(){const C=Chikno;
+C.init({dict:{ar:{title:'الصفحة مش موجودة',h1:'الصفحة دي اتاكلت',p:'الرابط مش موجود أو اتغير. بس الشواية لسه شغالة – ارجع للرئيسية أو شوف المنيو.',home:'الرئيسية'},
+ en:{title:'Page not found',h1:'This page got eaten',p:'The link doesn’t exist or has changed. The grill is still on – head home or see the menu.',home:'Home'}},
+ intro(tl){tl.from('.nf-num>span',{yPercent:120,rotate:i=>[-20,0,20][i],stagger:.12,duration:1.2,ease:'back.out(1.6)'},0);}});
+C.sparks(document.getElementById('sparks'));
+})();
+</script>

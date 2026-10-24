@@ -1,0 +1,175 @@
+<!--page:offers | title:العروض – تشيكنو | cbar-->
+<style>
+.deal{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,60px);align-items:center;margin-top:clamp(30px,5vw,60px)}
+.deal-media{position:relative;border-radius:32px;overflow:hidden;aspect-ratio:1/1;cursor:pointer}
+#dealArt{position:absolute;inset:0}
+.deal-media .art{aspect-ratio:auto;height:100%;border-radius:0}
+.deal-media .art>svg{width:42%}
+.deal:hover .deal-media img.ph{transform:scale(1.06)}
+.sticker{position:absolute;top:20px;inset-inline-start:20px;z-index:3;width:130px;height:130px;border-radius:50%;background:var(--gold);color:#1A1411;display:grid;place-items:center;text-align:center;font-family:var(--fd);font-size:1.5rem;line-height:1;padding:16px;animation:wob 3.2s ease-in-out infinite}
+:root[lang="en"] .sticker{text-transform:uppercase;font-size:1.3rem}
+.sticker::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px dashed var(--gold);animation:spin 14s linear infinite}
+@keyframes wob{50%{transform:rotate(-8deg) scale(1.05)}}
+.deal-info{display:flex;flex-direction:column;gap:18px}
+.deal-info h2{font-size:clamp(46px,6vw,96px)}
+.deal-info .price{font-size:clamp(64px,8vw,120px)}
+.deal-info .price small{font-size:1.2rem}
+.incl{display:flex;flex-wrap:wrap;gap:8px}
+.incl span{padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:.92rem}
+.cd{display:flex;align-items:center;gap:14px;color:var(--mute);font-size:.95rem}
+.cd-box{display:flex;gap:6px;direction:ltr}
+.cd-box b{font-family:var(--fl);font-weight:900;font-size:1.9rem;color:var(--ink);min-width:2.2ch;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px 8px;line-height:1.1}
+.cd-box i{font-style:normal;align-self:center;font-weight:700}
+.deal-btns{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.deal{grid-template-columns:1fr}.deal-media{aspect-ratio:4/3}.sticker{width:100px;height:100px;font-size:1.15rem}}
+
+.sorter{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sorter p{color:var(--mute)}
+#boxGrid .dish .art{aspect-ratio:16/11}
+.ladder-wrap{background:var(--bg2)}
+.lad{border-top:1px solid var(--line)}
+.lad-row{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:clamp(14px,3vw,40px);padding:clamp(18px,2.4vw,30px) 0;border-bottom:1px solid var(--line);cursor:pointer;position:relative;transition:padding .5s var(--ease)}
+.lad-row .k{font-family:var(--fl);font-weight:800;color:var(--mute);font-size:1rem;min-width:3ch}
+.lad-row h3{font-family:var(--fd);font-size:clamp(28px,3.6vw,56px);line-height:1;transition:color .4s}
+:root[lang="en"] .lad-row h3{text-transform:uppercase}
+.lad-row .price{font-size:clamp(34px,4vw,60px)}
+.lad-row::after{content:"";position:absolute;inset-inline:0;bottom:-1px;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:var(--o,right);transition:transform .6s var(--ease)}
+:root[dir="ltr"] .lad-row::after{--o:left}
+@media (hover:hover){.lad-row:hover{padding-inline-start:18px}.lad-row:hover h3{color:var(--ember)}.lad-row:hover::after{transform:scaleX(1)}}
+.lad-row .thumb{display:none;width:64px;aspect-ratio:1;border-radius:14px;overflow:hidden}
+.lad-row .thumb .art{aspect-ratio:1;border-radius:14px}
+@media (hover:none),(max-width:700px){.lad-row{grid-template-columns:64px 1fr auto}.lad-row .k{display:none}.lad-row .thumb{display:block}.lad-row .add{grid-column:3}.lad-row .price{grid-column:2}.lad-row h3{grid-column:2}.lad-row{grid-template-rows:auto auto;row-gap:6px}.lad-row .thumb{grid-row:1/3}.lad-row .add{grid-row:1/3}}
+
+.kids{background:var(--gold);color:#1A1411;border-radius:36px;padding:clamp(30px,5vw,70px);position:relative;overflow:hidden}
+.kids h2{font-size:clamp(46px,6vw,96px)}
+.kids>p{max-width:46ch;margin-top:12px;font-size:1.1rem}
+.kids .grid3{margin-top:40px}
+.kids .dish-in{background:#FFF9F0;color:#1A1411;border-color:transparent}
+.kids .dish p{color:#6E625A}
+.kids .price{color:#B87512}
+.kids .dish:hover .dish-in{animation:jelly .7s}
+@keyframes jelly{30%{transform:scale(1.04,.96)}50%{transform:scale(.97,1.03)}70%{transform:scale(1.02,.98)}}
+.kids svg.toy{position:absolute;width:160px;height:160px;inset-inline-end:-20px;top:-20px;color:#1A1411;opacity:.12;animation:spin 30s linear infinite}
+
+.custom{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;border:1.5px solid var(--line);border-radius:32px;padding:clamp(28px,5vw,64px);position:relative;overflow:hidden}
+.custom h2{font-size:clamp(40px,5.5vw,84px)}
+.custom p{color:var(--mute);max-width:46ch;margin-top:12px}
+.custom .btns{display:flex;flex-direction:column;gap:12px}
+.custom .stack-ic{position:absolute;inset:0;pointer-events:none;opacity:.08}
+@media (max-width:800px){.custom{grid-template-columns:1fr}}
+</style>
+<!--BODY-->
+<main id="main">
+ <section class="phero">
+  <div class="glow"></div>
+  <div class="wrap">
+   <nav class="crumbs" data-intro aria-label="Breadcrumb"><a href="index.html" data-i18n="home_crumb">الرئيسية</a><svg class="ico flip"><use href="#i-right"/></svg><span data-i18n="nav_offers">العروض</span></nav>
+   <h1 class="display"><span data-split="intro" data-i18n="h1">بوكسات وعروض</span></h1>
+   <div class="deal" id="deal" data-flyroot>
+     <div class="deal-media" data-dish="x3" data-cursor><span class="sticker" id="sticker" data-i18n="sticker">عرض النهارده</span><div id="dealArt"></div></div>
+     <div class="deal-info">
+       <div class="tag" data-intro><b>✦</b><span data-i18n="deal_tag">عرض اليوم</span></div>
+       <h2 class="display" data-split="intro" id="dealName"></h2>
+       <div class="incl" id="dealIncl" data-intro></div>
+       <div data-intro><span class="price" id="dealPrice">145<small></small></span></div>
+       <div class="cd" data-intro><span id="cdLbl"></span><span class="cd-box" id="cd"></span></div>
+       <div class="deal-btns" data-intro>
+         <button class="btn btn-fire btn-xl magnetic" data-add="x3"><svg class="ico"><use href="#i-cart"/></svg><span data-i18n="add">أضف للطلب</span></button>
+         <button class="btn btn-line btn-xl magnetic" data-dish="x3"><span data-i18n="details">التفاصيل</span></button>
+       </div>
+     </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" id="boxes">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="box_tag">بوكسات تشيكنو</span></div><h2 class="display" data-split data-i18n="box_t">كل البوكسات</h2></div><p data-fade data-i18n="box_p">من بوكس الهيرو لحد بوكس البركة. اختار على قد القعدة.</p></div>
+   <div class="sorter"><div class="seg" id="sortSeg" role="group"><button data-v="pop" aria-pressed="true" data-i18n="s_pop">الأشهر</button><button data-v="low" aria-pressed="false" data-i18n="s_low">الأرخص</button><button data-v="high" aria-pressed="false" data-i18n="s_high">الأكبر</button></div><p id="boxCount"></p></div>
+   <div class="grid3" id="boxGrid"></div>
+  </div>
+ </section>
+
+ <section class="sec ladder-wrap" id="kilos">
+  <div class="wrap">
+   <div class="sec-head"><div><div class="tag"><b>✦</b><span data-i18n="lad_tag">بالكيلو وللعيلة</span></div><h2 class="display" data-split data-i18n="lad_t">طلبات العيلة</h2></div>
+     <div class="seg" id="ladSeg" role="group"><button data-v="shawarma" aria-pressed="true" data-i18n="g_sh">شاورما</button><button data-v="grills" aria-pressed="false" data-i18n="g_gr">مشويات</button><button data-v="chicken" aria-pressed="false" data-i18n="g_ch">فراخ</button><button data-v="crispy" aria-pressed="false" data-i18n="g_cr">كرسبي</button></div></div>
+   <div class="lad" id="lad"></div>
+  </div>
+ </section>
+
+ <section class="sec" id="kids">
+  <div class="wrap"><div class="kids" data-reveal>
+    <svg class="toy"><use href="#f-crown"/></svg>
+    <div class="tag" style="color:#1A1411"><b style="color:#1A1411">✦</b><span data-i18n="kid_tag">للصغيرين</span></div>
+    <h2 class="display" data-split data-i18n="kid_t">وجبات الأطفال</h2>
+    <p data-i18n="kid_p">كل وجبة معاها لعبة. ٥٠ جنيه بس.</p>
+    <div class="grid3" id="kidGrid"></div>
+  </div></div>
+ </section>
+
+ <section class="sec" style="padding-top:0">
+  <div class="wrap"><div class="custom" data-reveal>
+    <div><h2 class="display" data-split data-i18n="cu_t">اعمل البوكس بتاعك</h2><p data-i18n="cu_p">تشيكنو بيعمل بوكسات مخصوص حسب الطلب. قولنا عايز إيه وعددكم كام، وإحنا نظبطه.</p></div>
+    <div class="btns"><a class="btn btn-wa btn-xl magnetic" id="cuWa" target="_blank" rel="noopener"><svg class="ico" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg><span data-i18n="cu_wa">اطلب على واتساب</span></a><a class="btn btn-line btn-xl magnetic" href="catering.html"><span data-i18n="cu_cat">طلب كبير؟ العزومات</span></a></div>
+  </div></div>
+ </section>
+</main>
+<!--SCRIPT-->
+<script>
+(function(){
+const C=Chikno,$=C.$,$$=C.$$;
+let sort='pop',grp='shawarma';
+const POP=['x3','x2','x8','x4','x5','x6','x7','x1','x9','x10','x11'];
+const GROUPS={shawarma:['s20','s21','s22','s18','s19'],grills:['m4','m6','m9','m12','m3','m5','m8','m11'],chicken:['b1','g1','c1','g3','c5','c8','c11'],crispy:['r3','r4','r1','r2']};
+const INCL={ar:['٢ شاورما عربي','٤ قطع كرسبي','بطاطس','ثومية ومايونيز','عيش بالمحمرة','٣ عيش بان'],en:['2 Arabian shawarma','4 crispy pieces','Fries','Garlic dip & mayo','Muhammara bread','3 buns']};
+function boxes(){let ids=POP.slice();if(sort!=='pop'){ids.sort((a,b)=>(C.item(a).price-C.item(b).price)*(sort==='low'?1:-1));}return ids;}
+function renderBoxes(anim){const g=$('#boxGrid');const first=anim&&C.A?new Map($$('.dish',g).map(d=>[d.dataset.dish,d.getBoundingClientRect()])):null;
+  g.innerHTML=boxes().map(id=>C.card(id)).join('');C.bind(g);
+  if(first){$$('.dish',g).forEach(d=>{const r0=first.get(d.dataset.dish);if(!r0)return;const r1=d.getBoundingClientRect();gsap.fromTo(d,{x:r0.left-r1.left,y:r0.top-r1.top},{x:0,y:0,duration:.8,ease:'expo.inOut',clearProps:'transform'});});}
+  $('#boxCount').textContent=`${POP.length} ${C.t('boxes_word')}`;}
+function renderLad(anim){const l=$('#lad');const html=GROUPS[grp].map((id,i)=>{const it=C.item(id);return `<div class="lad-row" data-dish="${id}" data-hover-img="${it.img}" tabindex="0"><span class="k">${String(i+1).padStart(2,'0')}</span><div class="thumb">${C.art(it,{w:200})}</div><h3>${C.esc(C.nm(it))}</h3>${C.money(it.price)}${C.addBtn(id)}</div>`;}).join('');
+  if(anim&&C.A){gsap.to('#lad .lad-row',{opacity:0,y:-20,stagger:.03,duration:.25,onComplete:()=>{l.innerHTML=html;gsap.from('#lad .lad-row',{opacity:0,y:40,stagger:.06,duration:.7,ease:'expo.out'});gsap.from('#lad .lad-row h3',{clipPath:'inset(0 100% 0 0)',stagger:.06,duration:.9,ease:'expo.out'});C.refresh();}});}
+  else l.innerHTML=html;}
+function countdown(){const el=$('#cd');if(!el)return;const now=new Date();let s;
+  try{const parts=new Intl.DateTimeFormat('en-GB',{hour:'numeric',minute:'numeric',second:'numeric',hourCycle:'h23',timeZone:'Africa/Cairo'}).formatToParts(now);const g=t=>+parts.find(p=>p.type===t).value;s=g('hour')*3600+g('minute')*60+g('second');}catch(e){s=now.getHours()*3600+now.getMinutes()*60+now.getSeconds();}
+  const open=C.isOpen();let left=open?((s<2*3600)?2*3600-s:(26*3600-s)):(10*3600-s);
+  $('#cdLbl').textContent=C.t(open?'cd_open':'cd_closed');
+  const h=Math.floor(left/3600),m=Math.floor(left%3600/60),sec=left%60,p=n=>String(n).padStart(2,'0');
+  el.innerHTML=`<b>${p(h)}</b><i>:</i><b>${p(m)}</b><i>:</i><b>${p(sec)}</b>`;}
+setInterval(countdown,1000);
+C.seg($('#sortSeg'),v=>{sort=v;renderBoxes(true);});
+C.seg($('#ladSeg'),v=>{grp=v;renderLad(true);});
+const waMsg=()=>encodeURIComponent(C.t('cu_msg'));
+C.init({
+ dict:{
+  ar:{title:'العروض',h1:'بوكسات وعروض',sticker:'عرض النهارده',deal_tag:'عرض اليوم',details:'التفاصيل',cd_open:'العرض شغال لحد ما نقفل:',cd_closed:'بنفتح بعد:',
+   box_tag:'بوكسات تشيكنو',box_t:'كل البوكسات',box_p:'من بوكس الهيرو لحد بوكس البركة. اختار على قد القعدة.',s_pop:'الأشهر',s_low:'الأرخص',s_high:'الأكبر',boxes_word:'بوكس',
+   lad_tag:'بالكيلو وللعيلة',lad_t:'طلبات العيلة',g_sh:'شاورما',g_gr:'مشويات',g_ch:'فراخ',g_cr:'كرسبي',
+   kid_tag:'للصغيرين',kid_t:'وجبات الأطفال',kid_p:'كل وجبة معاها لعبة. ٥٠ جنيه بس.',
+   cu_t:'اعمل البوكس بتاعك',cu_p:'تشيكنو بيعمل بوكسات مخصوص حسب الطلب. قولنا عايز إيه وعددكم كام، وإحنا نظبطه.',cu_wa:'اطلب على واتساب',cu_cat:'طلب كبير؟ العزومات',cu_msg:'أهلًا تشيكنو 👋 عايز أعمل بوكس مخصوص. عددنا: … وعايزين فيه: …'},
+  en:{title:'Offers',h1:'Boxes & deals',sticker:'Today’s deal',deal_tag:'Deal of the day',details:'Details',cd_open:'Deal runs until we close:',cd_closed:'We open in:',
+   box_tag:'Chikno boxes',box_t:'All the boxes',box_p:'From the Hero Box to El Baraka. Pick one for the size of your table.',s_pop:'Popular',s_low:'Cheapest',s_high:'Biggest',boxes_word:'boxes',
+   lad_tag:'By the kilo',lad_t:'Family orders',g_sh:'Shawarma',g_gr:'Grills',g_ch:'Chicken',g_cr:'Crispy',
+   kid_tag:'For the little ones',kid_t:'Kids meals',kid_p:'Every meal comes with a toy. Just 50 EGP.',
+   cu_t:'Build your own box',cu_p:'Chikno makes custom boxes on request. Tell us what you want and how many you are – we’ll put it together.',cu_wa:'Order on WhatsApp',cu_cat:'Big order? Catering',cu_msg:'Hi Chikno 👋 I’d like a custom box. We are: … and we want: …'}
+ },
+ render(){const it=C.item('x3');$('#dealArt').innerHTML=C.art(it,{w:1000,eager:true});$('#dealName').textContent=C.nm(it);
+  $('#dealIncl').innerHTML=INCL[C.lang()].map(s=>`<span>${s}</span>`).join('');
+  $('#dealPrice').innerHTML=`${it.price}<small>${C.t('egp')}</small>`;
+  renderBoxes(false);renderLad(false);
+  $('#kidGrid').innerHTML=['k1','k2','k3'].map(id=>C.card(id)).join('');
+  $('#cuWa').href='https://wa.me/'+C.WA+'?text='+waMsg();
+  countdown();C.bind();
+  $$('.seg').forEach(s=>s._place&&s._place());},
+ scroll(){
+  gsap.fromTo('#dealArt .art',{scale:1.15},{scale:1,ease:'none',scrollTrigger:{trigger:'#deal',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.from('#boxGrid .dish',{y:80,opacity:0,stagger:.06,duration:1,ease:'expo.out',scrollTrigger:{trigger:'#boxGrid',start:'top 85%'}});
+  gsap.from('#lad .lad-row',{y:40,opacity:0,stagger:.06,duration:.9,ease:'expo.out',scrollTrigger:{trigger:'#lad',start:'top 85%'}});
+  gsap.from('#kidGrid .dish',{y:120,rotate:i=>[-8,4,-4][i],opacity:0,stagger:.12,duration:1.2,ease:'back.out(1.6)',scrollTrigger:{trigger:'#kidGrid',start:'top 85%'}});
+  gsap.to('.kids .toy',{yPercent:60,ease:'none',scrollTrigger:{trigger:'.kids',start:'top bottom',end:'bottom top',scrub:true}});
+ },
+ intro(tl){tl.from('.deal-media',{clipPath:'inset(0 0 100% 0 round 32px)',duration:1.3,ease:'expo.inOut'},0).from('#sticker',{scale:0,rotate:-200,duration:1,ease:'back.out(1.8)'},'-=.5').from('#dealPrice',{scale:.6,opacity:0,duration:.9,ease:'back.out(2)'},'-=.6');}
+});
+})();
+</script>
