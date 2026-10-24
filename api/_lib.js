@@ -5,16 +5,35 @@ import { put, list, del } from '@vercel/blob';
 const COOKIE = 'chk_admin';
 const WEEK = 7 * 24 * 3600;
 
-export const env = () => ({
-  email: (process.env.ADMIN_EMAIL || '').trim().toLowerCase(),
-  password: process.env.ADMIN_PASSWORD || '',
-  blob: !!process.env.BLOB_READ_WRITE_TOKEN,
-});
+// Default admin login. Only a salted scrypt hash of the password is stored here – never the password itself.
+// To change the login, set ADMIN_EMAIL and ADMIN_PASSWORD in Vercel (they override these defaults).
+const DEFAULT_EMAIL = 'admin@chikno.com';
+const DEFAULT_HASH = 'scrypt$InCkgSGl7-qML20hku38xw$xmcFRyP2vhsakoZfznqIV3nCE_HN9bLKbgXjgtEytCU';
+
+export const env = () => {
+  const hasPass = !!process.env.ADMIN_PASSWORD;
+  const hasSecret = !!(process.env.SESSION_SECRET || process.env.BLOB_READ_WRITE_TOKEN || hasPass);
+  return {
+    email: (process.env.ADMIN_EMAIL || DEFAULT_EMAIL).trim().toLowerCase(),
+    password: hasSecret ? (process.env.ADMIN_PASSWORD || DEFAULT_HASH) : '', // empty = login disabled (no server secret yet)
+    hashed: !hasPass,
+    blob: !!process.env.BLOB_READ_WRITE_TOKEN,
+  };
+};
+
+export function checkPassword(given) {
+  const e = env();
+  if (!e.password) return false;
+  if (!e.hashed) return safeEqual(given, e.password);
+  const [, salt, hash] = e.password.split('$');
+  const got = crypto.scryptSync(String(given), salt, 32, { N: 16384, r: 8, p: 1 }).toString('base64url');
+  return safeEqual(got, hash);
+}
 
 function secret() {
   const e = env();
   return process.env.SESSION_SECRET ||
-    crypto.createHash('sha256').update('chikno|' + e.email + '|' + e.password + '|' + (process.env.BLOB_READ_WRITE_TOKEN || '')).digest('hex');
+    crypto.createHash('sha256').update('chikno|' + e.email + '|' + (process.env.ADMIN_PASSWORD || '') + '|' + (process.env.BLOB_READ_WRITE_TOKEN || '')).digest('hex');
 }
 const b64u = (s) => Buffer.from(s).toString('base64url');
 const sign = (p) => crypto.createHmac('sha256', secret()).update(p).digest('base64url');

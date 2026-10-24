@@ -52,3 +52,11 @@ To swap in the restaurant's own photos: replace the matching entry in `assets_sr
 Dish photos: illustrative images from the "food-images" collection (github.com/peacenharmony/food-images),
 released under Creative Commons BY-SA 3.0; cropped, resized and colour-adjusted for this demo.
 They are not photos of Chikno's food. Source file for each photo: `assets_src/img-sources.json`.
+
+## Admin panel (/admin)
+Manage dishes, categories, prices and photos at `https://<your-site>/admin`. Changes go live within about 30 seconds.
+- Storage: Vercel Blob store connected to the project (`BLOB_READ_WRITE_TOKEN`).
+- Login: a default admin email is set in `api/_lib.js` with only a salted scrypt hash of the password.
+  To change the login, add `ADMIN_EMAIL` and `ADMIN_PASSWORD` in Vercel → Settings → Environment Variables and redeploy.
+- The website loads the saved menu from `/api/data`; with nothing saved (or offline) it uses the built-in menu in `src/data.js`.
+- "Restore original menu" in the admin brings back the built-in menu.
