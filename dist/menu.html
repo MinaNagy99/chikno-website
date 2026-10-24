@@ -897,6 +897,7 @@ return {cats,items};
 })();
 
 </script>
+<script src="/api/data"></script>
 <script>
 /* Chikno core: i18n, theme, cart, dish drawer, transitions, cursor, scroll motion */
 (function(){
@@ -930,7 +931,7 @@ C.PHONE='01222440044';C.WA='201222440044';
 C.TALABAT='https://www.talabat.com/egypt/chikno-haram--el-taawun';
 C.MAPS='https://www.google.com/maps/search/?api=1&query=30.0007687,31.1662965';
 /* photos: embedded in the page (assets/img.js) – illustrative food photos, CC BY-SA 3.0 (see README). No internet needed. */
-C.ph=id=>(id&&window.CHIKNO_IMG&&window.CHIKNO_IMG[id])||'';
+C.ph=id=>!id?'':/^(https?:|data:|\/)/.test(id)?id:((window.CHIKNO_IMG&&window.CHIKNO_IMG[id])||'');
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 C.esc=esc;
 

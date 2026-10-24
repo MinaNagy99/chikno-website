@@ -136,7 +136,7 @@ C.init({
   $('#totLine').innerHTML=C.t('tot')('16,500');
   $('#wall').innerHTML=REV.map(r=>`<figure class="rv">${C.stars()}<q>${r[L]}</q><footer><span class="src"><i>${r.src[0]}</i>${r.src}</span><span>${r.tr===L?C.t('translated'):''}</span></footer></figure>`).join('');
   const max=LOVED[0][1];
-  $('#loved').innerHTML=LOVED.map(([id,n])=>{const it=C.item(id);return `<div class="lv" data-dish="${id}" tabindex="0">${C.art(it,{w:160})}<div class="bar-wrap"><b>${C.esc(C.nm(it))}</b><div class="bar"><i style="--w:${n/max*100}%"></i></div></div><span class="cnt">${n}<small>${C.t('mentions')}</small></span></div>`;}).join('');
+  $('#loved').innerHTML=LOVED.filter(([id])=>C.item(id)).map(([id,n])=>{const it=C.item(id);return `<div class="lv" data-dish="${id}" tabindex="0">${C.art(it,{w:160})}<div class="bar-wrap"><b>${C.esc(C.nm(it))}</b><div class="bar"><i style="--w:${n/max*100}%"></i></div></div><span class="cnt">${n}<small>${C.t('mentions')}</small></span></div>`;}).join('');
   $('#pick').innerHTML=[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" role="radio" aria-checked="false" aria-label="${n}"><svg><use href="#i-star"/></svg></button>`).join('');setRating(rating,false);
  },
  scroll(){

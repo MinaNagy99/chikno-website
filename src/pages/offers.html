@@ -123,12 +123,12 @@ let sort='pop',grp='shawarma';
 const POP=['x3','x2','x8','x4','x5','x6','x7','x1','x9','x10','x11'];
 const GROUPS={shawarma:['s20','s21','s22','s18','s19'],grills:['m4','m6','m9','m12','m3','m5','m8','m11'],chicken:['b1','g1','c1','g3','c5','c8','c11'],crispy:['r3','r4','r1','r2']};
 const INCL={ar:['٢ شاورما عربي','٤ قطع كرسبي','بطاطس','ثومية ومايونيز','عيش بالمحمرة','٣ عيش بان'],en:['2 Arabian shawarma','4 crispy pieces','Fries','Garlic dip & mayo','Muhammara bread','3 buns']};
-function boxes(){let ids=POP.slice();if(sort!=='pop'){ids.sort((a,b)=>(C.item(a).price-C.item(b).price)*(sort==='low'?1:-1));}return ids;}
+function boxes(){let ids=POP.filter(C.item);if(sort!=='pop'){ids.sort((a,b)=>(C.item(a).price-C.item(b).price)*(sort==='low'?1:-1));}return ids;}
 function renderBoxes(anim){const g=$('#boxGrid');const first=anim&&C.A?new Map($$('.dish',g).map(d=>[d.dataset.dish,d.getBoundingClientRect()])):null;
   g.innerHTML=boxes().map(id=>C.card(id)).join('');C.bind(g);
   if(first){$$('.dish',g).forEach(d=>{const r0=first.get(d.dataset.dish);if(!r0)return;const r1=d.getBoundingClientRect();gsap.fromTo(d,{x:r0.left-r1.left,y:r0.top-r1.top},{x:0,y:0,duration:.8,ease:'expo.inOut',clearProps:'transform'});});}
   $('#boxCount').textContent=`${POP.length} ${C.t('boxes_word')}`;}
-function renderLad(anim){const l=$('#lad');const html=GROUPS[grp].map((id,i)=>{const it=C.item(id);return `<div class="lad-row" data-dish="${id}" data-hover-img="${it.img}" tabindex="0"><span class="k">${String(i+1).padStart(2,'0')}</span><div class="thumb">${C.art(it,{w:200})}</div><h3>${C.esc(C.nm(it))}</h3>${C.money(it.price)}${C.addBtn(id)}</div>`;}).join('');
+function renderLad(anim){const l=$('#lad');const html=GROUPS[grp].filter(C.item).map((id,i)=>{const it=C.item(id);return `<div class="lad-row" data-dish="${id}" data-hover-img="${it.img}" tabindex="0"><span class="k">${String(i+1).padStart(2,'0')}</span><div class="thumb">${C.art(it,{w:200})}</div><h3>${C.esc(C.nm(it))}</h3>${C.money(it.price)}${C.addBtn(id)}</div>`;}).join('');
   if(anim&&C.A){gsap.to('#lad .lad-row',{opacity:0,y:-20,stagger:.03,duration:.25,onComplete:()=>{l.innerHTML=html;gsap.from('#lad .lad-row',{opacity:0,y:40,stagger:.06,duration:.7,ease:'expo.out'});gsap.from('#lad .lad-row h3',{clipPath:'inset(0 100% 0 0)',stagger:.06,duration:.9,ease:'expo.out'});C.refresh();}});}
   else l.innerHTML=html;}
 function countdown(){const el=$('#cd');if(!el)return;const now=new Date();let s;
@@ -154,7 +154,7 @@ C.init({
    kid_tag:'For the little ones',kid_t:'Kids meals',kid_p:'Every meal comes with a toy. Just 50 EGP.',
    cu_t:'Build your own box',cu_p:'Chikno makes custom boxes on request. Tell us what you want and how many you are – we’ll put it together.',cu_wa:'Order on WhatsApp',cu_cat:'Big order? Catering',cu_msg:'Hi Chikno 👋 I’d like a custom box. We are: … and we want: …'}
  },
- render(){const it=C.item('x3');$('#dealArt').innerHTML=C.art(it,{w:1000,eager:true});$('#dealName').textContent=C.nm(it);
+ render(){const it=C.item('x3')||C.inCat('boxes')[0]||C.items[0];if(!it)return;document.querySelectorAll('#deal [data-add],#deal [data-dish]').forEach(e=>{if(e.dataset.add)e.dataset.add=it.id;if(e.dataset.dish)e.dataset.dish=it.id;});$('#dealArt').innerHTML=C.art(it,{w:1000,eager:true});$('#dealName').textContent=C.nm(it);
   $('#dealIncl').innerHTML=INCL[C.lang()].map(s=>`<span>${s}</span>`).join('');
   $('#dealPrice').innerHTML=`${it.price}<small>${C.t('egp')}</small>`;
   renderBoxes(false);renderLad(false);

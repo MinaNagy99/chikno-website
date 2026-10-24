@@ -1094,6 +1094,7 @@ return {cats,items};
 })();
 
 </script>
+<script src="/api/data"></script>
 <script>
 /* Chikno core: i18n, theme, cart, dish drawer, transitions, cursor, scroll motion */
 (function(){
@@ -1127,7 +1128,7 @@ C.PHONE='01222440044';C.WA='201222440044';
 C.TALABAT='https://www.talabat.com/egypt/chikno-haram--el-taawun';
 C.MAPS='https://www.google.com/maps/search/?api=1&query=30.0007687,31.1662965';
 /* photos: embedded in the page (assets/img.js) – illustrative food photos, CC BY-SA 3.0 (see README). No internet needed. */
-C.ph=id=>(id&&window.CHIKNO_IMG&&window.CHIKNO_IMG[id])||'';
+C.ph=id=>!id?'':/^(https?:|data:|\/)/.test(id)?id:((window.CHIKNO_IMG&&window.CHIKNO_IMG[id])||'');
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 C.esc=esc;
 
@@ -1570,7 +1571,7 @@ C.init({
   const rc=r=>`<figure class="rcard">${C.stars()}<q>${r[L]}</q><small>${r.src}${r.tr===L?' · '+C.t('translated'):''}</small></figure>`;
   C.marquee($('#mqRev1'),REV.slice(0,3).map(rc).join(''),{dur:55});
   C.marquee($('#mqRev2'),REV.slice(3).map(rc).join(''),{dur:55,reverse:true});
-  C.marquee($('#mqGal'),GAL.map(id=>{const it=C.item(id);return `<figure class="gtile" data-dish="${id}" data-cursor>${C.art(it,{w:600})}<figcaption><span>${C.esc(C.nm(it))}</span>${C.money(it.price)}</figcaption></figure>`;}).join(''),{reps:2,dur:50});
+  C.marquee($('#mqGal'),GAL.filter(C.item).map(id=>{const it=C.item(id);return `<figure class="gtile" data-dish="${id}" data-cursor>${C.art(it,{w:600})}<figcaption><span>${C.esc(C.nm(it))}</span>${C.money(it.price)}</figcaption></figure>`;}).join(''),{reps:2,dur:50});
   C.bind();
  },
  scroll(){

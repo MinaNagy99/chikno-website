@@ -300,7 +300,7 @@ C.init({
   const rc=r=>`<figure class="rcard">${C.stars()}<q>${r[L]}</q><small>${r.src}${r.tr===L?' · '+C.t('translated'):''}</small></figure>`;
   C.marquee($('#mqRev1'),REV.slice(0,3).map(rc).join(''),{dur:55});
   C.marquee($('#mqRev2'),REV.slice(3).map(rc).join(''),{dur:55,reverse:true});
-  C.marquee($('#mqGal'),GAL.map(id=>{const it=C.item(id);return `<figure class="gtile" data-dish="${id}" data-cursor>${C.art(it,{w:600})}<figcaption><span>${C.esc(C.nm(it))}</span>${C.money(it.price)}</figcaption></figure>`;}).join(''),{reps:2,dur:50});
+  C.marquee($('#mqGal'),GAL.filter(C.item).map(id=>{const it=C.item(id);return `<figure class="gtile" data-dish="${id}" data-cursor>${C.art(it,{w:600})}<figcaption><span>${C.esc(C.nm(it))}</span>${C.money(it.price)}</figcaption></figure>`;}).join(''),{reps:2,dur:50});
   C.bind();
  },
  scroll(){

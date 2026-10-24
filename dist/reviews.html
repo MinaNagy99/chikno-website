@@ -931,6 +931,7 @@ return {cats,items};
 })();
 
 </script>
+<script src="/api/data"></script>
 <script>
 /* Chikno core: i18n, theme, cart, dish drawer, transitions, cursor, scroll motion */
 (function(){
@@ -964,7 +965,7 @@ C.PHONE='01222440044';C.WA='201222440044';
 C.TALABAT='https://www.talabat.com/egypt/chikno-haram--el-taawun';
 C.MAPS='https://www.google.com/maps/search/?api=1&query=30.0007687,31.1662965';
 /* photos: embedded in the page (assets/img.js) – illustrative food photos, CC BY-SA 3.0 (see README). No internet needed. */
-C.ph=id=>(id&&window.CHIKNO_IMG&&window.CHIKNO_IMG[id])||'';
+C.ph=id=>!id?'':/^(https?:|data:|\/)/.test(id)?id:((window.CHIKNO_IMG&&window.CHIKNO_IMG[id])||'');
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 C.esc=esc;
 
@@ -1406,7 +1407,7 @@ C.init({
   $('#totLine').innerHTML=C.t('tot')('16,500');
   $('#wall').innerHTML=REV.map(r=>`<figure class="rv">${C.stars()}<q>${r[L]}</q><footer><span class="src"><i>${r.src[0]}</i>${r.src}</span><span>${r.tr===L?C.t('translated'):''}</span></footer></figure>`).join('');
   const max=LOVED[0][1];
-  $('#loved').innerHTML=LOVED.map(([id,n])=>{const it=C.item(id);return `<div class="lv" data-dish="${id}" tabindex="0">${C.art(it,{w:160})}<div class="bar-wrap"><b>${C.esc(C.nm(it))}</b><div class="bar"><i style="--w:${n/max*100}%"></i></div></div><span class="cnt">${n}<small>${C.t('mentions')}</small></span></div>`;}).join('');
+  $('#loved').innerHTML=LOVED.filter(([id])=>C.item(id)).map(([id,n])=>{const it=C.item(id);return `<div class="lv" data-dish="${id}" tabindex="0">${C.art(it,{w:160})}<div class="bar-wrap"><b>${C.esc(C.nm(it))}</b><div class="bar"><i style="--w:${n/max*100}%"></i></div></div><span class="cnt">${n}<small>${C.t('mentions')}</small></span></div>`;}).join('');
   $('#pick').innerHTML=[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" role="radio" aria-checked="false" aria-label="${n}"><svg><use href="#i-star"/></svg></button>`).join('');setRating(rating,false);
  },
  scroll(){

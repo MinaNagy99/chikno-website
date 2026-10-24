@@ -140,7 +140,7 @@ f.addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(f);let 
   const ch=(id,c)=>{$(id).classList.toggle('err',!c);if(!c)ok=false;};
   ch('#qfName',(fd.get('name')||'').trim().length>=2);ch('#qfPhone',/^01[0125]\d{8}$/.test((fd.get('phone')||'').replace(/[\s-]/g,'')));
   if(!ok){const b=$('.field.err',f);C.scrollTo(b,-140);return;}
-  const items=$$('#qItems input:checked').map(i=>C.nm(C.item(i.value)));const nl='\n';
+  const items=$$('#qItems input:checked').map(i=>C.item(i.value)).filter(Boolean).map(C.nm);const nl='\n';
   let m=C.t('q_msg')+nl+'—'+nl+`${C.t('q_people')}: ${r.value}`+nl+`${C.t('q_date')}: ${fd.get('date')||'-'} ${fd.get('time')||''}`+nl+`${C.t('msg_type')}: ${C.t(qtype)}`+nl;
   if(items.length)m+=`${C.t('q_items')} ${items.join(C.rtl()?'، ':', ')}`+nl;
   m+=`${C.t('f_name')}: ${fd.get('name')}`+nl+`${C.t('f_phone')}: ${fd.get('phone')}`+nl;if((fd.get('note')||'').trim())m+=`${C.t('f_note')}: ${fd.get('note')}`+nl;
@@ -169,7 +169,7 @@ C.init({
   C.marquee($('#mqOcc'),C.t('occ').map(o=>`<span class="o">${o}</span><i class="s">✦</i>`).join(''),{dur:35});
   $('#pkGrid').innerHTML=PK.map(id=>C.card(id)).join('');
   const was=$$('#qItems input:checked').map(i=>i.value);
-  $('#qItems').innerHTML=QI.map(id=>{const it=C.item(id);return `<label class="check">${C.art(it,{w:120})}<input type="checkbox" value="${id}" ${was.includes(id)?'checked':''}><span class="grow">${C.esc(C.nm(it))}</span><span class="p">${it.price}</span></label>`;}).join('');
+  $('#qItems').innerHTML=QI.filter(C.item).map(id=>{const it=C.item(id);return `<label class="check">${C.art(it,{w:120})}<input type="checkbox" value="${id}" ${was.includes(id)?'checked':''}><span class="grow">${C.esc(C.nm(it))}</span><span class="p">${it.price}</span></label>`;}).join('');
   ppl();C.bind();$$('.seg').forEach(s=>s._place&&s._place());
  },
  scroll(){

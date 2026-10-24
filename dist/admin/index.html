@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>إدارة المنيو – تشيكنو</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/fonts.css">
+<style>
+:root{--bg:#120E0C;--bg2:#1B1512;--card:#201814;--ink:#F5EFE6;--mute:#A0968E;--line:rgba(245,239,230,.12);--ember:#FF5A1F;--gold:#FFB547;--ok:#3DDC84;--bad:#FF4D4D;--r:16px;
+  --fa:'IBM Plex Sans Arabic',system-ui,sans-serif;--fd:'Lalezar','IBM Plex Sans Arabic',sans-serif;color-scheme:dark}
+@media (prefers-color-scheme:light){:root{--bg:#F6EFE4;--bg2:#ECE0CD;--card:#FFF9F0;--ink:#1A1411;--mute:#6E625A;--line:rgba(26,20,17,.14);--ember:#E2470F;--gold:#B87512;--ok:#1E9E5A;--bad:#D22;color-scheme:light}}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--fa);font-size:15px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+.ico{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.cico{width:22px;height:22px;flex:none}
+.btn{text-decoration:none;color:inherit;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;font-weight:600;white-space:nowrap;transition:background .2s,transform .15s,opacity .2s}
+.btn:active{transform:scale(.97)}
+.btn-fire{background:var(--ember);color:#fff!important}
+.btn-fire:hover{filter:brightness(1.08)}
+.btn-line{border:1px solid var(--line)}
+.btn-line:hover{background:var(--bg2)}
+.btn-bad{color:var(--bad);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent)}
+.btn-sm{height:34px;padding:0 13px;font-size:.88rem}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+input[type=text],input[type=email],input[type=password],input[type=number],input[type=search],select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 13px;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--ember)}
+textarea{resize:vertical;min-height:70px}
+label.f{display:grid;gap:6px;font-size:.88rem;color:var(--mute)}
+label.f>span{font-weight:600}
+.en-in{direction:ltr;text-align:left}
+
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.lcard{width:min(400px,100%);background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 28px;display:grid;gap:16px}
+.lcard .logo{width:170px;margin:0 auto 4px;display:block}
+.lcard h1{font-family:var(--fd);font-weight:400;font-size:1.9rem;text-align:center;line-height:1.2}
+.lcard p.sub{color:var(--mute);text-align:center;font-size:.9rem;margin-top:-8px}
+.err{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad);border-radius:12px;padding:10px 13px;font-size:.9rem}
+.note{background:var(--bg2);border-radius:12px;padding:12px 14px;font-size:.88rem;color:var(--mute)}
+.note b{color:var(--ink)}
+
+/* app */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 20px}
+.top img{height:40px}
+.top h1{font-family:var(--fd);font-weight:400;font-size:1.35rem;line-height:1}
+.top .sp{flex:1}
+.status{font-size:.82rem;color:var(--mute);display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--bg2)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.status.saving i{background:var(--gold);animation:pulse 1s infinite}
+.status.error i{background:var(--bad)}
+@keyframes pulse{50%{opacity:.3}}
+.warn{max-width:1300px;margin:14px auto 0;padding:0 20px}
+.wrap{max-width:1300px;margin:0 auto;padding:20px;display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:start}
+.side{position:sticky;top:76px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:4px;max-height:calc(100vh - 96px);overflow:auto}
+.side h2{font-size:.8rem;color:var(--mute);font-weight:600;padding:6px 10px;letter-spacing:.02em}
+.cat{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;text-align:start;width:100%;transition:background .15s}
+.cat:hover{background:var(--bg2)}
+.cat.on{background:var(--ember);color:#fff}
+.cat .n{margin-inline-start:auto;font-size:.78rem;opacity:.75;font-family:system-ui}
+.cat .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.side .add-cat{margin-top:8px}
+.side .reset{margin-top:14px;font-size:.8rem;color:var(--mute);text-decoration:underline;padding:6px 10px;text-align:start}
+.main{display:grid;gap:14px;min-width:0}
+.mh{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.mh h2{font-family:var(--fd);font-weight:400;font-size:2rem;line-height:1.1;display:flex;align-items:center;gap:10px}
+.mh .cnt{font-size:.9rem;color:var(--mute);font-family:var(--fa)}
+.mh .sp{flex:1}
+.cat-tools{display:flex;gap:6px;flex-wrap:wrap}
+.search{position:relative;flex:1 1 240px;max-width:360px}
+.search .ico{position:absolute;inset-inline-start:12px;top:50%;translate:0 -50%;color:var(--mute)}
+.search input{padding-inline-start:38px;border-radius:999px;height:42px}
+.list{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:64px 1fr auto auto auto;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px 10px 10px;cursor:pointer;transition:border-color .2s,transform .15s}
+[dir=rtl] .row{padding:10px 10px 10px 14px}
+.row:hover{border-color:color-mix(in srgb,var(--ember) 50%,transparent)}
+.row.off{opacity:.55}
+.th{width:64px;height:64px;border-radius:12px;background:var(--bg2) center/cover no-repeat;display:grid;place-items:center;color:var(--mute);overflow:hidden}
+.row .t b{display:block;font-weight:600}
+.row .t small{color:var(--mute);display:block;direction:ltr;text-align:start}
+[dir=rtl] .row .t small{text-align:right}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
+.tag{font-size:.7rem;padding:1px 8px;border-radius:999px;background:var(--bg2);color:var(--mute)}
+.tag.hot{background:color-mix(in srgb,var(--ember) 18%,transparent);color:var(--ember)}
+.price{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:1.35rem;white-space:nowrap}
+.price small{font-family:var(--fa);font-size:.75rem;color:var(--mute);font-weight:400}
+.sw{position:relative;width:44px;height:26px;border-radius:99px;background:var(--line);transition:background .2s;flex:none}
+.sw::after{content:'';position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.sw[aria-checked=true]{background:var(--ok)}
+.sw[aria-checked=true]::after{transform:translateX(18px)}
+[dir=rtl] .sw[aria-checked=true]::after{transform:translateX(-18px)}
+.empty{padding:50px 20px;text-align:center;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:var(--r)}
+
+/* modal */
+dialog{margin:auto;border:0;padding:0;background:var(--card);color:var(--ink);border-radius:22px;width:min(720px,calc(100% - 24px));max-height:calc(100% - 24px);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+dialog::backdrop{background:rgba(0,0,0,.55);backdrop-filter:blur(3px)}
+.dh{display:flex;align-items:center;gap:10px;padding:18px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card);z-index:2}
+.dh h3{font-family:var(--fd);font-weight:400;font-size:1.5rem;flex:1;line-height:1.1}
+.db{padding:20px 22px;display:grid;gap:16px}
+.df{display:flex;gap:8px;align-items:center;padding:14px 22px;border-top:1px solid var(--line);position:sticky;bottom:0;background:var(--card)}
+.df .sp{flex:1}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.photo{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}
+.photo .pv{width:150px;height:150px;border-radius:16px;background:var(--bg2) center/cover no-repeat;display:grid;place-items:center;color:var(--mute);font-size:.8rem;text-align:center;position:relative;overflow:hidden}
+.photo .pv.busy::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='18' fill='none' stroke='%23fff' stroke-width='4' stroke-dasharray='80 40'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='.8s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E") center/40px no-repeat}
+.photo .pa{display:grid;gap:8px;justify-items:start}
+.photo .hint{font-size:.8rem;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);font-size:.88rem;user-select:none}
+.chip input{accent-color:var(--ember)}
+.chip:has(input:checked){border-color:var(--ember);background:color-mix(in srgb,var(--ember) 12%,transparent)}
+.icons{display:flex;flex-wrap:wrap;gap:8px}
+.icons button{width:48px;height:48px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center}
+.icons button[aria-pressed=true]{border-color:var(--ember);background:color-mix(in srgb,var(--ember) 15%,transparent);color:var(--ember)}
+.confirm{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--bad)}
+.toast{position:fixed;bottom:22px;left:50%;translate:-50% 20px;background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:999px;font-weight:600;opacity:0;transition:.3s;z-index:100;pointer-events:none;font-size:.92rem}
+.toast.on{opacity:1;translate:-50% 0}
+
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr;padding:14px}
+  .side{position:static;max-height:none;display:flex;overflow-x:auto;gap:6px;padding:8px;scrollbar-width:none}
+  .side h2,.side .reset{display:none}
+  .cat{width:auto;flex:none;padding:8px 12px}
+  .side .add-cat{margin:0;flex:none}
+  .top h1{display:none}
+  .top .in{padding:8px 14px;gap:8px}
+  .top img{height:34px}
+  .lbl-m{display:none}
+  #statusT{display:none}
+  .status{padding:10px}
+  .row{grid-template-columns:56px 1fr auto;gap:10px}
+  .th{width:56px;height:56px}
+  .row .sw{grid-row:2;grid-column:2}
+  .row .edit{display:none}
+  .g2{grid-template-columns:1fr}
+  .photo{grid-template-columns:110px 1fr}
+  .photo .pv{width:110px;height:110px}
+  .mh h2{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="f-drum" viewBox="0 0 64 64"><path fill="currentColor" d="M41 6c9 0 17 8 17 17 0 10-8 16-16 16-3 0-5-1-7-2L23 49c1 2 1 6-1 8-2 2-6 2-8 0-1-1-1-2-1-3-1 0-2 0-3-1-2-2-2-6 0-8 2-2 6-2 8-1l12-12c-1-2-2-4-2-7 0-8 6-17 13-17z"/><path fill="#fff" opacity=".25" d="M44 12c5 1 9 5 9 10-2-4-5-7-9-8z"/></symbol>
+  <symbol id="f-chicken" viewBox="0 0 64 64"><path fill="currentColor" d="M9 36c0-11 10-19 23-19s23 8 23 18c0 9-9 16-23 16S9 46 9 36z"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" d="M15 29c-5-3-10 0-10 4s5 5 8 3M49 29c5-3 10 0 10 4s-5 5-8 3"/><path fill="#fff" opacity=".22" d="M20 27c4-4 10-5 16-4-6 1-11 3-14 7z"/><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M14 55h36"/></symbol>
+  <symbol id="f-wrap" viewBox="0 0 64 64"><path fill="currentColor" d="M20 8l24 6-8 44-14-4z"/><path fill="#fff" opacity=".25" d="M22 12l18 4-1 5-18-4z"/><path fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2" d="M23 26l14 4M24 36l11 3M25 46l8 2"/></symbol>
+  <symbol id="f-box" viewBox="0 0 64 64"><path fill="currentColor" d="M8 22l24-10 24 10v26L32 58 8 48z"/><path fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2.5" d="M8 22l24 10 24-10M32 32v26"/><path fill="#fff" opacity=".2" d="M8 22l24-10 24 10-24 10z"/></symbol>
+  <symbol id="f-skewer" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" d="M8 56L58 6"/><rect fill="currentColor" x="14" y="36" width="14" height="14" rx="4" transform="rotate(-45 21 43)"/><rect fill="currentColor" x="25" y="25" width="14" height="14" rx="4" transform="rotate(-45 32 32)"/><rect fill="currentColor" x="36" y="14" width="14" height="14" rx="4" transform="rotate(-45 43 21)"/></symbol>
+  <symbol id="f-burger" viewBox="0 0 64 64"><path fill="currentColor" d="M10 28c0-10 10-16 22-16s22 6 22 16z"/><rect fill="currentColor" x="8" y="32" width="48" height="7" rx="3.5"/><path fill="currentColor" d="M10 43h44c0 6-5 10-11 10H21c-6 0-11-4-11-10z"/><circle fill="#fff" opacity=".3" cx="24" cy="20" r="1.6"/><circle fill="#fff" opacity=".3" cx="34" cy="17" r="1.6"/><circle fill="#fff" opacity=".3" cx="42" cy="22" r="1.6"/></symbol>
+  <symbol id="f-pizza" viewBox="0 0 64 64"><path fill="currentColor" d="M8 14c15-6 33-6 48 0L32 60z"/><circle fill="#fff" opacity=".28" cx="26" cy="24" r="4"/><circle fill="#fff" opacity=".28" cx="38" cy="30" r="3.5"/><circle fill="#fff" opacity=".28" cx="31" cy="40" r="3"/></symbol>
+  <symbol id="f-fries" viewBox="0 0 64 64"><path fill="currentColor" d="M18 8h5v20h-5zM26 4h5v24h-5zM34 6h5v22h-5zM42 10h5v18h-5z"/><path fill="currentColor" d="M12 26h40l-5 32H17z"/><path fill="#fff" opacity=".22" d="M14 30h36l-1 6H15z"/></symbol>
+  <symbol id="f-flame" viewBox="0 0 64 64"><path fill="currentColor" d="M33 4c3 12 17 18 17 34 0 12-8 22-18 22S14 50 14 39c0-9 6-14 9-20 1 6 4 9 7 10-2-9 0-18 3-25z"/><path fill="#fff" opacity=".35" d="M32 34c2 5 8 8 8 15 0 5-4 8-8 8s-8-3-8-8c0-4 3-6 4-9 1 2 2 3 3 3-1-3 0-6 1-9z"/></symbol>
+  <symbol id="f-crown" viewBox="0 0 64 64"><path fill="currentColor" d="M6 20l14 12 12-20 12 20 14-12-6 30H12z"/><rect fill="currentColor" x="12" y="53" width="40" height="6" rx="3"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.5H9a2 2 0 0 1-2-1.6L5 3H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="5.5" cy="17" r="3.5"/><circle cx="18.5" cy="17" r="3.5"/><path d="M5.5 17l4-8h6l3 8M9.5 9L8 5H5M15 9l1.5-3H19"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.8-.2 1.4z"/></symbol>
+ </defs>
+</svg>
+
+
+<!-- ===== login ===== -->
+<main class="login hidden" id="vLogin">
+  <form class="lcard" id="fLogin" novalidate>
+    <img class="logo" src="/assets/logo-word.webp" alt="Chikno">
+    <h1 data-t="login_t">دخول الإدارة</h1>
+    <p class="sub" data-t="login_s">إدارة المنيو والأسعار والصور</p>
+    <div class="err hidden" id="lErr" role="alert"></div>
+    <div class="note hidden" id="lSetup"></div>
+    <label class="f"><span data-t="email">الإيميل</span><input type="email" id="lEmail" dir="ltr" autocomplete="username" required class="en-in"></label>
+    <label class="f"><span data-t="password">كلمة السر</span><input type="password" id="lPass" dir="ltr" autocomplete="current-password" required class="en-in"></label>
+    <button class="btn btn-fire" id="lBtn" type="submit"><span data-t="signin">دخول</span></button>
+    <div style="display:flex;justify-content:space-between;font-size:.85rem"><a href="/" style="color:var(--mute)" data-t="back_site">← الرجوع للموقع</a><button type="button" class="lang" style="color:var(--mute)">English</button></div>
+  </form>
+</main>
+
+<!-- ===== app ===== -->
+<div class="hidden" id="vApp">
+  <header class="top"><div class="in">
+    <img src="/assets/logo-word.webp" alt="Chikno">
+    <h1 data-t="title">إدارة المنيو</h1>
+    <span class="sp"></span>
+    <span class="status" id="status" aria-live="polite"><i></i><span id="statusT"></span></span>
+    <a class="btn btn-line btn-sm" href="/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-share"/></svg><span class="lbl-m" data-t="view_site">شوف الموقع</span></a>
+    <button class="btn btn-line btn-sm lang">EN</button>
+    <button class="btn btn-line btn-sm" id="bOut" aria-label="Sign out"><svg class="ico"><use href="#i-x"/></svg><span class="lbl-m" data-t="signout">خروج</span></button>
+  </div></header>
+  <div class="warn hidden" id="noStore"><div class="err" data-t="no_storage">التخزين مش متوصل لسه – التعديلات مش هتتحفظ. (Vercel → Storage → Blob)</div></div>
+  <div class="wrap">
+    <nav class="side" id="side" aria-label="Categories"></nav>
+    <section class="main">
+      <div class="mh">
+        <h2 id="mTitle"></h2>
+        <span class="cnt" id="mCount"></span>
+        <div class="cat-tools" id="catTools"></div>
+        <span class="sp"></span>
+      </div>
+      <div class="mh">
+        <label class="search"><svg class="ico"><use href="#i-search"/></svg><span class="sr" data-t="search">بحث</span><input type="search" id="q" data-tp="search_ph" placeholder="دوّر على صنف…"></label>
+        <span class="sp"></span>
+        <button class="btn btn-fire" id="bAdd"><svg class="ico"><use href="#i-plus"/></svg><span data-t="add_item">صنف جديد</span></button>
+      </div>
+      <div class="list" id="list"></div>
+    </section>
+  </div>
+</div>
+
+<!-- ===== item editor ===== -->
+<dialog id="dItem">
+  <form method="dialog" id="fItem">
+    <div class="dh"><h3 id="iTitle"></h3><button type="button" class="btn btn-line btn-sm" data-close aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button></div>
+    <div class="db">
+      <div class="photo">
+        <div class="pv" id="iPv"></div>
+        <div class="pa">
+          <label class="btn btn-line btn-sm"><svg class="ico"><use href="#i-plus"/></svg><span data-t="photo_up">ارفع صورة</span><input type="file" id="iFile" accept="image/*" class="sr"></label>
+          <button type="button" class="btn btn-line btn-sm" id="iNoPhoto" data-t="photo_rm">شيل الصورة</button>
+          <span class="hint" data-t="photo_hint">JPG أو PNG – بنصغرها تلقائي.</span>
+        </div>
+      </div>
+      <div class="g2">
+        <label class="f"><span data-t="name_ar">الاسم بالعربي</span><input type="text" id="iAr" dir="rtl" required maxlength="120"></label>
+        <label class="f"><span data-t="name_en">الاسم بالإنجليزي</span><input type="text" id="iEn" dir="ltr" maxlength="120" class="en-in"></label>
+        <label class="f"><span data-t="desc_ar">الوصف بالعربي</span><textarea id="iDar" dir="rtl" maxlength="400"></textarea></label>
+        <label class="f"><span data-t="desc_en">الوصف بالإنجليزي</span><textarea id="iDen" dir="ltr" maxlength="400" class="en-in"></textarea></label>
+        <label class="f"><span data-t="price">السعر (جنيه)</span><input type="number" id="iPrice" min="0" step="0.5" inputmode="decimal"><small data-t="price_hint">٠ = "اسأل عن السعر"</small></label>
+        <label class="f"><span data-t="category">القسم</span><select id="iCat"></select></label>
+      </div>
+      <div class="f"><span style="font-size:.88rem;color:var(--mute);font-weight:600" data-t="labels">علامات</span>
+        <div class="chips" id="iFlags"></div>
+      </div>
+      <label class="chip" style="justify-self:start"><input type="checkbox" id="iVis"><span data-t="visible">ظاهر في الموقع</span></label>
+    </div>
+    <div class="df">
+      <button type="button" class="btn btn-bad btn-sm" id="iDel"><svg class="ico"><use href="#i-trash"/></svg><span data-t="delete">مسح</span></button>
+      <span class="confirm hidden" id="iDelC"><span data-t="sure">متأكد؟</span><button type="button" class="btn btn-bad btn-sm" id="iDelY" data-t="yes_del">أيوه امسح</button></span>
+      <span class="sp"></span>
+      <button type="button" class="btn btn-line" data-close data-t="cancel">إلغاء</button>
+      <button type="submit" class="btn btn-fire" id="iSave" data-t="save">حفظ</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- ===== category editor ===== -->
+<dialog id="dCat">
+  <form method="dialog" id="fCat">
+    <div class="dh"><h3 id="cTitle"></h3><button type="button" class="btn btn-line btn-sm" data-close aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button></div>
+    <div class="db">
+      <div class="g2">
+        <label class="f"><span data-t="name_ar">الاسم بالعربي</span><input type="text" id="cAr" dir="rtl" required maxlength="80"></label>
+        <label class="f"><span data-t="name_en">الاسم بالإنجليزي</span><input type="text" id="cEn" dir="ltr" maxlength="80" class="en-in"></label>
+      </div>
+      <div class="f"><span style="font-size:.88rem;color:var(--mute);font-weight:600" data-t="icon">الأيقونة</span><div class="icons" id="cIcons"></div></div>
+      <div class="err hidden" id="cErr"></div>
+    </div>
+    <div class="df">
+      <button type="button" class="btn btn-bad btn-sm" id="cDel"><svg class="ico"><use href="#i-trash"/></svg><span data-t="delete">مسح</span></button>
+      <span class="sp"></span>
+      <button type="button" class="btn btn-line" data-close data-t="cancel">إلغاء</button>
+      <button type="submit" class="btn btn-fire" data-t="save">حفظ</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="/assets/data.js"></script>
+<script>
+(()=>{
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ICONS=['f-chicken','f-drum','f-wrap','f-box','f-skewer','f-burger','f-pizza','f-fries','f-flame','f-crown'];
+const FLAGS=[['p','popular'],['b','best'],['f','family'],['s','spicy'],['x','cheese']];
+const T={
+ ar:{login_t:'دخول الإدارة',login_s:'إدارة المنيو والأسعار والصور',email:'الإيميل',password:'كلمة السر',signin:'دخول',back_site:'← الرجوع للموقع',
+  title:'إدارة المنيو',view_site:'شوف الموقع',signout:'خروج',search:'بحث',search_ph:'دوّر على صنف…',add_item:'صنف جديد',all:'كل الأصناف',cats:'الأقسام',add_cat:'قسم جديد',
+  reset:'رجّع المنيو الأصلي',items:'صنف',edit:'تعديل',edit_cat:'تعديل القسم',up:'لفوق',down:'لتحت',photo_up:'ارفع صورة',photo_rm:'شيل الصورة',photo_hint:'JPG أو PNG أو صورة من الموبايل – بنصغرها تلقائي.',no_photo:'مفيش صورة',
+  name_ar:'الاسم بالعربي',name_en:'الاسم بالإنجليزي',desc_ar:'الوصف بالعربي',desc_en:'الوصف بالإنجليزي',price:'السعر (جنيه)',price_hint:'٠ = "اسأل عن السعر"',category:'القسم',labels:'علامات',
+  visible:'ظاهر في الموقع',hidden_t:'مخفي',delete:'مسح',sure:'متأكد؟',yes_del:'أيوه امسح',cancel:'إلغاء',save:'حفظ',icon:'الأيقونة',
+  popular:'الأكثر طلبًا',best:'الأكثر مبيعًا',family:'للعيلة',spicy:'حار',cheese:'ممكن زيادة جبنة',ask:'اسأل',egp:'ج.م',
+  new_item:'صنف جديد',edit_item:'تعديل الصنف',new_cat:'قسم جديد',saved:'كل التعديلات محفوظة',saving:'بنحفظ…',save_err:'الحفظ فشل – جرّب تاني',not_saved:'لسه ماتحفظش',
+  t_saved:'اتحفظ ✓ – هيظهر في الموقع خلال دقيقة',t_deleted:'اتمسح',t_uploading:'بنرفع الصورة…',t_up_err:'رفع الصورة فشل',t_cat_full:'القسم فيه أصناف – انقلها أو امسحها الأول',
+  wrong:'الإيميل أو كلمة السر غلط',net:'مشكلة في الاتصال – جرّب تاني',setup:'<b>الدخول لسه مش متفعّل.</b> من Vercel → Settings → Environment Variables ضيف ADMIN_EMAIL و ADMIN_PASSWORD وبعدين Redeploy.',
+  no_storage:'التخزين مش متوصل لسه – التعديلات مش هتتحفظ. (Vercel → Storage → Blob)',empty:'مفيش أصناف هنا.',reset_q:'هترجّع المنيو الأصلي وكل تعديلاتك هتتشال. متأكد؟',name_req:'اكتب الاسم بالعربي',
+  lang_btn:'EN',lang_full:'English'},
+ en:{login_t:'Admin sign in',login_s:'Manage the menu, prices and photos',email:'Email',password:'Password',signin:'Sign in',back_site:'← Back to website',
+  title:'Menu manager',view_site:'View site',signout:'Sign out',search:'Search',search_ph:'Search dishes…',add_item:'New dish',all:'All dishes',cats:'Categories',add_cat:'New category',
+  reset:'Restore original menu',items:'dishes',edit:'Edit',edit_cat:'Edit category',up:'Move up',down:'Move down',photo_up:'Upload photo',photo_rm:'Remove photo',photo_hint:'JPG, PNG or a phone photo – resized automatically.',no_photo:'No photo',
+  name_ar:'Name (Arabic)',name_en:'Name (English)',desc_ar:'Description (Arabic)',desc_en:'Description (English)',price:'Price (EGP)',price_hint:'0 = "ask for price"',category:'Category',labels:'Labels',
+  visible:'Visible on website',hidden_t:'Hidden',delete:'Delete',sure:'Sure?',yes_del:'Yes, delete',cancel:'Cancel',save:'Save',icon:'Icon',
+  popular:'Popular',best:'Best seller',family:'Family size',spicy:'Spicy',cheese:'Extra cheese option',ask:'Ask',egp:'EGP',
+  new_item:'New dish',edit_item:'Edit dish',new_cat:'New category',saved:'All changes saved',saving:'Saving…',save_err:'Save failed – try again',not_saved:'Not saved yet',
+  t_saved:'Saved ✓ – live on the website within a minute',t_deleted:'Deleted',t_uploading:'Uploading photo…',t_up_err:'Photo upload failed',t_cat_full:'This category has dishes – move or delete them first',
+  wrong:'Wrong email or password',net:'Connection problem – try again',setup:'<b>Admin login is not set up yet.</b> In Vercel → Settings → Environment Variables add ADMIN_EMAIL and ADMIN_PASSWORD, then redeploy.',
+  no_storage:'Storage is not connected yet – changes cannot be saved. (Vercel → Storage → Blob)',empty:'No dishes here.',reset_q:'This restores the original menu and removes all your changes. Are you sure?',name_req:'Enter the Arabic name',
+  lang_btn:'ع',lang_full:'العربية'}};
+let L=(()=>{try{return localStorage.getItem('chk-admin-lang')||'ar'}catch(e){return 'ar'}})();
+const t=k=>T[L][k]??k;
+let M={cats:[],items:[]}, cur='all', q='', storage=true, editing=null, editingCat=null, pending=null, saving=false, again=false;
+
+/* ---------- api ---------- */
+async function api(path,opt={}){
+  const r=await fetch(path,{credentials:'same-origin',...opt,headers:{'Content-Type':'application/json','X-Chk':'1',...(opt.headers||{})}});
+  let d={};try{d=await r.json()}catch(e){}
+  if(r.status===401&&!path.includes('login')){showLogin();throw new Error('unauthorized')}
+  if(!r.ok)throw Object.assign(new Error(d.error||('http_'+r.status)),{status:r.status});
+  return d;
+}
+
+/* ---------- i18n ---------- */
+function applyLang(){
+  document.documentElement.lang=L;document.documentElement.dir=L==='ar'?'rtl':'ltr';
+  $$('[data-t]').forEach(e=>e.textContent=t(e.dataset.t));
+  $$('[data-tp]').forEach(e=>e.placeholder=t(e.dataset.tp));
+  $$('.lang').forEach(b=>b.textContent=b.closest('.lcard')?t('lang_full'):t('lang_btn'));
+  document.title=t('title')+' – Chikno';
+  if(!$('#vApp').classList.contains('hidden'))render();
+}
+$$('.lang').forEach(b=>b.addEventListener('click',()=>{L=L==='ar'?'en':'ar';try{localStorage.setItem('chk-admin-lang',L)}catch(e){}applyLang();setStatus(saving?'saving':'saved');}));
+
+/* ---------- helpers ---------- */
+const nm=o=>(L==='ar'?o.ar||o.en:o.en||o.ar)||'—';
+const imgSrc=k=>!k?'':/^(https?:|data:|\/)/.test(k)?k:((window.CHIKNO_IMG||{})[k]||'');
+const catOf=id=>M.cats.find(c=>c.id===id);
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2600);}
+function setStatus(s){const e=$('#status');e.className='status '+(s==='saving'?'saving':s==='error'?'error':'');$('#statusT').textContent=t(s==='saving'?'saving':s==='error'?'save_err':s==='dirty'?'not_saved':'saved');}
+function fromArrays(d){return{cats:d.cats.map(c=>({id:c[0],icon:c[1],en:c[2],ar:c[3]})),items:d.items.map(i=>({id:i[0],cat:i[1],price:+i[2]||0,img:i[3]||'',flags:i[4]||'',en:i[5]||'',ar:i[6]||'',den:i[7]||'',dar:i[8]||''}))};}
+const toArrays=()=>({cats:M.cats.map(c=>[c.id,c.icon,c.en,c.ar]),items:M.items.map(i=>[i.id,i.cat,i.price,i.img,i.flags,i.en,i.ar,i.den,i.dar])});
+const uid=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+
+/* ---------- save (whole menu, queued) ---------- */
+async function save(msg){
+  if(saving){again=true;return;}
+  saving=true;setStatus('saving');
+  try{await api('/api/menu',{method:'PUT',body:JSON.stringify(toArrays())});setStatus('saved');if(msg)toast(msg);}
+  catch(e){if(e.message!=='unauthorized'){setStatus('error');toast(e.message==='no_storage'?t('no_storage'):t('save_err'));}}
+  saving=false;if(again){again=false;save();}
+}
+
+/* ---------- render ---------- */
+function render(){
+  const counts={};M.items.forEach(i=>counts[i.cat]=(counts[i.cat]||0)+1);
+  $('#side').innerHTML=`<h2>${t('cats')}</h2>
+   <button class="cat${cur==='all'?' on':''}" data-cat="all"><svg class="ico"><use href="#i-grid"/></svg><span class="nm">${t('all')}</span><span class="n">${M.items.length}</span></button>`+
+   M.cats.map(c=>`<button class="cat${cur===c.id?' on':''}" data-cat="${esc(c.id)}"><svg class="cico"><use href="#${esc(c.icon)}"/></svg><span class="nm">${esc(nm(c))}</span><span class="n">${counts[c.id]||0}</span></button>`).join('')+
+   `<button class="btn btn-line btn-sm add-cat" id="bAddCat"><svg class="ico"><use href="#i-plus"/></svg>${t('add_cat')}</button>
+    <button class="reset" id="bReset">${t('reset')}</button>`;
+  const c=catOf(cur);
+  if(cur!=='all'&&!c)cur='all';
+  $('#mTitle').innerHTML=cur==='all'?esc(t('all')):`<svg class="cico" style="width:30px;height:30px"><use href="#${esc(c.icon)}"/></svg>${esc(nm(c))}`;
+  const ci=M.cats.indexOf(c);
+  $('#catTools').innerHTML=cur==='all'?'':`<button class="btn btn-line btn-sm" id="bEditCat"><svg class="ico"><use href="#i-tag"/></svg>${t('edit_cat')}</button>
+    <button class="btn btn-line btn-sm" id="bUp" aria-label="${t('up')}" title="${t('up')}" ${ci<=0?'disabled':''}>↑</button>
+    <button class="btn btn-line btn-sm" id="bDown" aria-label="${t('down')}" title="${t('down')}" ${ci>=M.cats.length-1?'disabled':''}>↓</button>`;
+  const qq=q.trim().toLowerCase();
+  const list=M.items.filter(i=>(cur==='all'||i.cat===cur)&&(!qq||(i.ar+' '+i.en+' '+i.id).toLowerCase().includes(qq)));
+  $('#mCount').textContent=`${list.length} ${t('items')}`;
+  $('#list').innerHTML=list.length?list.map(i=>{const src=imgSrc(i.img),hid=i.flags.includes('h');
+    const tags=FLAGS.filter(([f])=>i.flags.includes(f)).map(([f,k])=>`<span class="tag${f==='b'||f==='p'?' hot':''}">${t(k)}</span>`).join('')+(cur==='all'&&catOf(i.cat)?`<span class="tag">${esc(nm(catOf(i.cat)))}</span>`:'');
+    return `<div class="row${hid?' off':''}" data-id="${esc(i.id)}" tabindex="0" role="button">
+     <div class="th" ${src?`style="background-image:url('${esc(src)}')"`:''}>${src?'':`<svg class="cico"><use href="#${esc((catOf(i.cat)||{}).icon||'f-chicken')}"/></svg>`}</div>
+     <div class="t"><b>${esc(L==='ar'?i.ar||i.en:i.en||i.ar)}</b><small>${esc(L==='ar'?i.en:i.ar)}</small>${tags?`<div class="tags">${tags}</div>`:''}</div>
+     <div class="price">${i.price?`${i.price} <small>${t('egp')}</small>`:`<small>${t('ask')}</small>`}</div>
+     <button class="sw" role="switch" aria-checked="${!hid}" data-vis="${esc(i.id)}" aria-label="${t('visible')}" title="${hid?t('hidden_t'):t('visible')}"></button>
+     <span class="btn btn-line btn-sm edit">${t('edit')}</span></div>`;}).join(''):`<div class="empty">${t('empty')}</div>`;
+}
+
+/* ---------- events: list ---------- */
+$('#side').addEventListener('click',e=>{
+  const b=e.target.closest('[data-cat]');if(b){cur=b.dataset.cat;render();return;}
+  if(e.target.closest('#bAddCat'))openCat(null);
+  if(e.target.closest('#bReset')&&confirm(t('reset_q'))){M=fromArrays(window.CHIKNO_DATA);cur='all';render();save(t('t_saved'));}
+});
+$('#catTools').addEventListener('click',e=>{
+  const i=M.cats.findIndex(c=>c.id===cur);
+  if(e.target.closest('#bEditCat'))openCat(M.cats[i]);
+  const mv=e.target.closest('#bUp')?-1:e.target.closest('#bDown')?1:0;
+  if(mv&&M.cats[i+mv]){[M.cats[i],M.cats[i+mv]]=[M.cats[i+mv],M.cats[i]];render();save();}
+});
+$('#list').addEventListener('click',e=>{
+  const sw=e.target.closest('[data-vis]');
+  if(sw){e.stopPropagation();const it=M.items.find(x=>x.id===sw.dataset.vis);it.flags=it.flags.includes('h')?it.flags.replace(/h/g,''):it.flags+'h';render();save();return;}
+  const r=e.target.closest('.row');if(r)openItem(M.items.find(x=>x.id===r.dataset.id));
+});
+$('#list').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList.contains('row'))openItem(M.items.find(x=>x.id===e.target.dataset.id));});
+$('#q').addEventListener('input',e=>{q=e.target.value;render();});
+$('#bAdd').addEventListener('click',()=>openItem(null));
+$$('dialog [data-close]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
+
+/* ---------- item editor ---------- */
+let draftImg='';
+function setPv(){const p=$('#iPv'),s=imgSrc(draftImg);p.style.backgroundImage=s?`url('${s}')`:'';p.textContent=s?'':t('no_photo');$('#iNoPhoto').classList.toggle('hidden',!s);}
+function openItem(it){
+  editing=it;const n=!it;
+  it=it||{id:'',cat:cur!=='all'?cur:(M.cats[0]||{}).id,price:0,img:'',flags:'',en:'',ar:'',den:'',dar:''};
+  $('#iTitle').textContent=n?t('new_item'):t('edit_item');
+  $('#iAr').value=it.ar;$('#iEn').value=it.en;$('#iDar').value=it.dar;$('#iDen').value=it.den;$('#iPrice').value=it.price||0;
+  $('#iCat').innerHTML=M.cats.map(c=>`<option value="${esc(c.id)}"${c.id===it.cat?' selected':''}>${esc(nm(c))}</option>`).join('');
+  $('#iFlags').innerHTML=FLAGS.map(([f,k])=>`<label class="chip"><input type="checkbox" value="${f}"${it.flags.includes(f)?' checked':''}>${t(k)}</label>`).join('');
+  $('#iVis').checked=!it.flags.includes('h');
+  draftImg=it.img;setPv();$('#iFile').value='';
+  $('#iDel').classList.toggle('hidden',n);$('#iDelC').classList.add('hidden');
+  $('#dItem').showModal();
+}
+$('#iNoPhoto').addEventListener('click',()=>{draftImg='';setPv();});
+$('#iFile').addEventListener('change',async e=>{
+  const f=e.target.files[0];if(!f)return;
+  const pv=$('#iPv');pv.classList.add('busy');$('#iSave').disabled=true;toast(t('t_uploading'));
+  try{
+    const {data,type}=await shrink(f);
+    const r=await api('/api/upload',{method:'POST',body:JSON.stringify({data,type})});
+    draftImg=r.url;setPv();
+  }catch(err){if(err.message!=='unauthorized')toast(err.message==='no_storage'?t('no_storage'):t('t_up_err'));}
+  pv.classList.remove('busy');$('#iSave').disabled=false;
+});
+async function shrink(file){
+  const src=await new Promise((ok,no)=>{const u=URL.createObjectURL(file),im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=u;});
+  const max=1000,s=Math.min(1,max/Math.max(src.naturalWidth,src.naturalHeight));
+  const c=document.createElement('canvas');c.width=Math.round(src.naturalWidth*s);c.height=Math.round(src.naturalHeight*s);
+  c.getContext('2d').drawImage(src,0,0,c.width,c.height);
+  let url=c.toDataURL('image/webp',.82);if(!url.startsWith('data:image/webp'))url=c.toDataURL('image/jpeg',.85);
+  return{type:url.slice(5,url.indexOf(';')),data:url.slice(url.indexOf(',')+1)};
+}
+$('#fItem').addEventListener('submit',e=>{
+  e.preventDefault();
+  const ar=$('#iAr').value.trim(),en=$('#iEn').value.trim();
+  if(!ar&&!en){$('#iAr').focus();toast(t('name_req'));return;}
+  const flags=$$('#iFlags input:checked').map(i=>i.value).join('')+($('#iVis').checked?'':'h');
+  const v={cat:$('#iCat').value,price:Math.max(0,+$('#iPrice').value||0),img:draftImg,flags,ar,en,dar:$('#iDar').value.trim(),den:$('#iDen').value.trim()};
+  if(editing)Object.assign(editing,v);else{const it={id:uid('n'),...v};M.items.push(it);}
+  $('#dItem').close();render();save(t('t_saved'));
+});
+$('#iDel').addEventListener('click',()=>$('#iDelC').classList.remove('hidden'));
+$('#iDelY').addEventListener('click',()=>{M.items=M.items.filter(x=>x!==editing);$('#dItem').close();render();save(t('t_deleted'));});
+
+/* ---------- category editor ---------- */
+let draftIcon='f-chicken';
+function openCat(c){
+  editingCat=c;draftIcon=c?c.icon:'f-chicken';
+  $('#cTitle').textContent=c?t('edit_cat'):t('new_cat');
+  $('#cAr').value=c?c.ar:'';$('#cEn').value=c?c.en:'';$('#cErr').classList.add('hidden');
+  $('#cIcons').innerHTML=ICONS.map(i=>`<button type="button" data-ic="${i}" aria-pressed="${i===draftIcon}"><svg class="cico"><use href="#${i}"/></svg></button>`).join('');
+  $('#cDel').classList.toggle('hidden',!c);
+  $('#dCat').showModal();
+}
+$('#cIcons').addEventListener('click',e=>{const b=e.target.closest('[data-ic]');if(!b)return;draftIcon=b.dataset.ic;$$('#cIcons button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
+$('#fCat').addEventListener('submit',e=>{
+  e.preventDefault();const ar=$('#cAr').value.trim(),en=$('#cEn').value.trim();
+  if(!ar&&!en){$('#cAr').focus();return;}
+  if(editingCat)Object.assign(editingCat,{ar,en,icon:draftIcon});
+  else{const id=(en.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,30)||'cat')+'-'+Date.now().toString(36).slice(-4);M.cats.push({id,icon:draftIcon,ar,en});cur=id;}
+  $('#dCat').close();render();save(t('t_saved'));
+});
+$('#cDel').addEventListener('click',()=>{
+  if(M.items.some(i=>i.cat===editingCat.id)){const e=$('#cErr');e.textContent=t('t_cat_full');e.classList.remove('hidden');return;}
+  M.cats=M.cats.filter(c=>c!==editingCat);cur='all';$('#dCat').close();render();save(t('t_deleted'));
+});
+
+/* ---------- auth & boot ---------- */
+function showLogin(msg){$('#vApp').classList.add('hidden');$('#vLogin').classList.remove('hidden');if(msg){$('#lErr').textContent=msg;$('#lErr').classList.remove('hidden');}setTimeout(()=>$('#lEmail').focus(),50);}
+async function showApp(){
+  $('#vLogin').classList.add('hidden');$('#vApp').classList.remove('hidden');
+  $('#noStore').classList.toggle('hidden',storage);
+  if(!window.CHIKNO_IMG){const s=document.createElement('script');s.src='/assets/img.js';s.onload=render;document.head.appendChild(s);}
+  let saved=null;try{saved=(await api('/api/menu')).menu;}catch(e){if(e.message==='unauthorized')return;}
+  M=fromArrays(saved&&saved.cats?saved:window.CHIKNO_DATA);
+  render();setStatus('saved');
+}
+$('#fLogin').addEventListener('submit',async e=>{
+  e.preventDefault();const b=$('#lBtn');b.disabled=true;$('#lErr').classList.add('hidden');
+  try{await api('/api/login',{method:'POST',body:JSON.stringify({email:$('#lEmail').value,password:$('#lPass').value})});$('#lPass').value='';showApp();}
+  catch(err){showLogin(err.message==='wrong'?t('wrong'):err.message==='not_configured'?null:t('net'));if(err.message==='not_configured'){$('#lSetup').innerHTML=t('setup');$('#lSetup').classList.remove('hidden');}}
+  b.disabled=false;
+});
+$('#bOut').addEventListener('click',async()=>{try{await api('/api/logout',{method:'POST'})}catch(e){}showLogin();});
+addEventListener('beforeunload',e=>{if(saving){e.preventDefault();e.returnValue='';}});
+(async()=>{
+  applyLang();
+  try{const me=await (await fetch('/api/me',{credentials:'same-origin',cache:'no-store'})).json();
+    storage=me.storage;
+    if(!me.configured){showLogin();$('#lSetup').innerHTML=t('setup');$('#lSetup').classList.remove('hidden');return;}
+    if(me.signedIn)showApp();else showLogin();
+  }catch(e){showLogin(t('net'));}
+})();
+})();
+</script>
+</body>
+</html>

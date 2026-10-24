@@ -15,7 +15,7 @@ LIBS = ['gsap.min.js', 'ScrollTrigger.min.js', 'lenis.min.js', 'img.js']
 CDN = ''.join(f'<script src="assets/{n}"></script>\n' for n in LIBS)
 CDN_INLINE = ''.join(f'<script>\n{(ASSETS / n).read_text(encoding="utf-8")}\n</script>\n' for n in LIBS)
 (DIST / 'assets').mkdir(parents=True, exist_ok=True)
-for n in LIBS + ['fonts.css']:
+for n in LIBS + ['fonts.css', 'logo-word.webp', 'logo-tag.png', 'favicon.png']:
     (DIST / 'assets' / n).write_bytes((ASSETS / n).read_bytes())
 EARLY = ("<script>(function(){var d=document.documentElement;"
          "function M(){try{if(parent!==window)return parent.__chkMem||(parent.__chkMem={l:{},s:{}})}catch(e){}return window.__chkMem||(window.__chkMem=window.__CHK_MEM||{l:{},s:{}})}"
@@ -38,9 +38,10 @@ HEAD_A = ('<meta charset="utf-8">\n<meta name="viewport" content="width=device-w
           '<link rel="icon" type="image/png" href="'+__import__('base64').b64encode((ROOT/'assets_src'/'favicon.png').read_bytes()).decode().join(['data:image/png;base64,',''])+'">\n'
           f'<meta name="description" content="{DESC}">\n<meta name="theme-color" content="#120E0C">\n')
 SHARED_HEAD = f'{EARLY}\n{FONTS}\n<style>\n{core_css}\n</style>\n'
-SHARED_TAIL = f'{bottom}\n{CDN}<script>\n{data_js}\n</script>\n<script>\n{core_js}\n</script>\n'
+LIVE = '<script src="/api/data"></script>\n'  # live menu from the admin panel (ignored when opened offline)
+SHARED_TAIL = f'{bottom}\n{CDN}<script>\n{data_js}\n</script>\n{LIVE}<script>\n{core_js}\n</script>\n'
 B_HEAD = f'{EARLY}\n{FONTS_INLINE}\n<style>\n{core_css}\n</style>\n'
-B_TAIL = f'{bottom}\n{CDN_INLINE}<script>\n{data_js}\n</script>\n<script>\n{core_js}\n</script>\n'
+B_TAIL = f'{bottom}\n{CDN_INLINE}<script>\n{data_js}\n</script>\n{LIVE}<script>\n{core_js}\n</script>\n'
 
 pages = {}
 for page in sorted((SRC / 'pages').glob('*.html')):
@@ -109,3 +110,9 @@ var r=parse(location.hash);show(r[0],r[1]);
 """
 (DIST / 'chikno-full.html').write_text(shell, encoding='utf-8')
 print(f'built chikno-full.html {len(shell)//1024} KB (all {len(pages)} pages)')
+
+# 3) admin panel (/admin) – uses the API in /api
+(DIST / 'admin').mkdir(exist_ok=True)
+(DIST / 'assets' / 'data.js').write_text(data_js, encoding='utf-8')
+(DIST / 'admin' / 'index.html').write_text((SRC / 'admin' / 'admin.html').read_text(encoding='utf-8').replace('<!--SPRITE-->', sprite), encoding='utf-8')
+print('built admin/index.html')
